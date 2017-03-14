@@ -1,0 +1,19 @@
+{
+  "name": "Page Redder",
+  "description": "Make the current page red",
+  "version": "2.0",
+  "permissions": [
+    "activeTab",
+    "https://www.google.co.uk/"
+  ],
+  "content_scripts": [{
+    "matches": ["https://www.google.co.uk/*"],
+    "css": ["src/static/css/style.css"],
+    "js": ["src/static/js/background.js"],
+    "run_at": "document_start"
+  }],
+  "browser_action": {
+    "default_title": "Make this page red"
+  },
+  "manifest_version": 2
+}
