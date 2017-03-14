@@ -8,7 +8,7 @@
   "content_scripts": [{
     "matches": ["https://www.google.co.uk/*"],
     "css": ["src/static/css/style.css"],
-    "js": ["src/static/js/jquery.js", "src/static/js/stack-overflow.js"],
+    "js": ["src/static/js/jquery.js", "src/static/js/StackOverflow.js"],
     "run_at": "document_start"
   }],
 
