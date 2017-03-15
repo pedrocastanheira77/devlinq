@@ -1,19 +1,32 @@
 {
-  "name": "Page Redder",
-  "description": "Make the current page red",
-  "version": "2.0",
-  "permissions": [
-    "activeTab",
-    "https://www.google.co.uk/"
-  ],
+  "manifest_version": 2,
+  "name": "DevLinQ",
+  "description": "Tool to organise your coding-related search",
+  "version": "0.0",
+
   "content_scripts": [{
     "matches": ["https://www.google.co.uk/*"],
     "css": ["src/static/css/style.css"],
-    "js": ["src/static/js/background.js"],
+    "js": [ "src/static/js/app.js",
+            "src/static/js/ruby.js",
+            "src/static/js/Javascript.js",
+            "src/static/js/languages.js",
+            "src/static/js/official.js"
+          ],
     "run_at": "document_start"
-  }],
+    }],
+
+  /*"background": {
+    "scripts": [  "src/static/js/app.js"],
+    "persistent": false
+  },*/
+
+  "permissions": [
+    "activeTab",
+    "https://www.google.co.uk/*"
+  ],
+
   "browser_action": {
-    "default_title": "Make this page red"
-  },
-  "manifest_version": 2
+    "default_icon": "icon.png"
+  }
 }

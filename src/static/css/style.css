@@ -1,3 +1,32 @@
+#language {
+  display: block;
+  top: 0px;
+  height: 30px;
+  margin: 5px;
+  padding: 20px;
+  border: thin solid #545454;
+  background-color: #c22f2f;
+  color: #FFF;
+}
+
+#languageDropdownsList {
+  padding: 3px;
+  margin: 0px;
+  width: 180px;
+  background-color: transparent;
+  border: thin solid #f6bcbc;
+  border-radius: 0;
+  font-size: 15px;
+  color: #FFF;
+}
+
 #official {
-  background: red;
+  display: block;
+  top: 0px;
+  height: 30px;
+  margin: 5px;
+  padding: 20px;
+  border: thin solid #545454;
+  background-color: #dadada;
+  color: #545454;
 }
