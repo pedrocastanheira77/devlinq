@@ -3,5 +3,8 @@ function Javascript() {
   this.versions = [ "ECMAScript5.1",
                     "ECMAScript6",
                     "ECMAScript7"
-                  ]
+                  ],
+  this.topics = [ "methods",
+                  "classes"
+                ]
 }

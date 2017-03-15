@@ -12,13 +12,21 @@ Languages.prototype.getVersions = function() {
                             ];
 };
 
+Languages.prototype.getTopics = function() {
+  return this.topicList = [ this.ruby.topics,
+                            this.javascript.topics
+                          ];
+};
+
 Languages.prototype.getLanguages = function() {
   return this.languageList;
 };
 
+
+
 Languages.prototype.createLanguageDropdown = function(){
   var languageDropdownList = document.createElement("select");
-  languageDropdownList.id = "languageDropdownsList";
+  languageDropdownList.id = "languageDropdownList";
   var option_dummy = document.createElement('option');
   option_dummy.selected = "selected";
   option_dummy.disabled = "disabled";
@@ -37,25 +45,43 @@ Languages.prototype.createLanguageDropdown = function(){
 Languages.prototype.createVersionDropdown = function(language){
   var languageIndex = this.getLanguages().indexOf(language);
   var versionDropdownList = document.createElement("select");
-  versionDropdownList.id = "languageDropdownsList";
-  console.log(document.createElement('option_1'));
-  console.log(document.createElement('option_1'));
-  console.log(document.createElement('option_1'));
-  for (var i=0;i<this.getVersions().length;i++){
+  versionDropdownList.id = "languageDropdownList";
+  for (var i=0; i<this.getVersions()[languageIndex].length; i++){
     eval("var option" + (i+1) + "= document.createElement('option')");
     eval("option" + (i+1) + ".value = this.getVersions()[languageIndex][i]");
     eval("option" + (i+1) + ".innerHTML = this.getVersions()[languageIndex][i]");
     eval("versionDropdownList.appendChild(option" + (i+1) +")");
   }
-  console.log(option1);
-
   return versionDropdownList;
+};
+
+Languages.prototype.createTopicDropdown = function(language){
+  var languageIndex = this.getLanguages().indexOf(language);
+  var topicDropdownList = document.createElement("select");
+  topicDropdownList.id = "languageDropdownList";
+  console.log(this.getTopics);
+  for (var i=0; i<this.getTopics()[languageIndex].length; i++){
+    eval("var option" + (i+1) + "= document.createElement('option')");
+    eval("option" + (i+1) + ".value = this.getTopics()[languageIndex][i]");
+    eval("option" + (i+1) + ".innerHTML = this.getTopics()[languageIndex][i]");
+    eval("topicDropdownList.appendChild(option" + (i+1) +")");
+  }
+  return topicDropdownList;
+};
+
+Languages.prototype.createSubmitSearchButton = function () {
+  var submitSearchButton = document.createElement("button");
+  submitSearchButton.id = "submitSearchButton";
+  submitSearchButton.innerHTML = "Search!";
+  return submitSearchButton;
 };
 
 Languages.prototype.createLanguageDiv = function() {
   var languageDiv = document.createElement("div");
   languageDiv.id = "language";
   languageDiv.appendChild(this.createLanguageDropdown());
-  languageDiv.appendChild(this.createVersionDropdown("ruby"));
+  languageDiv.appendChild(this.createVersionDropdown("Ruby"));
+  languageDiv.appendChild(this.createTopicDropdown("Ruby"));
+  languageDiv.appendChild(this.createSubmitSearchButton());
   return languageDiv;
 };
