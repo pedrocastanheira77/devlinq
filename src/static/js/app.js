@@ -5,5 +5,5 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentDiv = document.getElementById("appbar");
     currentDiv.parentNode.insertBefore(languageDiv, currentDiv);
     currentDiv.parentNode.insertBefore(officialDiv, currentDiv);
-  }, 1000);
+  }, 2000);
 });

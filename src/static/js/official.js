@@ -1,7 +1,8 @@
 function OfficialDocsView() {
   var officialDiv = document.createElement("div");
   officialDiv.id = "official";
-  var officialContent = document.createTextNode("this is the official docs");
-  officialDiv.appendChild(officialContent);
+  var link = document.createElement("a");
+  link.id = "link"
+  officialDiv.appendChild(link);
   return officialDiv;
 }
