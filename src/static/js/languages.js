@@ -22,17 +22,19 @@ Languages.prototype.getLanguages = function() {
   return this.languageList;
 };
 
-
+Languages.prototype.createDummyOption = function(string, list) {
+  var option_dummy = document.createElement('option');
+  option_dummy.selected = "selected";
+  option_dummy.disabled = "disabled";
+  option_dummy.value = "Choose a " + string;
+  option_dummy.innerHTML = "Choose a " + string;
+  list.appendChild(option_dummy);
+};
 
 Languages.prototype.createLanguageDropdown = function(){
   var languageDropdownList = document.createElement("select");
   languageDropdownList.id = "languageDropdownList";
-  var option_dummy = document.createElement('option');
-  option_dummy.selected = "selected";
-  option_dummy.disabled = "disabled";
-  option_dummy.value = "Choose a language";
-  option_dummy.innerHTML = "Choose a language";
-  languageDropdownList.appendChild(option_dummy);
+  this.createDummyOption("language", languageDropdownList)
   for (var i=0;i<this.getLanguages().length;i++){
     eval("var option" + (i+1) + "= document.createElement('option')");
     eval("option" + (i+1) + ".value = this.getLanguages()[i]");
@@ -46,6 +48,7 @@ Languages.prototype.createVersionDropdown = function(language){
   var languageIndex = this.getLanguages().indexOf(language);
   var versionDropdownList = document.createElement("select");
   versionDropdownList.id = "languageDropdownList";
+  this.createDummyOption("version", versionDropdownList)
   for (var i=0; i<this.getVersions()[languageIndex].length; i++){
     eval("var option" + (i+1) + "= document.createElement('option')");
     eval("option" + (i+1) + ".value = this.getVersions()[languageIndex][i]");
@@ -59,7 +62,7 @@ Languages.prototype.createTopicDropdown = function(language){
   var languageIndex = this.getLanguages().indexOf(language);
   var topicDropdownList = document.createElement("select");
   topicDropdownList.id = "languageDropdownList";
-  console.log(this.getTopics);
+  this.createDummyOption("topic", topicDropdownList)
   for (var i=0; i<this.getTopics()[languageIndex].length; i++){
     eval("var option" + (i+1) + "= document.createElement('option')");
     eval("option" + (i+1) + ".value = this.getTopics()[languageIndex][i]");
