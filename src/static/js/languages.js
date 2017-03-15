@@ -47,7 +47,7 @@ Languages.prototype.createLanguageDropdown = function(){
 Languages.prototype.createVersionDropdown = function(language){
   var languageIndex = this.getLanguages().indexOf(language);
   var versionDropdownList = document.createElement("select");
-  versionDropdownList.id = "languageDropdownList";
+  versionDropdownList.id = "versionDropdownList";
   this.createDummyOption("version", versionDropdownList)
   for (var i=0; i<this.getVersions()[languageIndex].length; i++){
     eval("var option" + (i+1) + "= document.createElement('option')");
@@ -61,7 +61,7 @@ Languages.prototype.createVersionDropdown = function(language){
 Languages.prototype.createTopicDropdown = function(language){
   var languageIndex = this.getLanguages().indexOf(language);
   var topicDropdownList = document.createElement("select");
-  topicDropdownList.id = "languageDropdownList";
+  topicDropdownList.id = "topicDropdownList";
   this.createDummyOption("topic", topicDropdownList)
   for (var i=0; i<this.getTopics()[languageIndex].length; i++){
     eval("var option" + (i+1) + "= document.createElement('option')");
