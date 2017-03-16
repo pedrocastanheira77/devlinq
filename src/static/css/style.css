@@ -36,11 +36,29 @@
 
 #official {
   display: block;
+  padding: 2px 0px 2px 20px;
+  margin: 2px;
   top: 0px;
-  height: 30px;
-  margin: 5px;
-  padding: 20px;
+  height: 80px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #545454;
   border: thin solid #545454;
   background-color: #dadada;
-  color: #545454;
+}
+
+#link:link {
+    color: #545454;
+}
+
+#link:visited {
+    color: #3d7938;
+}
+
+#link:hover {
+    color: #c22f2f;
+}
+
+#link:active {
+    color: #545454;
 }
