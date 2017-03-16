@@ -4,7 +4,7 @@ it('Extention add text to the google search results',  (done)=> {
   var sw = require('selenium-webdriver');
   var assert = require('chai').assert;
   var chromeOptions = sw.Capabilities.chrome();
-  chromeOptions.set("chromeOptions",  {"args": ['--load-extension='+"/Users/KateLoschinina/Workspace/MakersAcademy/devlinq"]});
+  chromeOptions.set("chromeOptions",  {"args": ['--load-extension='+"/Users/Lauren/makers/devlinq"]});
   // console.log(chromeOptions)
   var driver = new sw.Builder()
       .forBrowser('chrome')
@@ -15,17 +15,13 @@ it('Extention add text to the google search results',  (done)=> {
     .then(function(){
       driver.findElement(sw.By.id('searchform')).then(function(a) {
         setTimeout(function() {
+
           a.click().then(function(b) {
-            driver.findElement(sw.By.id('stack')).then(function(c){
-              c.getText().then(function(d){
-                assert.inNotNull(d,'Awesome');
-                done();
-              })
+            driver.findElement(sw.By.id('stackoverflowbar')).then(function(c){
+              console.log("here")
+              assert.isNotNull(c,'Awesome');
               done();
             })
-            done();
-          }).catch(function(c) {
-            done();
           })
         }, 5000)
       })
