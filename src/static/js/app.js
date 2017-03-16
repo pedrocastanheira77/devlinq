@@ -1,9 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var optionsDiv = new LanguagesView().createLanguageDiv();
-  var officialDiv = new OfficialDocsView().createOfficialDiv();
-  setTimeout(function() {
-    var currentDiv = document.getElementById("appbar");
-    currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);
-    currentDiv.parentNode.insertBefore(officialDiv, currentDiv);
-  }, 2000);
-});
+import React, { Component } from 'react';
+import logo from '../../logo.svg';
+import '../css/App.css';
+
+class App extends Component {
+ render() {
+   return (
+     <div className="App">
+       <div className="App-header">
+         <img src={logo} className="App-logo" alt="logo" />
+         <h2>Welcome to React</h2>
+       </div>
+       <p className="App-intro">
+         To get started, edit <code>src/App.js</code> and save to reload.
+       </p>
+     </div>
+   );
+ }
+}
+
+export default App;

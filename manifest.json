@@ -12,7 +12,7 @@
     "js": [
             "src/public/jquery.js",
             "src/static/js/event.js",
-            "src/static/js/app.js",
+            "src/static/js/Devlinq.js",
             "src/static/js/ruby.js",
             "src/static/js/javascript.js",
             "src/static/js/jquery.js",
@@ -23,7 +23,7 @@
   }],
 
   "background": {
-    "scripts": [  "src/static/js/app.js"],
+    "scripts": [  "src/static/js/Devlinq.js"],
     "persistent": false
   },
 
