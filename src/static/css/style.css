@@ -1,3 +1,4 @@
+
 #language {
   display: block;
   top: 0px;
@@ -61,4 +62,10 @@
 
 #link:active {
     color: #545454;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }

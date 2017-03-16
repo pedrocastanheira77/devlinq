@@ -1,8 +1,10 @@
 {
   "manifest_version": 2,
   "name": "DevLinQ",
+
+  "version": "1.0",
+
   "description": "Tool to organise your coding-related search",
-  "version": "0.0",
 
   "content_scripts": [{
     "matches": ["https://www.google.co.uk/*"],
@@ -18,7 +20,7 @@
             "src/static/js/official.js"
           ],
     "run_at": "document_start"
-    }],
+  }],
 
   "background": {
     "scripts": [  "src/static/js/app.js"],
@@ -27,6 +29,7 @@
 
   "permissions": [
     "activeTab",
+    "tabs",
     "https://www.google.co.uk/*"
   ],
 
