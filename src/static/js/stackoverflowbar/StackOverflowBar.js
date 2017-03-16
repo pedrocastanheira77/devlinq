@@ -25,54 +25,56 @@ var chromeOptions = sw.Capabilities.chrome();
 
 // var chromeOptions = sw.Capabilities.chrome();
 // chromeOptions.set("chromeOptions",  {"args": ["--no-startup-window"]});
-var driver = new sw.Builder()
-    .forBrowser('chrome')
-    // .withCapabilities(chromeOptions)
-    .build();
-
-
-
-driver.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow')
-  .then(function(){
-    driver.findElement(sw.By.tagName('body')).then(function(page){
-      page.getText().then(function(data){
-        var parseJson = require('parse-json');
-        console.log(JSON.parse(data).items[0].link)
-      })
-    })
-})
-
-
-// var stackexchange = require('stackexchange');
+// var driver = new sw.Builder()
+//     .forBrowser('chrome')
+//     // .withCapabilities(chromeOptions)
+//     .build();
 //
-// var options = { version: 2.2 };
-// var context = new stackexchange(options);
 //
-// var filter = {
-//  q: 'ruby array sort reverse',
-//  answer: 1,
-//  tagged: 'ruby',
-//  sort: 'relevance',
-//  order: 'asc'
-// };
 //
-// // Get all the questions (http://api.stackexchange.com/docs/questions)
-// // context.search.advanced(filter, function(err, results){
-// //  if (err) throw err;
-// //
-// //
-// //  // console.log(results.items.length)
-// //  //
-// //  // console.log(results.items[1].title);
-// //  // console.log(results.items[2].title);
-// //  // console.log(results.items[3].title);
-// //  // console.log(results.items[4].title);
-// //  // console.log(results.items[5].title);
-// //  // console.log(results.items[6].title);
-// //
-// //  // console.log(results.has_more);
-// // });
-// // var outputitem = require('./StackOverflowOutputItem')
+// driver.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow')
+//   .then(function(){
+//     driver.findElement(sw.By.tagName('body')).then(function(page){
+//       page.getText().then(function(data){
+//         var parseJson = require('parse-json');
+//         console.log(JSON.parse(data).items[0].link)
+//       })
+//     })
+// })
+
+
+var stackexchange = require('stackexchange');
+
+var options = { version: 2.2 };
+var context = new stackexchange(options);
+
+var filter = {
+ q: 'ruby array sort reverse',
+ answer: 1,
+ tagged: 'ruby',
+ sort: 'relevance',
+ order: 'asc'
+};
+var array = []
+// Get all the questions (http://api.stackexchange.com/docs/questions)
+context.search.advanced(filter, function(err, results){
+ if (err) throw err;
+ array.push(results.items[1])
+ console.log(results.items.length)
+ console.log(results.items[1].title);
+ console.log(results.items[2].title);
+ console.log(results.items[3].title);
+ console.log(results.items[4].title);
+ console.log(results.items[5].title);
+ console.log(results.items[6].title);
+});
+setTimeout(function(){
+  console.log(array)
+}, 10000);
+// Try it Yourself »
+
+console.log(array)
+// var outputitem = require('./StackOverflowOutputItem')
 // //
 // // var stackexchange = require('stackexchange');
 // // var options = { version: 2.2 };
