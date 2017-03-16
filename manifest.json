@@ -11,13 +11,13 @@
     "css": ["src/static/css/style.css"],
     "js": [
             "src/public/jquery.js",
-            "src/static/js/event.js",
+            "src/static/js/Event.js",
             "src/static/js/Devlinq.js",
-            "src/static/js/ruby.js",
-            "src/static/js/javascript.js",
-            "src/static/js/jquery.js",
-            "src/static/js/languages.js",
-            "src/static/js/official.js"
+            "src/static/js/RubyInBar.js",
+            "src/static/js/JavascriptInBar.js",
+            "src/static/js/JqueryInBar.js",
+            "src/static/js/LanguagesBar.js",
+            "src/static/js/OfficialDocsOutput.js"
           ],
     "run_at": "document_start"
   }],
