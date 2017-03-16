@@ -113,7 +113,7 @@ function Ruby() {
                 ]
 }
 
-Ruby.prototype.getURL = function (version, topic) {
+Ruby.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("::", "/");
   return this.baseUrl + version + "/" + topic + ".html";
 };

@@ -45,7 +45,7 @@ function Javascript() {
                 ]
 }
 
-Javascript.prototype.getURL = function (version, topic) {
+Javascript.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("Intl.", "");
   return this.baseUrl + topic;
 };

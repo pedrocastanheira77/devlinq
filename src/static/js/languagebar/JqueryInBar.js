@@ -72,7 +72,7 @@ this.topics = [ "add()",
               ]
 }
 
-JQuery.prototype.getURL = function (version, topic) {
+JQuery.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("()","")
   return this.baseUrl + topic;
 };
