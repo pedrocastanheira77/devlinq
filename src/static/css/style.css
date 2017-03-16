@@ -1,3 +1,69 @@
+
+#language {
+  display: block;
+  top: 0px;
+  height: 30px;
+  margin: 5px;
+  padding: 20px;
+  border: thin solid #545454;
+  background-color: #c22f2f;
+  color: #FFF;
+}
+
+#languageDropdownList, #versionDropdownList, #topicDropdownList {
+  padding: 3px;
+  margin: 3px;
+  width: 180px;
+  height: 30px;
+  background-color: transparent;
+  border: thin solid #f6bcbc;
+  font-size: 15px;
+  color: #FFF;
+}
+
+#submitSearchButton {
+  padding: 3px;
+  margin: 3px;
+  width: 90px;
+  height: 30px;
+  background-color: #FFF;
+  border: thin solid #FFF;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #c22f2f;
+  font-weight: bold;
+}
+
+
+#official {
+  display: block;
+  padding: 2px 0px 2px 20px;
+  margin: 2px;
+  top: 0px;
+  height: 80px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #545454;
+  border: thin solid #545454;
+  background-color: #dadada;
+}
+
+#link:link {
+    color: #545454;
+}
+
+#link:visited {
+    color: #3d7938;
+}
+
+#link:hover {
+    color: #c22f2f;
+}
+
+#link:active {
+    color: #545454;
+}
+
 body {
   margin: 0;
   padding: 0;

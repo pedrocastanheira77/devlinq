@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
   "name": "DevLinQ",
+
   "version": "1.0",
 
   "description": "Tool to organise your coding-related search",
@@ -8,16 +9,31 @@
   "content_scripts": [{
     "matches": ["https://www.google.co.uk/*"],
     "css": ["src/static/css/style.css"],
-    "js": ["src/static/js/jquery.js", "src/static/js/StackOverflow.js"],
+    "js": [
+            "src/public/jquery.js",
+            "src/static/js/event.js",
+            "src/static/js/app.js",
+            "src/static/js/ruby.js",
+            "src/static/js/javascript.js",
+            "src/static/js/jquery.js",
+            "src/static/js/languages.js",
+            "src/static/js/official.js"
+          ],
     "run_at": "document_start"
   }],
 
-  "browser_action": {
-    "default_icon": "icon.png"
+  "background": {
+    "scripts": [  "src/static/js/app.js"],
+    "persistent": false
   },
 
   "permissions": [
+    "activeTab",
     "tabs",
     "https://www.google.co.uk/*"
-  ]
+  ],
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  }
 }
