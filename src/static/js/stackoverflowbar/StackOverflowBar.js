@@ -13,20 +13,16 @@
 // Key Gvi3HHcYwsdm2K69OzxUnQ((
 //
 //
-
 var stackexchange = require('stackexchange');
-var stackitem = require('./StackOverflowOutputItem.js')
+// var stackitem = require('./StackOverflowOutputItem.js')
 var options = { version: 2.2 };
 var context = new stackexchange(options);
-var wait=require('wait.for');
 
 function StackOverflowBar(){
 
 }
 
-var stack = new StackOverflowBar();
-
-StackOverflowBar.prototype.getStackAPI = function (string, callback) {
+StackOverflowBar.prototype.getStackAPI = function (string, number) {
   var filter = {
     q: string,
     answer: 1,
@@ -35,23 +31,27 @@ StackOverflowBar.prototype.getStackAPI = function (string, callback) {
     order: 'asc'
    };
 
-  var item;
-
   return new Promise(function(resolve, reject) {
     context.search.advanced(filter, function(err, results){
       if (err) throw err;
-      item0 = [results.items[0].title,results.items[0].link];
-      item1 = [results.items[1].title,results.items[1].link];
-      item2 = [results.items[2].title,results.items[2].link];
-      item3 = [results.items[3].title,results.items[3].link];
-      item4 = [results.items[4].title,results.items[4].link];
+      var array = [];
+
+      var item0 = [results.items[0].title,results.items[0].link];
+      var item1 = [results.items[1].title,results.items[1].link];
+      var item2 = [results.items[2].title,results.items[2].link];
+      var item3 = [results.items[3].title,results.items[3].link];
+      var item4 = [results.items[4].title,results.items[4].link];
       resolve([item0, item1, item2, item3, item4]);
     });
   });
 }
+//
+// var stack = new StackOverflowBar();
+//
+// var output = stack.getStackAPI("ruby array sort");
+//
+// output.then(function(data){
+//   console.log(data)
+// })
 
-var output = stack.getStackAPI("ruby array sort");
-
-output.then(function(data){
-  console.log(data)
-})
+module.exports = StackOverflowBar;
