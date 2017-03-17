@@ -13,8 +13,10 @@
 // Key Gvi3HHcYwsdm2K69OzxUnQ((
 //
 //
+// import StackOverflowOutputItem from 'StackOverflowOutputItem.js');
+var stackitem = require('./StackOverflowOutputItem.js');
 var stackexchange = require('stackexchange');
-// var stackitem = require('./StackOverflowOutputItem.js')
+
 var options = { version: 2.2 };
 var context = new stackexchange(options);
 
@@ -35,23 +37,23 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
     context.search.advanced(filter, function(err, results){
       if (err) throw err;
       var array = [];
-
-      var item0 = [results.items[0].title,results.items[0].link];
-      var item1 = [results.items[1].title,results.items[1].link];
-      var item2 = [results.items[2].title,results.items[2].link];
-      var item3 = [results.items[3].title,results.items[3].link];
-      var item4 = [results.items[4].title,results.items[4].link];
-      resolve([item0, item1, item2, item3, item4]);
+      for (var i = 0; i < number; i++) {
+        if (results.items[i]) {
+          var item = [results.items[i].title, results.items[i].link];
+          array.push(new stackitem(item[0], item[1]));
+        };
+      }
+      resolve(array);
     });
   });
 }
-//
+
 // var stack = new StackOverflowBar();
 //
-// var output = stack.getStackAPI("ruby array sort");
+// var output = stack.getStackAPI("ruby array sort", 400);
 //
 // output.then(function(data){
-//   console.log(data)
+//   console.log(data.length)
 // })
 
 module.exports = StackOverflowBar;

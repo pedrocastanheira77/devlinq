@@ -3,10 +3,12 @@ function StackOverflowOutputItem(title, url){
   this._url = url;
 }
 
-StackOverflowOutputItem.prototype.title = function () {
+StackOverflowOutputItem.prototype.getTitle = function () {
   return this._title;
 };
 
-StackOverflowOutputItem.prototype.url = function () {
+StackOverflowOutputItem.prototype.getUrl = function () {
   return this._url;
 };
+
+module.exports = StackOverflowOutputItem;
