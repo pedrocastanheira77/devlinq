@@ -4,7 +4,7 @@ it('Extention add text to the google search results',  (done)=> {
   var sw = require('selenium-webdriver');
   var assert = require('chai').assert;
   var chromeOptions = sw.Capabilities.chrome();
-  chromeOptions.set("chromeOptions",  {"args": ['--load-extension='+"/Users/KateLoschinina/Workspace/MakersAcademy/devlinq"]});
+  chromeOptions.set("chromeOptions",  {"args": ['--load-extension='+"/Users/frankieshaw/Desktop/Coding/devlinq"]});
   // console.log(chromeOptions)
   var driver = new sw.Builder()
       .forBrowser('chrome')
