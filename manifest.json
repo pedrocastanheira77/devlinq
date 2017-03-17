@@ -6,7 +6,7 @@
 
   "description": "Tool to organise your coding-related search",
 
-  "content_scripts": [{
+  /*"content_scripts": [{
     "matches": ["https://www.google.co.uk/*"],
     "css": ["src/static/css/style.css"],
     "js": [
@@ -20,16 +20,18 @@
             "src/static/js/languagebar/OfficialDocsOutput.js"
           ],
     "run_at": "document_start"
-  }],
+  }],*/
 
   "background": {
-    "scripts": [  "src/static/js/Devlinq.js"],
-    "persistent": false
+    "scripts": ["src/static/js/background.js"],
+    "persistent": true
   },
 
   "permissions": [
-    "activeTab",
     "tabs",
+    "activeTab",
+    "webNavigation",
+    "webRequest",
     "https://www.google.co.uk/*"
   ],
 
