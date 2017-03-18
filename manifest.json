@@ -17,7 +17,10 @@
             "src/static/js/languagebar/JavascriptInBar.js",
             "src/static/js/languagebar/JqueryInBar.js",
             "src/static/js/languagebar/LanguagesBar.js",
-            "src/static/js/languagebar/OfficialDocsOutput.js"
+            "src/static/js/languagebar/OfficialDocsOutput.js",
+            "src/static/js/stackoverflowbar/StackOverflowBar.js",
+            "src/static/js/stackoverflowbar/StackOverflowOutputItem.js"
+
           ],
     "run_at": "document_start"
   }],
