@@ -34,14 +34,10 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
   });
 }
 //
-var stack = new StackOverflowBar();
+// var stack = new StackOverflowBar();
 
 //
-var output = stack.getStackAPI("ruby array sort", 5);
-// var output = stack.print("ruby array sort", 5);
-// console.log(output)
-
-// console.log(output.print)
+// var output = stack.getStackAPI("ruby array sort", 5);
 //
 // output.then(function(data){
 //   console.log(data)

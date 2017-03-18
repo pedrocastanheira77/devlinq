@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import '../css/App.css';
-var request = require('request-promise');
 var StackOverflowBar = require('./stackoverflowbar/StackOverflowBar.js');
 var stackbar = new StackOverflowBar();
-
-
 
 class App extends Component {
   constructor() {
@@ -21,12 +18,20 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.items);
     return (
       <div className="App">
+       <div className="App-header">
+         <img src={logo} className="App-logo" alt="logo" />
+         <h2>Welcome to React</h2>
+       </div>
+
+       <div id="language">{}</div>
+       <div id="language">{}</div>
+       <div className="StackOverflow">
         {this.state.items.map((item, i) => {
-          return (<div key={i}>{item.getTitle()}</div>)
+          return (<div key={i}><p><b>{item.getTitle()}</b></p><p>item.getUrl()</p></div>)
         })}
+       </div>
       </div>
     );
   }

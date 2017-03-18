@@ -117,3 +117,5 @@ Ruby.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("::", "/");
   return this.baseUrl + version + "/" + topic + ".html";
 };
+
+module.exports = Ruby;
