@@ -7,43 +7,45 @@
 // This must be kept secret. Do not embed it in client side code or binaries you intend to distribute. If you need client side authentication, use the implicit OAuth 2.0 flow.
 // Key Gvi3HHcYwsdm2K69OzxUnQ((
 
-// import stackitem from './StackOverflowOutputItem.js'
-// var stackitem = require('./StackOverflowOutputItem.js');
-// var stackexchange = require('stackexchange');
-//
-// var options = { version: 2.2 };
-// var context = new stackexchange(options);
+// import {stackitem} from './StackOverflowOutputItem.js'
+var stackitem = require('./StackOverflowOutputItem.js');
+var stackexchange = require('stackexchange');
+
+var options = { version: 2.2 };
+var context = new stackexchange(options);
 
 function StackOverflowBar(){
 
 }
 
-// StackOverflowBar.prototype.getStackAPI = function (string, number) {
-//   var filter = {
-//     q: string,
-//     answer: 1,
-//     tagged: 'ruby',
-//     sort: 'relevance',
-//     order: 'asc'
-//    };
-//
-//   return new Promise(function(resolve, reject) {
-//     context.search.advanced(filter, function(err, results){
-//       if (err) throw err;
-//       var array = [];
-//       for (var i = 0; i < number; i++) {
-//         if (results.items[i]) {
-//           var item = [results.items[i].title, results.items[i].link];
-//           array.push(new stackitem(item[0], item[1]));
-//         };
-//       }
-//       resolve(array);
-//     });
-//   });
-// }
+
+StackOverflowBar.prototype.getStackAPI = function (string, number) {
+  var filter = {
+    q: string,
+    answer: 1,
+    tagged: 'ruby',
+    sort: 'relevance',
+    order: 'asc'
+   };
+
+  return new Promise(function(resolve, reject) {
+    context.search.advanced(filter, function(err, results){
+      if (err) throw err;
+      var array = [];
+      for (var i = 0; i < number; i++) {
+        if (results.items[i]) {
+          var item = [results.items[i].title, results.items[i].link];
+          array.push(new stackitem(item[0], item[1]));
+        };
+      }
+      resolve(array);
+    });
+  });
+}
 
 StackOverflowBar.prototype.decideStringForApi = function () {
-  var searched = getElementById("lst-ib");
+  var searched = getElementById("lst-ib").value;
+  var releventWordFinder = new ReleventWordFinder(searched);
   return decideStringForApi;
 }
 
@@ -71,4 +73,4 @@ StackOverflowBar.prototype.createStackOverflowDiv = function () {
 // output.then(function(data){
 //   console.log(data.length)
 // })
-// module.exports = StackOverflowBar;
+module.exports = StackOverflowBar;

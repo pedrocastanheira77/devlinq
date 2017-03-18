@@ -4,9 +4,9 @@ var assert = require('chai').assert;
 var Browser = require('zombie');
 var mocha = require('mocha');
 var http = require('http');
+var StackOverflowBar = require('../StackOverflowBar.js')
 import EventStackOverflowBar from '../EventStackOverflowBar.js';
-import StackOverflowBar from '../StackOverflowBar.js';
-var stackbar = new StackOverflowBar();
+import {StackOverflowBar} from '../StackOverflowBar.js';
 
 
 describe('EventStackOverflowBar', function () {
@@ -17,21 +17,16 @@ describe('EventStackOverflowBar', function () {
     console.log(this.browser);
   });
 
+  afterAll(function(done) {
+    this.server.close(done);
+  });
+
   beforeEach(function(done) {
     this.browser.visit('/', done);
   });
 
-  it('Inserts StackOverflow results into div', function (done) {
-    // assert.ok(this.browser.success);
-    assert.equal(1,1);
-    console.log(this.browser.success);
-    // // stackbar.getStackAPI("ruby array sort", 5).then(function(data){
-    //   // what do we expect from it?
-    //   done();
-    // // })
-  }).then(done);
-
-  afterAll(function(done) {
-    this.server.close(done);
-  });
+  test('Inserts StackOverflow results into div', function () {
+    var event_stackbar = new EventStackOverflowBar;
+    assert.equal(event_stackbar.check(1),1);
+  })
 });
