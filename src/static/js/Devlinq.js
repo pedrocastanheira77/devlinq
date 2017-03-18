@@ -1,3 +1,5 @@
+var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
+
 document.addEventListener('DOMContentLoaded', function() {
   // var optionsDiv = new LanguagesView().createLanguageDiv();
   // var officialDiv = new OfficialDocsView().createOfficialDiv();
@@ -10,10 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     stackOverflowDiv.id = "stackoverflowbar";
     currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
     var stackbar = new StackOverflowBar();
-    var Promise = require('promise/domains');
-    var data = Promise.resolve(stackbar.getStackAPI("ruby array sort", 5));
-    data.then(function(){
-      stackOverflowDiv.insertAdjacentHTML(data)
+    stackbar.getStackAPI("ruby array sort", 5).then(function(items){
+      stackOverflowDiv.insertAdjacentHTML(items.toString());
     })
   }, 5000);
 });
