@@ -1,25 +1,26 @@
-
-
-var clickButtonStatus = "off"
+var clickButtonStatus = "off";
 
 chrome.browserAction.onClicked.addListener(function(tab){
-  updateClickButtonStatus();
-  console.log(clickButtonStatus);
+  changeClickButtonStatus();
   pageRefresher();
 });
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  console.log(changeInfo.status);
-  if (changeInfo.status === "complete" && clickButtonStatus === "on"){
-    runScripts();
-  }
-});
+chrome.tabs.onUpdated.addListener(triggerContentsScripts)
 
-function updateClickButtonStatus(){
+function triggerContentsScripts(tabId, changeInfo, tab) {
+  console.log(changeInfo.status);
+  if (changeInfo.status === "complete" && clickButtonStatus === "on") {
+    runContentScripts();
+  }
+}
+
+function changeClickButtonStatus(){
   if (clickButtonStatus === "off"){
-    return clickButtonStatus = "on"
+    chrome.browserAction.setIcon({path:"green.png"})
+    return clickButtonStatus = "on";
   } else {
-    return clickButtonStatus = "off"
+    chrome.browserAction.setIcon({path:"red.png"})
+    return clickButtonStatus = "off";
   }
 }
 
@@ -29,7 +30,13 @@ function pageRefresher(){
   });
 }
 
-function runScripts() {
+function runSpinnerView(){
+  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+    var specTab = tabs[0];
+  });
+}
+
+function runContentScripts() {
   chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
     var specTab = tabs[0];
     chrome.tabs.insertCSS(specTab.id, {file:"src/static/css/style.css"});
@@ -38,6 +45,8 @@ function runScripts() {
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/JqueryInBar.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/LanguagesBar.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/OfficialDocsOutput.js"});
+    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/Spinner.js"});
+    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/SpinnerView.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/Devlinq.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/EventLanguageBar.js"});
   });
