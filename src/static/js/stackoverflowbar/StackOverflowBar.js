@@ -22,7 +22,7 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
       json: true,
       gzip: true
     }).then(function(response) {
-      var array = [];
+          var array = [];
           for (var i = 0; i < number; i++) {
             if (response.items[i]) {
               var item = [response.items[i].title, response.items[i].link];
@@ -33,10 +33,15 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
     });
   });
 }
-// 
-// var stack = new StackOverflowBar();
 //
-// var output = stack.getStackAPI("ruby array sort", 5);
+var stack = new StackOverflowBar();
+
+//
+var output = stack.getStackAPI("ruby array sort", 5);
+// var output = stack.print("ruby array sort", 5);
+// console.log(output)
+
+// console.log(output.print)
 //
 // output.then(function(data){
 //   console.log(data)
