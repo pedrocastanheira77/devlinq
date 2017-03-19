@@ -15,6 +15,13 @@ function StackOverflowBar(){
 
 }
 
+StackOverflowBar.prototype.decideStringForAPI = function () {
+  var searched = document.getElementById("lst-ib").value;
+  var releventWordFinder = new ReleventWordFinder(searched);
+  var result = releventWordFinder.findKeyWords()
+  return result.join(" ");
+}
+
 StackOverflowBar.prototype.getStackAPI = function (string, number) {
   return new Promise(function(resolve, reject) {
     var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow";
@@ -36,17 +43,12 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
   });
 }
 
-StackOverflowBar.prototype.decideStringForApi = function () {
-  var searched = document.getElementById("lst-ib");
-  return searched;
-}
-
 
 StackOverflowBar.prototype.stackAPIresult = function () {
   var exampleSOresult = document.createElement("p");
   exampleSOresult.id = "exampleSOresult";
   // 'HERE!' IS WHERE GETSTACKAPI(STRING, NUMBER) SHOULD BE USED
-  exampleSOresult.innerHTML = "HERE!"
+  exampleSOresult.innerHTML = this.decideStringForAPI()
   return exampleSOresult;
 }
 
