@@ -20,7 +20,8 @@ var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOf
     currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
     var stackbar = new StackOverflowBar();
     var numberOfLinks = 5;
-    stackbar.getStackAPI("ruby array sort", numberOfLinks).then(function(items){
+    var stackoverflowsearch = stackbar.decideStringForAPI()
+    stackbar.getStackAPI(stackoverflowsearch, numberOfLinks).then(function(items){
       for(var i = 0; i < numberOfLinks; i++){
         stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
       }
