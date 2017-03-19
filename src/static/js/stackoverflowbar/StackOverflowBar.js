@@ -16,12 +16,14 @@ function StackOverflowBar(){
 
 StackOverflowBar.prototype.getStackAPI = function (string, number) {
   return new Promise(function(resolve, reject) {
-    var reqUri = "http://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow";
+    var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow";
+    // var reqUri = "http://google.co.uk";
     request({
       uri: reqUri,
       json: true,
       gzip: true
     }).then(function(response) {
+      console.log("promise completed")
           var array = [];
           for (var i = 0; i < number; i++) {
             if (response.items[i]) {
