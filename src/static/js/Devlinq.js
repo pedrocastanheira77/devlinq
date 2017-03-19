@@ -1,3 +1,4 @@
+var WebFont = require('webfontloader');
 
 var LanguagesView = require("./languagebar/LanguagesBar.js");
 var lang = new LanguagesView();
@@ -9,11 +10,28 @@ devlinqExtention()
 
 function devlinqExtention() {
   setTimeout(function() {
+    loadFont();
+    replaceLogo();
     createSpinner();
     var currentDiv = document.getElementById("appbar");
     languagesDiv(currentDiv);
     stackOverflowDiv(currentDiv);
   }, 3000);
+}
+
+function loadFont() {
+  WebFont.load({
+    google: {
+      families: ['Raleway:300,700']
+    }
+    });
+}
+
+function replaceLogo(){
+  console.log(document.getElementById("logo"))
+  console.log(document.getElementById("logo").children[0])
+  console.log(document.getElementById("logo").children[0].src)
+  document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
 }
 
 function createSpinner() {
