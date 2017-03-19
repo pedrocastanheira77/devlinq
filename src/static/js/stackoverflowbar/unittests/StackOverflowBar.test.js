@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
-
-var StackOverflowBar = require('../StackOverflowBar.js')
+import StackOverflowBar from '../StackOverflowBar.js';
+var stackbar = new StackOverflowBar();
 
 
 describe('StackOverflowBar', function(){

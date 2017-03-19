@@ -11,4 +11,4 @@ StackOverflowOutputItem.prototype.getUrl = function () {
   return this._url;
 };
 
-// module.exports = StackOverflowOutputItem;
+module.exports = StackOverflowOutputItem;

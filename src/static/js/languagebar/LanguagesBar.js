@@ -1,3 +1,8 @@
+var Ruby = require('./RubyInBar.js');
+var Javascript = require('./JavascriptInBar.js');
+var JQuery = require('./JqueryInBar.js');
+// var LanguageEvent = require('./EventLanguageBar.js');
+
 function LanguagesView(){
   this.ruby = new Ruby();
   this.javascript = new Javascript();
@@ -6,7 +11,7 @@ function LanguagesView(){
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
-    languageKey = Object.keys(new LanguagesView())[i];
+    var languageKey = Object.keys(new LanguagesView())[i];
     this.languageList.push(new LanguagesView()[languageKey].name);
   }
   return this.languageList;
@@ -14,7 +19,7 @@ LanguagesView.prototype.getLanguagesView = function() {
 LanguagesView.prototype.getVersions = function() {
   this.versionList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
-    languageKey = Object.keys(new LanguagesView())[i];
+    var languageKey = Object.keys(new LanguagesView())[i];
     this.versionList.push(new LanguagesView()[languageKey].versions);
   }
   return this.versionList;
@@ -22,7 +27,7 @@ LanguagesView.prototype.getVersions = function() {
 LanguagesView.prototype.getTopics = function() {
   this.topicList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
-    languageKey = Object.keys(new LanguagesView())[i];
+    var languageKey = Object.keys(new LanguagesView())[i];
     this.topicList.push(new LanguagesView()[languageKey].topics);
   }
   return this.topicList;
@@ -39,8 +44,8 @@ LanguagesView.prototype.createLanguageDropdown = function(){
   var languageDropdownList = document.createElement("select");
   languageDropdownList.id = "languageDropdownList";
   languageDropdownList.onchange = function(){
-    versionDropdownChangeEvent();
-    topicDropdownChangeEvent();
+    new LanguagesView().versionDropdownChangeEvent();
+    new LanguagesView().topicDropdownChangeEvent();
   };
   this.createDummyOption("language", languageDropdownList);
   for (var i=0;i<this.getLanguagesView().length;i++){
@@ -86,7 +91,9 @@ LanguagesView.prototype.generateTopicOptions = function(topicDropdownList, langu
 LanguagesView.prototype.createSubmitSearchButton = function () {
   var submitSearchButton = document.createElement("button");
   submitSearchButton.id = "submitSearchButton";
-  submitSearchButton.onclick = function(){submitSearchButtonEvent();};
+  submitSearchButton.onclick = function(){
+    new LanguagesView().submitSearchButtonEvent();
+  };
   submitSearchButton.innerHTML = "Search!";
   return submitSearchButton;
 };
@@ -99,3 +106,33 @@ LanguagesView.prototype.createLanguageDiv = function() {
   languageDiv.appendChild(this.createSubmitSearchButton());
   return languageDiv;
 };
+
+LanguagesView.prototype.submitSearchButtonEvent = function () {
+  var chosenLanguage = document.querySelector('#languageDropdownList').value;
+  var chosenVersion = document.querySelector('#versionDropdownList').value;
+  var chosenTopic = document.querySelector('#topicDropdownList').value;
+  var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
+  new LanguagesView().addLinktoTag(officialDocLink);
+};
+
+LanguagesView.prototype.addLinktoTag = function(officialDocLink){
+  var link = document.getElementById('link');
+  link.href = officialDocLink;
+  link.innerHTML = officialDocLink;
+};
+
+LanguagesView.prototype.versionDropdownChangeEvent = function () {
+  var chosenLanguage = document.querySelector('#languageDropdownList').value;
+  var versionDropdown = document.getElementById("versionDropdownList");
+  versionDropdown.innerHTML = "";
+  var versionOptions = new LanguagesView().generateVersionOptions(versionDropdown, chosenLanguage);
+};
+
+LanguagesView.prototype.topicDropdownChangeEvent = function () {
+  var chosenLanguage = document.querySelector('#languageDropdownList').value;
+  var topicDropdown = document.getElementById("topicDropdownList");
+  topicDropdown.innerHTML = "";
+  var topicOptions = new LanguagesView().generateTopicOptions(topicDropdown, chosenLanguage);
+};
+
+module.exports = LanguagesView;
