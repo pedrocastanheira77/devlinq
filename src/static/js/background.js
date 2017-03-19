@@ -5,12 +5,13 @@ chrome.browserAction.onClicked.addListener(function(tab){
   pageRefresher();
 });
 
-chrome.tabs.onUpdated.addListener(triggerContentsScripts)
+chrome.tabs.onUpdated.addListener(triggerContentsScripts);
 
 function triggerContentsScripts(tabId, changeInfo, tab) {
-  console.log(changeInfo.status);
   if (changeInfo.status === "complete" && clickButtonStatus === "on") {
     runContentScripts();
+  } else if (changeInfo.status !== "complete" && clickButtonStatus === "on") {
+    runSpinner();
   }
 }
 
@@ -30,9 +31,11 @@ function pageRefresher(){
   });
 }
 
-function runSpinnerView(){
+function runSpinner() {
   chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
     var specTab = tabs[0];
+    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/Spinner.js"});
+    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/SpinnerView.js"});
   });
 }
 
@@ -45,8 +48,6 @@ function runContentScripts() {
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/JqueryInBar.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/LanguagesBar.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/OfficialDocsOutput.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/Spinner.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/SpinnerView.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/Devlinq.js"});
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/EventLanguageBar.js"});
   });

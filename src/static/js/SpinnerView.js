@@ -19,12 +19,20 @@ var opts = {
 , shadow: false // Whether to render a shadow
 , hwaccel: false // Whether to use hardware acceleration
 , position: 'absolute' // Element positioning
-}
-var spinner = new Spinner(opts).spin()
+};
+var spinner = new Spinner(opts)
 var spinnerDiv = document.createElement("div");
 spinnerDiv.id = "spinner";
-spinnerDiv.appendChild(spinner.el)
-setTimeout(function() {
-  var resultStatsDiv = document.getElementById("resultStats");
-  resultStatsDiv.parentNode.insertBefore(spinnerDiv, resultStatsDiv);
-}, 1500);
+startSpinner(spinner, spinnerDiv);
+
+function startSpinner(spinner, spinnerDiv) {
+  spinner.spin();
+  spinnerDiv.appendChild(spinner.el);
+  setTimeout(function() {
+    var resultStatsDiv = document.getElementById("resultStats");
+    resultStatsDiv.parentNode.insertBefore(spinnerDiv, resultStatsDiv);
+    setTimeout(function() {
+      spinner.stop();
+    }, 1000);
+  }, 1500);
+}
