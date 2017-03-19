@@ -44496,14 +44496,6 @@ g,0<d.length&&(d=Ba[d[0]])&&(a.c[e]=d))}a.c[e]||(d=Ba[e])&&(a.c[e]=d);for(d=0;d<
 },{}],190:[function(require,module,exports){
 var WebFont = require('webfontloader');
 
-WebFont.load({
-  google: {
-    families: ['Raleway:300,700']
-  }
-  });
-
-console.log(WebFont)
-
 var LanguagesView = require("./languagebar/LanguagesBar.js");
 var lang = new LanguagesView();
 var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
@@ -44514,12 +44506,21 @@ devlinqExtention()
 
 function devlinqExtention() {
   setTimeout(function() {
+    loadFont();
     replaceLogo();
     createSpinner();
     var currentDiv = document.getElementById("appbar");
     languagesDiv(currentDiv);
     stackOverflowDiv(currentDiv);
   }, 3000);
+}
+
+function loadFont() {
+  WebFont.load({
+    google: {
+      families: ['Raleway:300,700']
+    }
+    });
 }
 
 function replaceLogo(){
@@ -44554,8 +44555,8 @@ function insertOfficialDocsIntoLanguages(currentDiv) {
 function stackOverflowDiv(currentDiv) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
-  var numberOfLinks = 5;
-  insertStackOverflowAPI(numberOfLinks, stackOverflowDiv);
+  var requestedNumberOfLinks = 5;
+  insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
 function createStackOverflowDiv() {
@@ -44564,9 +44565,10 @@ function createStackOverflowDiv() {
   return stackOverflowDiv;
 }
 
-function insertStackOverflowAPI(numberOfLinks, stackOverflowDiv){
+function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   var stackoverflowsearch = stackbar.decideStringForAPI();
-  stackbar.getStackAPI(stackoverflowsearch, numberOfLinks).then(function(items){
+  stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
+    var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
     }

@@ -59,8 +59,8 @@ function insertOfficialDocsIntoLanguages(currentDiv) {
 function stackOverflowDiv(currentDiv) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
-  var numberOfLinks = 5;
-  insertStackOverflowAPI(numberOfLinks, stackOverflowDiv);
+  var requestedNumberOfLinks = 5;
+  insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
 function createStackOverflowDiv() {
@@ -69,9 +69,10 @@ function createStackOverflowDiv() {
   return stackOverflowDiv;
 }
 
-function insertStackOverflowAPI(numberOfLinks, stackOverflowDiv){
+function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   var stackoverflowsearch = stackbar.decideStringForAPI();
-  stackbar.getStackAPI(stackoverflowsearch, numberOfLinks).then(function(items){
+  stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
+    var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
     }
