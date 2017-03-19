@@ -7,6 +7,7 @@
 // This must be kept secret. Do not embed it in client side code or binaries you intend to distribute. If you need client side authentication, use the implicit OAuth 2.0 flow.
 // Key Gvi3HHcYwsdm2K69OzxUnQ((
 
+
 var stackitem = require('./StackOverflowOutputItem.js');
 var request = require('request-promise');
 
@@ -17,7 +18,6 @@ function StackOverflowBar(){
 StackOverflowBar.prototype.getStackAPI = function (string, number) {
   return new Promise(function(resolve, reject) {
     var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow";
-    // var reqUri = "http://google.co.uk";
     request({
       uri: reqUri,
       json: true,
@@ -35,7 +35,29 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
     });
   });
 }
-//
+
+StackOverflowBar.prototype.decideStringForApi = function () {
+  var searched = getElementById("lst-ib");
+  return decideStringForApi;
+}
+
+
+StackOverflowBar.prototype.stackAPIresult = function () {
+  var exampleSOresult = document.createElement("p");
+  exampleSOresult.id = "exampleSOresult";
+  // 'HERE!' IS WHERE GETSTACKAPI(STRING, NUMBER) SHOULD BE USED
+  exampleSOresult.innerHTML = "HERE!"
+  return exampleSOresult;
+}
+
+
+StackOverflowBar.prototype.createStackOverflowDiv = function () {
+  var stackOverflowDiv = document.createElement('div');
+  stackOverflowDiv.id = "stackOverflow";
+  stackOverflowDiv.appendChild(this.stackAPIresult());
+  return stackOverflowDiv
+};
+
 // var stack = new StackOverflowBar();
 
 //
