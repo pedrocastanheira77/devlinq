@@ -19,3 +19,5 @@ OfficialDocsView.prototype.createOfficialDiv = function(){
   officialDiv.appendChild(this.createLink());
   return officialDiv;
 };
+
+module.exports = OfficialDocsView;

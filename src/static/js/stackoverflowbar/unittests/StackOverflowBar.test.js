@@ -1,5 +1,4 @@
 var assert = require('chai').assert;
-
 import StackOverflowBar from '../StackOverflowBar.js';
 var stackbar = new StackOverflowBar();
 

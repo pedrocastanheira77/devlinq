@@ -49,3 +49,5 @@ Javascript.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("Intl.", "");
   return this.baseUrl + topic;
 };
+
+module.exports = Javascript;

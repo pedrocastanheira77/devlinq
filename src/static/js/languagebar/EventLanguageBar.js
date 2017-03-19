@@ -1,3 +1,5 @@
+var LanguagesView = require("./LanguagesBar.js");
+
 function submitSearchButtonEvent() {
   var chosenLanguage = document.querySelector('#languageDropdownList').value;
   var chosenVersion = document.querySelector('#versionDropdownList').value;
