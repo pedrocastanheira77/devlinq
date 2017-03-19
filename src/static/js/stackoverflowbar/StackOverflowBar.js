@@ -37,8 +37,8 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
 }
 
 StackOverflowBar.prototype.decideStringForApi = function () {
-  var searched = getElementById("lst-ib");
-  return decideStringForApi;
+  var searched = document.getElementById("lst-ib");
+  return searched;
 }
 
 
