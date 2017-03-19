@@ -76,3 +76,5 @@ JQuery.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("()","")
   return this.baseUrl + topic;
 };
+
+module.exports = JQuery;

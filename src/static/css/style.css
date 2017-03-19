@@ -10,6 +10,17 @@
   color: #FFF;
 }
 
+#stackoverflowbar {
+  display: block;
+  top: 0px;
+  height: 30px;
+  margin: 5px;
+  padding: 20px;
+  border: thin solid #545454;
+  background-color: #c22f2f;
+  color: #FFF;
+}
+
 #languageDropdownList, #versionDropdownList, #topicDropdownList {
   padding: 3px;
   margin: 3px;
