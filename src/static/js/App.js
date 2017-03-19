@@ -29,7 +29,7 @@ class App extends Component {
        <div id="language">{}</div>
        <div className="StackOverflow">
         {this.state.items.map((item, i) => {
-          return (<div key={i}><p><b>{item.getTitle()}</b></p><p>item.getUrl()</p></div>)
+          return (<div key={i}><p><b>{item.getTitle()}</b></p><p>{item.getUrl()}</p></div>)
         })}
        </div>
       </div>
