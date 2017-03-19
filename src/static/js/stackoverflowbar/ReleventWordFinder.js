@@ -1,6 +1,6 @@
 function ReleventWordFinder(string){
   this._string = string;
-  this._keyWords = ["ruby", "array", "hash"];
+  this._keyWords = ["ruby", "array", "hash", "javascript", "sort", "join"];
 }
 
 ReleventWordFinder.prototype.getString = function () {
