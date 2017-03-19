@@ -44478,13 +44478,13 @@ var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var LanguagesView = require("./languagebar/LanguagesBar.js");
 var OfficialDocsView = require("./languagebar/OfficialDocsOutput.js");
 
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
   var lang = new LanguagesView();
   var optionsDiv = lang.createLanguageDiv();
 
   var docs = new OfficialDocsView();
   var officialDiv = docs.createOfficialDiv();
-  // setTimeout(function() {
+  setTimeout(function() {
     var currentDiv = document.getElementById("appbar");
     currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);
     currentDiv.parentNode.insertBefore(officialDiv, currentDiv);
@@ -44499,8 +44499,8 @@ document.addEventListener('DOMContentLoaded', function() {
         stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
       }
     })
-  // }, 5000);
-});
+  }, 2000);
+// });
 
 },{"./languagebar/LanguagesBar.js":192,"./languagebar/OfficialDocsOutput.js":193,"./stackoverflowbar/StackOverflowBar.js":195}],190:[function(require,module,exports){
 function Javascript() {

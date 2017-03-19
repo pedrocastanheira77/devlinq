@@ -6,16 +6,6 @@
 
   "description": "Tool to organise your coding-related search",
 
-
-  "content_scripts": [{
-    "matches": ["https://www.google.co.uk/*"],
-    "css": ["src/static/css/style.css"],
-    "js": [
-          "bundle.js"
-          ],
-    "run_at": "document_start"
-  }],
-
   "background": {
     "scripts": ["src/static/js/background.js",
                 "src/static/js/Spinner.js",

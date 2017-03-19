@@ -34,5 +34,5 @@ function startSpinner(spinner, spinnerDiv) {
     setTimeout(function() {
       spinner.stop();
     }, 1000);
-  }, 1500);
+  }, 1000);
 }

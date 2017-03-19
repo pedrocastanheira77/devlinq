@@ -43,12 +43,6 @@ function runContentScripts() {
   chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
     var specTab = tabs[0];
     chrome.tabs.insertCSS(specTab.id, {file:"src/static/css/style.css"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/RubyInBar.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/JavascriptInBar.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/JqueryInBar.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/LanguagesBar.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/OfficialDocsOutput.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/Devlinq.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/languagebar/EventLanguageBar.js"});
+    chrome.tabs.executeScript(specTab.id, {file:"bundle.js"});
   });
 }
