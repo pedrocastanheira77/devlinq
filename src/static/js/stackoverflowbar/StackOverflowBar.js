@@ -8,7 +8,7 @@
 // Key Gvi3HHcYwsdm2K69OzxUnQ((
 
 // import {stackitem} from './StackOverflowOutputItem.js'
-var stackitem = require('./StackOverflowOutputItem.js');
+// var stackitem = require('./StackOverflowOutputItem.js');
 // var stackexchange = require('stackexchange');
 //
 // var options = { version: 2.2 };
@@ -44,17 +44,17 @@ function StackOverflowBar(){
 // }
 
 StackOverflowBar.prototype.decideStringForAPI = function () {
-  var searched = getElementById("lst-ib").value;
+  var searched = document.getElementById("lst-ib").value;
   var releventWordFinder = new ReleventWordFinder(searched);
-  return decideStringForApi;
+  var result = releventWordFinder.findKeyWords()
+  return result.join(" ");
 }
-
 
 StackOverflowBar.prototype.stackAPIresult = function () {
   var exampleSOresult = document.createElement("p");
   exampleSOresult.id = "exampleSOresult";
   // 'HERE!' IS WHERE GETSTACKAPI(STRING, NUMBER) SHOULD BE USED
-  exampleSOresult.innerHTML = "HERE!"
+  exampleSOresult.innerHTML = this.decideStringForAPI()
   return exampleSOresult;
 }
 
@@ -73,4 +73,4 @@ StackOverflowBar.prototype.createStackOverflowDiv = function () {
 // output.then(function(data){
 //   console.log(data.length)
 // })
-module.exports = StackOverflowBar;
+// module.exports = StackOverflowBar;
