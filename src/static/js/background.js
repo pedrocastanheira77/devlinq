@@ -10,7 +10,7 @@ chrome.tabs.onUpdated.addListener(triggerContentsScripts);
 function triggerContentsScripts(tabId, changeInfo, tab) {
   if (changeInfo.status === "complete" && clickButtonStatus === "on") {
     runContentScripts();
-  } else if (changeInfo.status !== "complete" && clickButtonStatus === "on") {
+  } else if (changeInfo.status === "loading" && clickButtonStatus === "on") {
     runSpinner();
   }
 }

@@ -44483,6 +44483,8 @@ var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOf
   var optionsDiv = lang.createLanguageDiv();
   var officialDiv = createOfficialDiv();
   setTimeout(function() {
+    var spinnerDiv = document.querySelector("#spinner");
+    spinnerDiv.parentNode.removeChild(spinnerDiv);
     var currentDiv = document.getElementById("appbar");
     currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);
     currentDiv.parentNode.insertBefore(officialDiv, currentDiv);
@@ -44497,7 +44499,7 @@ var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOf
         stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
       }
     })
-  }, 2000);
+  }, 3000);
 // });
 
 },{"./languagebar/LanguagesBar.js":190,"./languagebar/OfficialDocsResults.js":191,"./stackoverflowbar/StackOverflowBar.js":195}],190:[function(require,module,exports){
