@@ -8,7 +8,9 @@ var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOf
   var officialDiv = createOfficialDiv();
   setTimeout(function() {
     var spinnerDiv = document.querySelector("#spinner");
-    spinnerDiv.parentNode.removeChild(spinnerDiv);
+    if (spinnerDiv) {
+      spinnerDiv.parentNode.removeChild(spinnerDiv);
+    }
     var currentDiv = document.getElementById("appbar");
     currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);
     currentDiv.parentNode.insertBefore(officialDiv, currentDiv);
