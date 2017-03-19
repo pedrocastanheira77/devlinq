@@ -44476,14 +44476,12 @@ WError.prototype.cause = function we_cause(c)
 },{"assert":212,"extsprintf":62,"util":364}],189:[function(require,module,exports){
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var LanguagesView = require("./languagebar/LanguagesBar.js");
-var OfficialDocsView = require("./languagebar/OfficialDocsOutput.js");
+var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 
 // document.addEventListener('DOMContentLoaded', function() {
   var lang = new LanguagesView();
   var optionsDiv = lang.createLanguageDiv();
-
-  var docs = new OfficialDocsView();
-  var officialDiv = docs.createOfficialDiv();
+  var officialDiv = createOfficialDiv();
   setTimeout(function() {
     var currentDiv = document.getElementById("appbar");
     currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);
@@ -44502,7 +44500,7 @@ var OfficialDocsView = require("./languagebar/OfficialDocsOutput.js");
   }, 2000);
 // });
 
-},{"./languagebar/LanguagesBar.js":190,"./languagebar/OfficialDocsOutput.js":191,"./stackoverflowbar/StackOverflowBar.js":195}],190:[function(require,module,exports){
+},{"./languagebar/LanguagesBar.js":190,"./languagebar/OfficialDocsResults.js":191,"./stackoverflowbar/StackOverflowBar.js":195}],190:[function(require,module,exports){
 var Ruby = require('./lib/RubyInBar.js');
 var Javascript = require('./lib/JavascriptInBar.js');
 var JQuery = require('./lib/JqueryInBar.js');
@@ -44642,29 +44640,31 @@ LanguagesView.prototype.topicDropdownChangeEvent = function () {
 module.exports = LanguagesView;
 
 },{"./lib/JavascriptInBar.js":192,"./lib/JqueryInBar.js":193,"./lib/RubyInBar.js":194}],191:[function(require,module,exports){
-function OfficialDocsView() {
-}
-OfficialDocsView.prototype.createHeader = function(){
+function createHeader(){
   var officialHeader = document.createElement("p");
   officialHeader.id = "officialHeader";
   var headerContent = document.createTextNode("Official Documentation:");
   officialHeader.appendChild(headerContent);
   return officialHeader;
 };
-OfficialDocsView.prototype.createLink = function(){
+function createLink(){
   var link = document.createElement("a");
   link.id = "link";
   return link;
 };
-OfficialDocsView.prototype.createOfficialDiv = function(){
+function createOfficialDiv(){
   var officialDiv = document.createElement("div");
   officialDiv.id = "official";
-  officialDiv.appendChild(this.createHeader());
-  officialDiv.appendChild(this.createLink());
+  officialDiv.appendChild(createHeader());
+  officialDiv.appendChild(createLink());
   return officialDiv;
 };
 
-module.exports = OfficialDocsView;
+module.exports = {
+  createHeader,
+  createLink,
+  createOfficialDiv
+}
 
 },{}],192:[function(require,module,exports){
 function Javascript() {

@@ -1,23 +1,25 @@
-function OfficialDocsView() {
-}
-OfficialDocsView.prototype.createHeader = function(){
+function createHeader(){
   var officialHeader = document.createElement("p");
   officialHeader.id = "officialHeader";
   var headerContent = document.createTextNode("Official Documentation:");
   officialHeader.appendChild(headerContent);
   return officialHeader;
 };
-OfficialDocsView.prototype.createLink = function(){
+function createLink(){
   var link = document.createElement("a");
   link.id = "link";
   return link;
 };
-OfficialDocsView.prototype.createOfficialDiv = function(){
+function createOfficialDiv(){
   var officialDiv = document.createElement("div");
   officialDiv.id = "official";
-  officialDiv.appendChild(this.createHeader());
-  officialDiv.appendChild(this.createLink());
+  officialDiv.appendChild(createHeader());
+  officialDiv.appendChild(createLink());
   return officialDiv;
 };
 
-module.exports = OfficialDocsView;
+module.exports = {
+  createHeader,
+  createLink,
+  createOfficialDiv
+}
