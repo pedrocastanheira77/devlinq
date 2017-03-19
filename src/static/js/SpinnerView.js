@@ -31,8 +31,8 @@ function startSpinner(spinner, spinnerDiv) {
   setTimeout(function() {
     var resultStatsDiv = document.getElementById("resultStats");
     resultStatsDiv.parentNode.insertBefore(spinnerDiv, resultStatsDiv);
-    setTimeout(function() {
-      spinner.stop();
-    }, 1000);
+    // setTimeout(function() {
+    //   spinner.stop();
+    // }, 1000);
   }, 1000);
 }
