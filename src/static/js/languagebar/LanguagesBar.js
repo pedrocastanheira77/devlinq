@@ -1,7 +1,6 @@
-var Ruby = require('./RubyInBar.js');
-var Javascript = require('./JavascriptInBar.js');
-var JQuery = require('./JqueryInBar.js');
-// var LanguageEvent = require('./EventLanguageBar.js');
+var Ruby = require('./lib/RubyInBar.js');
+var Javascript = require('./lib/JavascriptInBar.js');
+var JQuery = require('./lib/JqueryInBar.js');
 
 function LanguagesView(){
   this.ruby = new Ruby();
