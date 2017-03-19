@@ -1,13 +1,11 @@
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var LanguagesView = require("./languagebar/LanguagesBar.js");
-var OfficialDocsView = require("./languagebar/OfficialDocsOutput.js");
+var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 
 // document.addEventListener('DOMContentLoaded', function() {
   var lang = new LanguagesView();
   var optionsDiv = lang.createLanguageDiv();
-
-  var docs = new OfficialDocsView();
-  var officialDiv = docs.createOfficialDiv();
+  var officialDiv = createOfficialDiv();
   setTimeout(function() {
     var currentDiv = document.getElementById("appbar");
     currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);

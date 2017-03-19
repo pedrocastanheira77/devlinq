@@ -44476,14 +44476,12 @@ WError.prototype.cause = function we_cause(c)
 },{"assert":212,"extsprintf":62,"util":364}],189:[function(require,module,exports){
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var LanguagesView = require("./languagebar/LanguagesBar.js");
-var OfficialDocsView = require("./languagebar/OfficialDocsOutput.js");
+var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 
 // document.addEventListener('DOMContentLoaded', function() {
   var lang = new LanguagesView();
   var optionsDiv = lang.createLanguageDiv();
-
-  var docs = new OfficialDocsView();
-  var officialDiv = docs.createOfficialDiv();
+  var officialDiv = createOfficialDiv();
   setTimeout(function() {
     var currentDiv = document.getElementById("appbar");
     currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);
@@ -44502,148 +44500,10 @@ var OfficialDocsView = require("./languagebar/OfficialDocsOutput.js");
   }, 2000);
 // });
 
-},{"./languagebar/LanguagesBar.js":192,"./languagebar/OfficialDocsOutput.js":193,"./stackoverflowbar/StackOverflowBar.js":195}],190:[function(require,module,exports){
-function Javascript() {
-  this.name = "Javascript",
-  this.baseUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/",
-  this.versions = [ "ECMAScript5.1",
-                    "ECMAScript6",
-                    "ECMAScript7"
-                  ],
-  this.topics = [ "Array",
-                  "ArrayBuffer",
-                  "AsyncFunction",
-                  "Atomics",
-                  "Boolean",
-                  "DataView",
-                  "Date",
-                  "Error",
-                  "EvalError",
-                  "Float32Array",
-                  "Float64Array",
-                  "Function",
-                  "Generator",
-                  "GeneratorFunction",
-                  "Infinity",
-                  "Int16Array",
-                  "Int32Array",
-                  "Int8Array",
-                  "InternalError",
-                  "Intl",
-                  "Intl.Collator",
-                  "Intl.DateTimeFormat",
-                  "Intl.NumberFormat",
-                  "Iterator",
-                  "JSON",
-                  "Map",
-                  "Math",
-                  "NaN",
-                  "Number",
-                  "Object",
-                  "ParallelArray",
-                  "Promise",
-                  "Proxy",
-                  "RangeError",
-                  "ReferenceError",
-                  "Reflect",
-                  "RegExp"
-                ]
-}
-
-Javascript.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace("Intl.", "");
-  return this.baseUrl + topic;
-};
-
-module.exports = Javascript;
-
-},{}],191:[function(require,module,exports){
-function JQuery() {
-  this.name = "JQuery",
-  this.baseUrl = "http://api.jquery.com/",
-  this.versions = [ "V1",
-                    "V2"
-                  ],
-this.topics = [ "add()",
-                "addBack()",
-                "addClass()",
-                "after()",
-                "ajaxComplete()",
-                "ajaxError()",
-                "ajaxSend()",
-                "ajaxStart()",
-                "ajaxStop()",
-                "ajaxSuccess()",
-                "andSelf()",
-                "animate()",
-                "append()",
-                "appendTo()",
-                "attr()",
-                "before()",
-                "bind()",
-                "blur()",
-                "callbacks.add()",
-                "callbacks.disable()",
-                "callbacks.disabled()",
-                "callbacks.empty()",
-                "callbacks.fire()",
-                "callbacks.fired()",
-                "callbacks.fireWith()",
-                "callbacks.has()",
-                "callbacks.lock()",
-                "callbacks.locked()",
-                "callbacks.remove()",
-                "change()",
-                "children()",
-                "clearQueue()",
-                "click()",
-                "clone()",
-                "closest()",
-                "contents()",
-                "context",
-                "contextmenu()",
-                "css()",
-                "data()",
-                "dblclick()",
-                "deferred.always()",
-                "deferred.catch()",
-                "deferred.done()",
-                "deferred.fail()",
-                "deferred.isRejected()",
-                "deferred.isResolved()",
-                "deferred.notify()",
-                "deferred.notifyWith()",
-                "deferred.pipe()",
-                "deferred.progress()",
-                "deferred.promise()",
-                "deferred.reject()",
-                "deferred.rejectWith()",
-                "deferred.resolve()",
-                "deferred.resolveWith()",
-                "deferred.state()",
-                "deferred.then()",
-                "delay()",
-                "delegate()",
-                "dequeue()",
-                "detach()",
-                "die()",
-                "each()",
-                "empty()"
-              ]
-}
-
-JQuery.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace("()","")
-  return this.baseUrl + topic;
-};
-
-module.exports = JQuery;
-
-},{}],192:[function(require,module,exports){
-var Ruby = require('./RubyInBar.js');
-var Javascript = require('./JavascriptInBar.js');
-var JQuery = require('./JqueryInBar.js');
-// var LanguageEvent = require('./EventLanguageBar.js');
+},{"./languagebar/LanguagesBar.js":190,"./languagebar/OfficialDocsResults.js":191,"./stackoverflowbar/StackOverflowBar.js":195}],190:[function(require,module,exports){
+var Ruby = require('./lib/RubyInBar.js');
+var Javascript = require('./lib/JavascriptInBar.js');
+var JQuery = require('./lib/JqueryInBar.js');
 
 function LanguagesView(){
   this.ruby = new Ruby();
@@ -44779,30 +44639,169 @@ LanguagesView.prototype.topicDropdownChangeEvent = function () {
 
 module.exports = LanguagesView;
 
-},{"./JavascriptInBar.js":190,"./JqueryInBar.js":191,"./RubyInBar.js":194}],193:[function(require,module,exports){
-function OfficialDocsView() {
-}
-OfficialDocsView.prototype.createHeader = function(){
+},{"./lib/JavascriptInBar.js":192,"./lib/JqueryInBar.js":193,"./lib/RubyInBar.js":194}],191:[function(require,module,exports){
+function createHeader(){
   var officialHeader = document.createElement("p");
   officialHeader.id = "officialHeader";
   var headerContent = document.createTextNode("Official Documentation:");
   officialHeader.appendChild(headerContent);
   return officialHeader;
 };
-OfficialDocsView.prototype.createLink = function(){
+function createLink(){
   var link = document.createElement("a");
   link.id = "link";
   return link;
 };
-OfficialDocsView.prototype.createOfficialDiv = function(){
+function createOfficialDiv(){
   var officialDiv = document.createElement("div");
   officialDiv.id = "official";
-  officialDiv.appendChild(this.createHeader());
-  officialDiv.appendChild(this.createLink());
+  officialDiv.appendChild(createHeader());
+  officialDiv.appendChild(createLink());
   return officialDiv;
 };
 
-module.exports = OfficialDocsView;
+module.exports = {
+  createHeader,
+  createLink,
+  createOfficialDiv
+}
+
+},{}],192:[function(require,module,exports){
+function Javascript() {
+  this.name = "Javascript",
+  this.baseUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/",
+  this.versions = [ "ECMAScript5.1",
+                    "ECMAScript6",
+                    "ECMAScript7"
+                  ],
+  this.topics = [ "Array",
+                  "ArrayBuffer",
+                  "AsyncFunction",
+                  "Atomics",
+                  "Boolean",
+                  "DataView",
+                  "Date",
+                  "Error",
+                  "EvalError",
+                  "Float32Array",
+                  "Float64Array",
+                  "Function",
+                  "Generator",
+                  "GeneratorFunction",
+                  "Infinity",
+                  "Int16Array",
+                  "Int32Array",
+                  "Int8Array",
+                  "InternalError",
+                  "Intl",
+                  "Intl.Collator",
+                  "Intl.DateTimeFormat",
+                  "Intl.NumberFormat",
+                  "Iterator",
+                  "JSON",
+                  "Map",
+                  "Math",
+                  "NaN",
+                  "Number",
+                  "Object",
+                  "ParallelArray",
+                  "Promise",
+                  "Proxy",
+                  "RangeError",
+                  "ReferenceError",
+                  "Reflect",
+                  "RegExp"
+                ]
+}
+
+Javascript.prototype.generateOfficialDocsURL = function (version, topic) {
+  topic = topic.replace("Intl.", "");
+  return this.baseUrl + topic;
+};
+
+module.exports = Javascript;
+
+},{}],193:[function(require,module,exports){
+function JQuery() {
+  this.name = "JQuery",
+  this.baseUrl = "http://api.jquery.com/",
+  this.versions = [ "V1",
+                    "V2"
+                  ],
+this.topics = [ "add()",
+                "addBack()",
+                "addClass()",
+                "after()",
+                "ajaxComplete()",
+                "ajaxError()",
+                "ajaxSend()",
+                "ajaxStart()",
+                "ajaxStop()",
+                "ajaxSuccess()",
+                "andSelf()",
+                "animate()",
+                "append()",
+                "appendTo()",
+                "attr()",
+                "before()",
+                "bind()",
+                "blur()",
+                "callbacks.add()",
+                "callbacks.disable()",
+                "callbacks.disabled()",
+                "callbacks.empty()",
+                "callbacks.fire()",
+                "callbacks.fired()",
+                "callbacks.fireWith()",
+                "callbacks.has()",
+                "callbacks.lock()",
+                "callbacks.locked()",
+                "callbacks.remove()",
+                "change()",
+                "children()",
+                "clearQueue()",
+                "click()",
+                "clone()",
+                "closest()",
+                "contents()",
+                "context",
+                "contextmenu()",
+                "css()",
+                "data()",
+                "dblclick()",
+                "deferred.always()",
+                "deferred.catch()",
+                "deferred.done()",
+                "deferred.fail()",
+                "deferred.isRejected()",
+                "deferred.isResolved()",
+                "deferred.notify()",
+                "deferred.notifyWith()",
+                "deferred.pipe()",
+                "deferred.progress()",
+                "deferred.promise()",
+                "deferred.reject()",
+                "deferred.rejectWith()",
+                "deferred.resolve()",
+                "deferred.resolveWith()",
+                "deferred.state()",
+                "deferred.then()",
+                "delay()",
+                "delegate()",
+                "dequeue()",
+                "detach()",
+                "die()",
+                "each()",
+                "empty()"
+              ]
+}
+
+JQuery.prototype.generateOfficialDocsURL = function (version, topic) {
+  topic = topic.replace("()","")
+  return this.baseUrl + topic;
+};
+
+module.exports = JQuery;
 
 },{}],194:[function(require,module,exports){
 function Ruby() {
@@ -44945,6 +44944,13 @@ function StackOverflowBar(){
 
 }
 
+StackOverflowBar.prototype.decideStringForAPI = function () {
+  var searched = document.getElementById("lst-ib").value;
+  var releventWordFinder = new ReleventWordFinder(searched);
+  var result = releventWordFinder.findKeyWords()
+  return result.join(" ");
+}
+
 StackOverflowBar.prototype.getStackAPI = function (string, number) {
   return new Promise(function(resolve, reject) {
     var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow";
@@ -44966,17 +44972,12 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
   });
 }
 
-StackOverflowBar.prototype.decideStringForApi = function () {
-  var searched = document.getElementById("lst-ib");
-  return searched;
-}
-
 
 StackOverflowBar.prototype.stackAPIresult = function () {
   var exampleSOresult = document.createElement("p");
   exampleSOresult.id = "exampleSOresult";
   // 'HERE!' IS WHERE GETSTACKAPI(STRING, NUMBER) SHOULD BE USED
-  exampleSOresult.innerHTML = "HERE!"
+  exampleSOresult.innerHTML = this.decideStringForAPI()
   return exampleSOresult;
 }
 
