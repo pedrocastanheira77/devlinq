@@ -5,8 +5,10 @@ var lang = new LanguagesView();
 var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackbar = new StackOverflowBar();
+var savedNumberOfLinks;
+getRequestedNumberOfLinks();
 
-devlinqExtention()
+devlinqExtention();
 
 function devlinqExtention() {
   setTimeout(function() {
@@ -15,7 +17,7 @@ function devlinqExtention() {
     createSpinner();
     var currentDiv = document.getElementById("appbar");
     languagesDiv(currentDiv);
-    stackOverflowDiv(currentDiv);
+    stackOverflowDiv(currentDiv, savedNumberOfLinks);
   }, 3000);
 }
 
@@ -41,7 +43,7 @@ function createSpinner() {
   var spinnerDiv = document.querySelector("#spinner");
   if (spinnerDiv) {
     spinnerDiv.parentNode.removeChild(spinnerDiv);
-  };
+  }
 }
 
 // Languages Div
@@ -71,21 +73,26 @@ function createLanguagesTitle(languagesDiv) {
 
 function insertDropdownIntoLanguages(languagesDiv) {
   var optionsDiv = lang.createDropdownDiv();
-  languagesDiv.insertAdjacentElement('beforeend', optionsDiv)
+  languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
 }
 
 function insertOfficialDocsIntoLanguages(languagesDiv) {
   var officialDiv = createOfficialDiv();
-  languagesDiv.insertAdjacentElement('beforeend', officialDiv)
+  languagesDiv.insertAdjacentElement('beforeend', officialDiv);
 }
 
-// Stack Overflow Div
+function getRequestedNumberOfLinks() {
+  chrome.storage.local.get(function(result){
+    savedNumberOfLinks = result.stackOverflowResults;
+  });
+}
 
-function stackOverflowDiv(currentDiv) {
+function stackOverflowDiv(currentDiv, requestedNumberOfLinks) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
-  createStackOverflowTitle(stackOverflowDiv);
-  var requestedNumberOfLinks = 5;
+  if (!requestedNumberOfLinks) {
+      requestedNumberOfLinks = 5;
+    }
   insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
@@ -108,8 +115,15 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   var stackoverflowsearch = stackbar.decideStringForAPI();
   stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
+    var googleResultUrls = document.getElementsByClassName("_Rm");
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend', '<a href='+items[i].getUrl()+'<p class="linq linq_so">'+items[i].getTitle()+'</p></a>');
+      for(var x = 0; x < googleResultUrls.length; x++){
+        if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
+          var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
+          if (box) {box.parentNode.removeChild(box);}
+        }
+      }
     }
   });
 }
