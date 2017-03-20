@@ -1,12 +1,12 @@
-process.env.NODE_ENV = 'test';
-var chai = require('chai');
+// process.env.NODE_ENV = 'test';
+// var chai = require('chai');
 var assert = require('chai').assert;
-var Browser = require('zombie');
-var mocha = require('mocha');
-var http = require('http');
-import EventStackOverflowBar from '../EventStackOverflowBar.js';
-import StackOverflowBar from '../StackOverflowBar.js';
-var stackbar = new StackOverflowBar();
+// var Browser = require('zombie');
+// var mocha = require('mocha');
+// var http = require('http');
+// import EventStackOverflowBar from '../EventStackOverflowBar.js';
+// import StackOverflowBar from '../StackOverflowBar.js';
+// var stackbar = new StackOverflowBar();
 
 
 describe('EventStackOverflowBar', function () {
