@@ -44520,7 +44520,7 @@ function devlinqExtention() {
 function loadFont() {
   WebFont.load({
     google: {
-      families: ['Raleway:300,700']
+      families: ['Raleway:300,700,900']
     }
     });
 }
@@ -44529,13 +44529,8 @@ function replaceLogo(){
   if (document.getElementById("logo")) {
     document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   } else if (document.getElementById("logocont")) {
-    console.log(document.getElementById("logocont"))
-    console.log(document.getElementById("logocont").children[0])
-    console.log(document.getElementById("logocont").children[0].children[0])
-    console.log(document.getElementById("logocont").children[0].children[0].src)
     document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   }
-
 }
 
 function createSpinner() {
@@ -44601,6 +44596,7 @@ function createStackOverflowTitle(stackOverflowDiv) {
 function createStackOverflowDiv() {
   var stackOverflowDiv = document.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
+  stackOverflowDiv.className = "devlinq_div stackoverflow_div";
   return stackOverflowDiv;
 }
 

@@ -7,12 +7,35 @@ body, .g, .gsfi {
 
 /*
 <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900" rel="stylesheet">
-font-family: 'Raleway', sans-serif;
 */
+
+/* General */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigation */
 
 #logo img, #logocont img{
   height: 32px;
 }
+
+/* Devlinq */
+
+.devlinq_div {
+  display: block;
+  border: 2px solid #EA4335;*/
+
+  -moz-box-box-shadow: 0.3em 0.3em 0.3em #bbb;
+  -webkit-box-box-shadow: 0.3em 0.3em 0.3em #bbb;
+  box-shadow: 0.3em 0.3em 0.3em #bbb;
+  margin: 3em;
+  padding: 2em;
+}
+
+/* Languages Bar */
 
 #language {
   display: block;
@@ -21,17 +44,6 @@ font-family: 'Raleway', sans-serif;
   margin: 5px;
   padding: 20px;
   /*border: thin solid #545454;*/
-  /*background-color: #c22f2f;*/
-  color: #FFF;
-}
-
-#stackoverflowbar {
-  display: block;
-  top: 0px;
-  height: 150px;
-  margin: 5px;
-  padding: 20px;
-  border: thin solid #545454;
   /*background-color: #c22f2f;*/
   /*color: #FFF;*/
 }
@@ -60,8 +72,7 @@ font-family: 'Raleway', sans-serif;
   font-weight: bold;
 }
 
-
-#official {
+/*#official {
   display: block;
   padding: 2px 0px 2px 20px;
   margin: 2px;
@@ -72,7 +83,25 @@ font-family: 'Raleway', sans-serif;
   color: #545454;
   /*border: thin solid #545454;*/
   /*background-color: #dadada;*/
+/*}*/
+
+/* Stack Overflow Bar */
+
+.stackoverflow_div {
+  border-color: #FBBC05;
 }
+
+/*#stackoverflowbar {
+  display: block;
+  top: 0px;
+  height: 150px;
+  margin: 5px;
+  padding: 20px;
+  border: thin solid #545454;
+  /*background-color: #c22f2f;*/
+  /*color: #FFF;*/
+/*}*/
+
 
 #link:link {
     color: #545454;
@@ -88,10 +117,4 @@ font-family: 'Raleway', sans-serif;
 
 #link:active {
     color: #545454;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
 }

@@ -100,6 +100,7 @@ function createStackOverflowTitle(stackOverflowDiv) {
 function createStackOverflowDiv() {
   var stackOverflowDiv = document.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
+  stackOverflowDiv.className = "devlinq_div stackoverflow_div";
   return stackOverflowDiv;
 }
 
