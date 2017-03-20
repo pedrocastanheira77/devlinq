@@ -5,8 +5,9 @@ var lang = new LanguagesView();
 var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackbar = new StackOverflowBar();
+var requestedNumberOfLinks = getRequestedNumberOfLinks();
 
-devlinqExtention()
+devlinqExtention();
 
 function devlinqExtention() {
   setTimeout(function() {
@@ -35,7 +36,7 @@ function createSpinner() {
   var spinnerDiv = document.querySelector("#spinner");
   if (spinnerDiv) {
     spinnerDiv.parentNode.removeChild(spinnerDiv);
-  };
+  }
 }
 
 function languagesDiv(currentDiv) {
@@ -63,18 +64,27 @@ function createLanguagesTitle(languagesDiv) {
 
 function insertDropdownIntoLanguages(languagesDiv) {
   var optionsDiv = lang.createDropdownDiv();
-  languagesDiv.insertAdjacentElement('beforeend', optionsDiv)
+  languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
 }
 
 function insertOfficialDocsIntoLanguages(languagesDiv) {
   var officialDiv = createOfficialDiv();
-  languagesDiv.insertAdjacentElement('beforeend', officialDiv)
+  languagesDiv.insertAdjacentElement('beforeend', officialDiv);
 }
 
-function stackOverflowDiv(currentDiv) {
+function getRequestedNumberOfLinks() {
+  chrome.storage.local.get(function(result){
+    var savedNumberOfLinks = result.stackOverflowResults;
+  });
+  return saveddNumberOfLinks;
+}
+
+function stackOverflowDiv(currentDiv, requestedNumberOfLinks) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
-  var requestedNumberOfLinks = 5;
+  if (!requestedNumberOfLinks) {
+      requestedNumberOfLinks = 5;
+    }
   insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
@@ -105,9 +115,9 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
         if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
           console.log(googleResultUrls[x].innerHTML,"match found");
           var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
-          if (box) {box.parentNode.removeChild(box)};
-        };
-      };
+          if (box) {box.parentNode.removeChild(box);}
+        }
+      }
     }
   });
 }

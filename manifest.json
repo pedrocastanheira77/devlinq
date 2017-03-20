@@ -7,14 +7,15 @@
   "description": "Tool to organise your coding-related search",
 
   "background": {
-    "scripts": ["src/static/js/background.js",
-                "src/static/js/Spinner.js",
-                "src/static/js/SpinnerView.js"
+    "scripts": ["src/static/js/background.js"
                ],
     "persistent": true
   },
 
+  "options_page": "src/static/js/options/options.html",
+
   "permissions": [
+    "storage",
     "tabs",
     "activeTab",
     "webNavigation",
