@@ -117,7 +117,8 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     var googleResultUrls = document.getElementsByClassName("_Rm");
     for(var i = 0; i < numberOfLinks; i++){
-      stackOverflowDiv.insertAdjacentHTML('beforeend', '<a href='+items[i].getUrl()+'<p class="linq linq_so">'+items[i].getTitle()+'</p></a>');
+      stackOverflowDiv.insertAdjacentHTML('beforeend',
+        '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>');
       for(var x = 0; x < googleResultUrls.length; x++){
         if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
           var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;

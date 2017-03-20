@@ -21,17 +21,18 @@ StackOverflowBar.prototype.decideStringForAPI = function () {
 
 StackOverflowBar.prototype.getStackAPI = function (string, number) {
   return new Promise(function(resolve, reject) {
-    var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow&key=Gvi3HHcYwsdm2K69OzxUnQ((";
+    var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=relevance&q="+string+"&site=stackoverflow&key=Gvi3HHcYwsdm2K69OzxUnQ((";
     request({
       uri: reqUri,
       json: true,
       gzip: true
     }).then(function(response) {
         var array = [];
+        console.log(response)
         for (var i = 0; i < number; i++) {
           if (response.items[i]) {
-            var item = [response.items[i].title, response.items[i].link];
-            array.push(new stackitem(item[0], item[1]));
+            var item = [response.items[i].title, response.items[i].link, response.items[i].view_count, response.items[i].answer_count, response.items[i].score];
+            array.push(new stackitem(item[0], item[1], item[2], item[3], item[4]));
           };
         }
       resolve(array);
@@ -57,7 +58,7 @@ StackOverflowBar.prototype.createStackOverflowDiv = function () {
 };
 
 // var stack = new StackOverflowBar();
-
+//
 //
 // var output = stack.getStackAPI("ruby array sort", 5);
 //
