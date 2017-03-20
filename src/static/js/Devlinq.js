@@ -56,7 +56,7 @@ function createLanguagesDiv(currentDiv) {
 function createLanguagesTitle(languagesDiv) {
   var languagesTitle = document.createElement("h2");
   languagesTitle.className = "langauges_title";
-  languagesTitle.insertAdjacentHTML('afterbegin', "OFFICIAL DOCUMENTATION");
+  languagesTitle.insertAdjacentHTML('afterbegin', "OFFICIAL DOCUMENT");
   languagesDiv.insertAdjacentElement('afterbegin', languagesTitle);
   return languagesTitle;
 }
@@ -74,7 +74,6 @@ function insertOfficialDocsIntoLanguages(languagesDiv) {
 function stackOverflowDiv(currentDiv) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
-  createStackOverflowTitle(stackOverflowDiv);
   var requestedNumberOfLinks = 5;
   insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
@@ -83,7 +82,7 @@ function createStackOverflowTitle(stackOverflowDiv) {
   var stackOverflowTitle = document.createElement("h2");
   stackOverflowTitle.className = "stackOverflow_title";
   stackOverflowTitle.insertAdjacentHTML('afterbegin', "STACK OVERFLOW");
-  stackOverflowDiv.insertAdjacentElement('afterbegin', stackOverflowTitle);
+  languagesDiv.insertAdjacentElement('afterbegin', languagesTitle);
   return stackOverflowTitle;
 }
 
