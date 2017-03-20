@@ -3,6 +3,7 @@ var Language = require('../LanguagesBar.js');
 var haveLanguage = require('../RelevantWordFinder.js').haveLanguage;
 var haveVersion = require('../RelevantWordFinder.js').haveVersion;
 var haveTopic = require('../RelevantWordFinder.js').haveTopic;
+var splitStringIntoArray = require('../RelevantWordFinder.js').splitStringIntoArray;
 
 
 describe('ReleventWordFinder', function(){
@@ -37,6 +38,17 @@ describe('ReleventWordFinder', function(){
     it('pluralize and unpluralize', function(){
       var topic = "atomic";
       assert.equal(haveTopic(topic, lang.javascript), true);
+    })
+  })
+
+  describe('#splitStringIntoArray', function(){
+    it('splits string into array by words', function(){
+      var string  = "ruby version array";
+      assert.deepEqual(splitStringIntoArray(string), [ 'ruby', 'version', 'array']);
+    })
+    it('removes all symbols other than full stops', function(){
+      var string  = "I dfdpsojfqwf *&^&@%£@ 2321 dsfsdf. 4343 ,efw e";
+      assert.deepEqual(splitStringIntoArray(string), [ 'I', 'dfdpsojfqwf', '£', '2321', 'dsfsdf.', '4343', 'efw', 'e' ]);
     })
   })
 });

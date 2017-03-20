@@ -12,13 +12,9 @@ function haveTopic(string, lang) {
   return isStringInArray(string, lang.topics);
 }
 
-var lang = new Language();
-var string = "jaVASCRIPT";
-var version = "ecmascript5.1";
-var topic = "atomic";
-// console.log(haveLanguage(string, lang))
-// console.log(haveVersion(version, lang.javascript))
-// console.log(haveTopic(topic, lang.javascript))
+function splitStringIntoArray(string) {
+  return string.replace(/[`~!@#$%^&*()_|+\-=?;:'",<>\{\}\[\]\\\/]/gi, '').split(' ');
+}
 
 function isStringInArray(string, array) {
   arrayToLowerCase(array);
@@ -37,5 +33,6 @@ function arrayToLowerCase(array) {
 module.exports = {
   haveLanguage,
   haveVersion,
-  haveTopic
+  haveTopic,
+  splitStringIntoArray
 };
