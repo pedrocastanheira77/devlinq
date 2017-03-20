@@ -44515,6 +44515,8 @@ function devlinqExtention() {
   }, 3000);
 }
 
+// Preload
+
 function loadFont() {
   WebFont.load({
     google: {
@@ -44524,7 +44526,16 @@ function loadFont() {
 }
 
 function replaceLogo(){
-  document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  if (document.getElementById("logo")) {
+    document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  } else if (document.getElementById("logocont")) {
+    console.log(document.getElementById("logocont"))
+    console.log(document.getElementById("logocont").children[0])
+    console.log(document.getElementById("logocont").children[0].children[0])
+    console.log(document.getElementById("logocont").children[0].children[0].src)
+    document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  }
+
 }
 
 function createSpinner() {
@@ -44533,6 +44544,8 @@ function createSpinner() {
     spinnerDiv.parentNode.removeChild(spinnerDiv);
   };
 }
+
+// Languages Div
 
 function languagesDiv(currentDiv) {
   var languagesDiv = createLanguagesDiv(currentDiv);
@@ -44544,7 +44557,7 @@ function languagesDiv(currentDiv) {
 function createLanguagesDiv(currentDiv) {
   var languagesDiv = document.createElement("div");
   languagesDiv.id = "languages_div";
-  languagesDiv.className = "languages_div";
+  languagesDiv.className = "devlinq_div languages_div";
   currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
   return languagesDiv;
 }
@@ -44566,6 +44579,8 @@ function insertOfficialDocsIntoLanguages(languagesDiv) {
   var officialDiv = createOfficialDiv();
   languagesDiv.insertAdjacentElement('beforeend', officialDiv)
 }
+
+// Stack Overflow Div
 
 function stackOverflowDiv(currentDiv) {
   var stackOverflowDiv = createStackOverflowDiv();

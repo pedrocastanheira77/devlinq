@@ -10,7 +10,7 @@ body, .g, .gsfi {
 font-family: 'Raleway', sans-serif;
 */
 
-#logo img{
+#logo img, #logocont img{
   height: 32px;
 }
 
