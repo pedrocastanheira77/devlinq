@@ -1,5 +1,4 @@
 var WebFont = require('webfontloader');
-
 var LanguagesView = require("./languagebar/LanguagesBar.js");
 var lang = new LanguagesView();
 var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
@@ -127,4 +126,16 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
       }
     }
   });
+}
+
+module.exports = {
+  createLanguagesDiv,
+  createLanguagesTitle,
+  createLanguagesTitle,
+  insertDropdownIntoLanguages,
+  insertOfficialDocsIntoLanguages,
+  stackOverflowDiv,
+  createStackOverflowTitle,
+  createStackOverflowDiv,
+  insertStackOverflowAPI
 }

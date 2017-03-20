@@ -7,6 +7,8 @@
     "chai": "^3.5.0",
     "chromedriver": "^2.28.0",
     "devnull": "git+https://github.com/observing/devnull.git#ff99281602feca0cf3bdf0e6d36fedbf1b566523",
+    "jest": "^18.1.0",
+    "jest-cli": "^18.1.0",
     "mocha": "^3.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -18,6 +20,8 @@
     "zombie": "^5.0.5"
   },
   "devDependencies": {
+    "babel-plugin-istanbul": "^4.0.0",
+    "istanbul": "^0.4.5",
     "jasmine-react-helpers": "^0.2.2",
     "jest": "^18.1.0",
     "mocha": "^3.2.0",
@@ -29,7 +33,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/public/jquery.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/static/js/Spinner.js",
     "eject": "react-scripts eject"
   }
 }
