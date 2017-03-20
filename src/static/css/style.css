@@ -127,6 +127,11 @@ body {
   text-decoration: none;
 }
 
+.d_link {
+  color: black !important;
+}
+
+
 .d_link:link {
   text-decoration: none;
   color: black !important;
