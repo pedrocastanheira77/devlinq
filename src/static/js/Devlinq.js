@@ -5,7 +5,8 @@ var lang = new LanguagesView();
 var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackbar = new StackOverflowBar();
-var requestedNumberOfLinks = getRequestedNumberOfLinks();
+var savedNumberOfLinks;
+getRequestedNumberOfLinks();
 
 devlinqExtention();
 
@@ -16,7 +17,7 @@ function devlinqExtention() {
     createSpinner();
     var currentDiv = document.getElementById("appbar");
     languagesDiv(currentDiv);
-    stackOverflowDiv(currentDiv);
+    stackOverflowDiv(currentDiv, savedNumberOfLinks);
   }, 3000);
 }
 
@@ -29,7 +30,7 @@ function loadFont() {
 }
 
 function replaceLogo(){
-  document.getElementById("logocont").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
 }
 
 function createSpinner() {
@@ -74,9 +75,8 @@ function insertOfficialDocsIntoLanguages(languagesDiv) {
 
 function getRequestedNumberOfLinks() {
   chrome.storage.local.get(function(result){
-    var savedNumberOfLinks = result.stackOverflowResults;
+    savedNumberOfLinks = result.stackOverflowResults;
   });
-  return saveddNumberOfLinks;
 }
 
 function stackOverflowDiv(currentDiv, requestedNumberOfLinks) {
@@ -107,13 +107,10 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     var googleResultUrls = document.getElementsByClassName("_Rm");
-    console.log(googleResultUrls, "all google results");
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
-      console.log(items[i].getUrl(), "returned stack item");
       for(var x = 0; x < googleResultUrls.length; x++){
         if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
-          console.log(googleResultUrls[x].innerHTML,"match found");
           var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
           if (box) {box.parentNode.removeChild(box);}
         }
