@@ -25,8 +25,4 @@ function loadOptions() {
 }
 
 document.addEventListener('DOMContentLoaded', loadOptions);
-
-document.getElementById('save').addEventListener('click',
-    saveOptions);
-
-chrome.runtime.sendMessage("Hello");
+document.getElementById('save').addEventListener('click', saveOptions);
