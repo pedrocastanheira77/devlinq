@@ -2,6 +2,7 @@
 
 body, .g, .gsfi {
   font-family: 'Raleway', sans-serif !important;
+  text-align: center;
 }
 
 /*
@@ -19,8 +20,8 @@ font-family: 'Raleway', sans-serif;
   height: 30px;
   margin: 5px;
   padding: 20px;
-  border: thin solid #545454;
-  background-color: #c22f2f;
+  /*border: thin solid #545454;*/
+  /*background-color: #c22f2f;*/
   color: #FFF;
 }
 
@@ -31,8 +32,8 @@ font-family: 'Raleway', sans-serif;
   margin: 5px;
   padding: 20px;
   border: thin solid #545454;
-  background-color: #c22f2f;
-  color: #FFF;
+  /*background-color: #c22f2f;*/
+  /*color: #FFF;*/
 }
 
 #languageDropdownList, #versionDropdownList, #topicDropdownList {
@@ -41,9 +42,9 @@ font-family: 'Raleway', sans-serif;
   width: 180px;
   height: 30px;
   background-color: transparent;
-  border: thin solid #f6bcbc;
+  /*border: thin solid #f6bcbc;*/
   font-size: 15px;
-  color: #FFF;
+  /*color: #FFF;*/
 }
 
 #submitSearchButton {
@@ -69,8 +70,8 @@ font-family: 'Raleway', sans-serif;
   font-size: 15px;
   font-weight: bold;
   color: #545454;
-  border: thin solid #545454;
-  background-color: #dadada;
+  /*border: thin solid #545454;*/
+  /*background-color: #dadada;*/
 }
 
 #link:link {

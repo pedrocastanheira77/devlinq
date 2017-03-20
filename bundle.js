@@ -44524,9 +44524,6 @@ function loadFont() {
 }
 
 function replaceLogo(){
-  console.log(document.getElementById("logo"))
-  console.log(document.getElementById("logo").children[0])
-  console.log(document.getElementById("logo").children[0].src)
   document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
 }
 
@@ -44538,29 +44535,56 @@ function createSpinner() {
 }
 
 function languagesDiv(currentDiv) {
-  insertDropdownIntoLanguages(currentDiv);
-  insertOfficialDocsIntoLanguages(currentDiv);
+  var languagesDiv = createLanguagesDiv(currentDiv);
+  var languagesTitle = createLanguagesTitle(languagesDiv);
+  insertDropdownIntoLanguages(languagesDiv);
+  insertOfficialDocsIntoLanguages(languagesDiv);
 }
 
-function insertDropdownIntoLanguages(currentDiv) {
-  var optionsDiv = lang.createLanguageDiv();
-  currentDiv.parentNode.insertBefore(optionsDiv, currentDiv);
+function createLanguagesDiv(currentDiv) {
+  var languagesDiv = document.createElement("div");
+  languagesDiv.id = "languages_div";
+  languagesDiv.className = "languages_div";
+  currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
+  return languagesDiv;
 }
 
-function insertOfficialDocsIntoLanguages(currentDiv) {
+function createLanguagesTitle(languagesDiv) {
+  var languagesTitle = document.createElement("h2");
+  languagesTitle.className = "langauges_title";
+  languagesTitle.insertAdjacentHTML('afterbegin', "OFFICIAL DOCUMENTATION");
+  languagesDiv.insertAdjacentElement('afterbegin', languagesTitle);
+  return languagesTitle;
+}
+
+function insertDropdownIntoLanguages(languagesDiv) {
+  var optionsDiv = lang.createDropdownDiv();
+  languagesDiv.insertAdjacentElement('beforeend', optionsDiv)
+}
+
+function insertOfficialDocsIntoLanguages(languagesDiv) {
   var officialDiv = createOfficialDiv();
-  currentDiv.parentNode.insertBefore(officialDiv, currentDiv);
+  languagesDiv.insertAdjacentElement('beforeend', officialDiv)
 }
 
 function stackOverflowDiv(currentDiv) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
+  createStackOverflowTitle(stackOverflowDiv);
   var requestedNumberOfLinks = 5;
   insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
+function createStackOverflowTitle(stackOverflowDiv) {
+  var stackOverflowTitle = document.createElement("h2");
+  stackOverflowTitle.className = "stackOverflow_title";
+  stackOverflowTitle.insertAdjacentHTML('afterbegin', "STACK OVERFLOW");
+  stackOverflowDiv.insertAdjacentElement('afterbegin', stackOverflowTitle);
+  return stackOverflowTitle;
+}
+
 function createStackOverflowDiv() {
-  var stackOverflowDiv = document.createElement("p");
+  var stackOverflowDiv = document.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
   return stackOverflowDiv;
 }
@@ -44584,7 +44608,8 @@ function LanguagesView(){
   this.ruby = new Ruby();
   this.javascript = new Javascript();
   this.jquery = new JQuery();
-}
+};
+
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
@@ -44593,6 +44618,7 @@ LanguagesView.prototype.getLanguagesView = function() {
   }
   return this.languageList;
 };
+
 LanguagesView.prototype.getVersions = function() {
   this.versionList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
@@ -44601,6 +44627,7 @@ LanguagesView.prototype.getVersions = function() {
   }
   return this.versionList;
 };
+
 LanguagesView.prototype.getTopics = function() {
   this.topicList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
@@ -44609,6 +44636,7 @@ LanguagesView.prototype.getTopics = function() {
   }
   return this.topicList;
 };
+
 LanguagesView.prototype.createDummyOption = function(string, list) {
   var option_dummy = document.createElement('option');
   option_dummy.selected = "selected";
@@ -44617,6 +44645,7 @@ LanguagesView.prototype.createDummyOption = function(string, list) {
   option_dummy.innerHTML = "Choose a " + string;
   list.appendChild(option_dummy);
 };
+
 LanguagesView.prototype.createLanguageDropdown = function(){
   var languageDropdownList = document.createElement("select");
   languageDropdownList.id = "languageDropdownList";
@@ -44633,12 +44662,14 @@ LanguagesView.prototype.createLanguageDropdown = function(){
   }
   return languageDropdownList;
 };
+
 LanguagesView.prototype.createVersionDropdown = function(language){
   var versionDropdownList = document.createElement("select");
   versionDropdownList.id = "versionDropdownList";
   this.createDummyOption("version", versionDropdownList);
   return versionDropdownList;
 };
+
 LanguagesView.prototype.generateVersionOptions = function (versionDropdownList, language) {
   var languageIndex = this.getLanguagesView().indexOf(language);
   this.createDummyOption("version", versionDropdownList);
@@ -44649,12 +44680,14 @@ LanguagesView.prototype.generateVersionOptions = function (versionDropdownList, 
     versionDropdownList.appendChild(option);
   }
 };
+
 LanguagesView.prototype.createTopicDropdown = function(language){
   var topicDropdownList = document.createElement("select");
   topicDropdownList.id = "topicDropdownList";
   this.createDummyOption("topic", topicDropdownList);
   return topicDropdownList;
 };
+
 LanguagesView.prototype.generateTopicOptions = function(topicDropdownList, language) {
   var languageIndex = this.getLanguagesView().indexOf(language);
   this.createDummyOption("topic", topicDropdownList);
@@ -44665,6 +44698,7 @@ LanguagesView.prototype.generateTopicOptions = function(topicDropdownList, langu
     topicDropdownList.appendChild(option);
   }
 };
+
 LanguagesView.prototype.createSubmitSearchButton = function () {
   var submitSearchButton = document.createElement("button");
   submitSearchButton.id = "submitSearchButton";
@@ -44674,7 +44708,8 @@ LanguagesView.prototype.createSubmitSearchButton = function () {
   submitSearchButton.innerHTML = "Search!";
   return submitSearchButton;
 };
-LanguagesView.prototype.createLanguageDiv = function() {
+
+LanguagesView.prototype.createDropdownDiv = function() {
   var languageDiv = document.createElement("div");
   languageDiv.id = "language";
   languageDiv.appendChild(this.createLanguageDropdown());
@@ -44715,29 +44750,20 @@ LanguagesView.prototype.topicDropdownChangeEvent = function () {
 module.exports = LanguagesView;
 
 },{"./lib/JavascriptInBar.js":193,"./lib/JqueryInBar.js":194,"./lib/RubyInBar.js":195}],192:[function(require,module,exports){
-function createHeader(){
-  var officialHeader = document.createElement("p");
-  officialHeader.id = "officialHeader";
-  var headerContent = document.createTextNode("Official Documentation:");
-  officialHeader.appendChild(headerContent);
-  return officialHeader;
-};
 function createLink(){
   var link = document.createElement("a");
   link.id = "link";
   return link;
 };
+
 function createOfficialDiv(){
   var officialDiv = document.createElement("div");
   officialDiv.id = "official";
-  officialDiv.appendChild(createHeader());
   officialDiv.appendChild(createLink());
   return officialDiv;
 };
 
 module.exports = {
-  createHeader,
-  createLink,
   createOfficialDiv
 }
 

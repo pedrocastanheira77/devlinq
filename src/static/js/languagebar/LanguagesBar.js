@@ -6,7 +6,8 @@ function LanguagesView(){
   this.ruby = new Ruby();
   this.javascript = new Javascript();
   this.jquery = new JQuery();
-}
+};
+
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
@@ -15,6 +16,7 @@ LanguagesView.prototype.getLanguagesView = function() {
   }
   return this.languageList;
 };
+
 LanguagesView.prototype.getVersions = function() {
   this.versionList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
@@ -23,6 +25,7 @@ LanguagesView.prototype.getVersions = function() {
   }
   return this.versionList;
 };
+
 LanguagesView.prototype.getTopics = function() {
   this.topicList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
@@ -31,6 +34,7 @@ LanguagesView.prototype.getTopics = function() {
   }
   return this.topicList;
 };
+
 LanguagesView.prototype.createDummyOption = function(string, list) {
   var option_dummy = document.createElement('option');
   option_dummy.selected = "selected";
@@ -39,6 +43,7 @@ LanguagesView.prototype.createDummyOption = function(string, list) {
   option_dummy.innerHTML = "Choose a " + string;
   list.appendChild(option_dummy);
 };
+
 LanguagesView.prototype.createLanguageDropdown = function(){
   var languageDropdownList = document.createElement("select");
   languageDropdownList.id = "languageDropdownList";
@@ -55,12 +60,14 @@ LanguagesView.prototype.createLanguageDropdown = function(){
   }
   return languageDropdownList;
 };
+
 LanguagesView.prototype.createVersionDropdown = function(language){
   var versionDropdownList = document.createElement("select");
   versionDropdownList.id = "versionDropdownList";
   this.createDummyOption("version", versionDropdownList);
   return versionDropdownList;
 };
+
 LanguagesView.prototype.generateVersionOptions = function (versionDropdownList, language) {
   var languageIndex = this.getLanguagesView().indexOf(language);
   this.createDummyOption("version", versionDropdownList);
@@ -71,12 +78,14 @@ LanguagesView.prototype.generateVersionOptions = function (versionDropdownList, 
     versionDropdownList.appendChild(option);
   }
 };
+
 LanguagesView.prototype.createTopicDropdown = function(language){
   var topicDropdownList = document.createElement("select");
   topicDropdownList.id = "topicDropdownList";
   this.createDummyOption("topic", topicDropdownList);
   return topicDropdownList;
 };
+
 LanguagesView.prototype.generateTopicOptions = function(topicDropdownList, language) {
   var languageIndex = this.getLanguagesView().indexOf(language);
   this.createDummyOption("topic", topicDropdownList);
@@ -87,6 +96,7 @@ LanguagesView.prototype.generateTopicOptions = function(topicDropdownList, langu
     topicDropdownList.appendChild(option);
   }
 };
+
 LanguagesView.prototype.createSubmitSearchButton = function () {
   var submitSearchButton = document.createElement("button");
   submitSearchButton.id = "submitSearchButton";
@@ -96,7 +106,8 @@ LanguagesView.prototype.createSubmitSearchButton = function () {
   submitSearchButton.innerHTML = "Search!";
   return submitSearchButton;
 };
-LanguagesView.prototype.createLanguageDiv = function() {
+
+LanguagesView.prototype.createDropdownDiv = function() {
   var languageDiv = document.createElement("div");
   languageDiv.id = "language";
   languageDiv.appendChild(this.createLanguageDropdown());
