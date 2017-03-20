@@ -6,6 +6,7 @@ function LanguagesView(){
   this.ruby = new Ruby();
   this.javascript = new Javascript();
   this.jquery = new JQuery();
+  this.listOfLanguages = [this.ruby.name, this.javascript.name, this.jquery.name];
 };
 
 LanguagesView.prototype.getLanguagesView = function() {
