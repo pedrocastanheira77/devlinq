@@ -12,5 +12,6 @@ function createOfficialDiv(){
 };
 
 module.exports = {
+  createLink,
   createOfficialDiv
 }
