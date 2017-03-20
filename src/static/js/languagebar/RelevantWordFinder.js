@@ -1,5 +1,3 @@
-var Language = require('./LanguagesBar.js');
-
 function haveLanguage(string, lang) {
   return isStringInArray(string, lang.listOfLanguages);
 }
@@ -17,17 +15,19 @@ function splitStringIntoArray(string) {
 }
 
 function isStringInArray(string, array) {
-  arrayToLowerCase(array);
+  var newArray = arrayToLowerCase(array);
   var string = string.toLowerCase();
   var string_many = string + 's';
-  var string_one = string.slice(0, -1);;
-  return (array.includes(string) || array.includes(string_many) || array.includes(string_one))
+  var string_one = string.slice(0, -1);
+  return Math.max(newArray.indexOf(string), newArray.indexOf(string_many), newArray.indexOf(string_one));
 }
 
 function arrayToLowerCase(array) {
-  for(var i=0; i < array.length; i++) {
-    array[i] = array[i].toLowerCase();
+  var newArray = new Array(array.length);
+  for(var i=0; i < newArray.length; i++) {
+    newArray[i] = array[i].toLowerCase();
   }
+  return newArray;
 }
 
 module.exports = {

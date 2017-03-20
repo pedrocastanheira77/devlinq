@@ -7,7 +7,6 @@
 // This must be kept secret. Do not embed it in client side code or binaries you intend to distribute. If you need client side authentication, use the implicit OAuth 2.0 flow.
 // Key Gvi3HHcYwsdm2K69OzxUnQ((
 
-var ReleventWordFinder = require("./ReleventWordFinder.js")
 var stackitem = require('./StackOverflowOutputItem.js');
 var request = require('request-promise');
 
@@ -17,8 +16,6 @@ function StackOverflowBar(){
 
 StackOverflowBar.prototype.decideStringForAPI = function () {
   var searched = document.getElementById("lst-ib").value;
-  var releventWordFinder = new ReleventWordFinder(searched);
-  var result = releventWordFinder.findKeyWords()
   return searched;
 }
 

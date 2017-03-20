@@ -11,7 +11,7 @@ describe('ReleventWordFinder', function(){
   describe('#haveLanguage', function(){
     it('checks if language is in our library', function(){
       var string = "jaVASCRIPT";
-      assert.equal(haveLanguage(string, lang), true);
+      assert.equal(haveLanguage(string, lang), 1);
     })
     it('check is not case sensitive', function(){
       var string = "jaVASCRIPT";
@@ -26,18 +26,18 @@ describe('ReleventWordFinder', function(){
   describe('#haveVersion', function(){
     it('checks if version is in our library', function(){
       var version = "ecmascript5.1";
-      assert.equal(haveVersion(version, lang.javascript), true);
+      assert.equal(haveVersion(version, lang.javascript), 0);
     })
   })
 
   describe('#haveTopic', function(){
     it('checks if topic is in our library', function(){
       var topic = "atomics";
-      assert.equal(haveTopic(topic, lang.javascript), true);
+      assert.equal(haveTopic(topic, lang.javascript), 3);
     })
     it('pluralize and unpluralize', function(){
       var topic = "atomic";
-      assert.equal(haveTopic(topic, lang.javascript), true);
+      assert.equal(haveTopic(topic, lang.javascript), 3);
     })
   })
 

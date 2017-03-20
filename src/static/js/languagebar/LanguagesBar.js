@@ -1,6 +1,10 @@
 var Ruby = require('./lib/RubyInBar.js');
 var Javascript = require('./lib/JavascriptInBar.js');
 var JQuery = require('./lib/JqueryInBar.js');
+var haveLanguage = require('./RelevantWordFinder.js').haveLanguage;
+var haveVersion = require('./RelevantWordFinder.js').haveVersion;
+var haveTopic = require('./RelevantWordFinder.js').haveTopic;
+var splitStringIntoArray = require('./RelevantWordFinder.js').splitStringIntoArray;
 
 function LanguagesView(){
   this.ruby = new Ruby();
@@ -9,9 +13,38 @@ function LanguagesView(){
   this.listOfLanguages = [this.ruby.name, this.javascript.name, this.jquery.name];
 };
 
+LanguagesView.prototype.getInfoFromSearchBar = function () {
+  var searched = document.getElementById("lst-ib").value;
+  return array = splitStringIntoArray(searched);
+}
+
+LanguagesView.prototype.compareSearchBarInfo = function () {
+  var array = this.getInfoFromSearchBar();
+  var language, version, topic;
+  for (var i = array.length - 1; i >= 0; i--){
+    var l = haveLanguage(array[i], this);
+    if (l > -1) {
+      language = this.listOfLanguages[l];
+    }
+  }
+  if (language) {
+    for (var i = array.length - 1; i >= 0; i--){
+      var v = haveVersion(array[i], this[language.toLowerCase()]);
+      var t = haveTopic(array[i], this[language.toLowerCase()]);
+      if (v > -1) {
+        version = this[language.toLowerCase()].versions[v];
+      } else if (t > -1) {
+        topic = this[language.toLowerCase()].topics[t];
+      }
+    }
+  }
+  return [language, version, topic]
+}
+
+
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
-  for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
+  for (var i=0;i<Object.keys(new LanguagesView()).length-1;i++) {
     var languageKey = Object.keys(new LanguagesView())[i];
     this.languageList.push(new LanguagesView()[languageKey].name);
   }
@@ -20,7 +53,7 @@ LanguagesView.prototype.getLanguagesView = function() {
 
 LanguagesView.prototype.getVersions = function() {
   this.versionList = [];
-  for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
+  for (var i=0;i<Object.keys(new LanguagesView()).length-1;i++) {
     var languageKey = Object.keys(new LanguagesView())[i];
     this.versionList.push(new LanguagesView()[languageKey].versions);
   }
@@ -29,7 +62,7 @@ LanguagesView.prototype.getVersions = function() {
 
 LanguagesView.prototype.getTopics = function() {
   this.topicList = [];
-  for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
+  for (var i=0;i<Object.keys(new LanguagesView()).length-1;i++) {
     var languageKey = Object.keys(new LanguagesView())[i];
     this.topicList.push(new LanguagesView()[languageKey].topics);
   }
@@ -60,6 +93,14 @@ LanguagesView.prototype.createLanguageDropdown = function(){
     option.innerHTML = this.getLanguagesView()[i];
     languageDropdownList.appendChild(option);
   }
+  var res = this.compareSearchBarInfo()[0];
+  if (res) {
+    languageDropdownList.value = res;
+    setTimeout(function(){
+      new LanguagesView().versionDropdownChangeEvent();
+      new LanguagesView().topicDropdownChangeEvent();
+    }, 1000)
+  }
   return languageDropdownList;
 };
 
@@ -68,6 +109,13 @@ LanguagesView.prototype.createVersionDropdown = function(language){
   versionDropdownList.id = "versionDropdownList";
   versionDropdownList.className = "version_dropdown dropdown"
   this.createDummyOption("version", versionDropdownList);
+  var res = this.compareSearchBarInfo()[1];
+  console.log(res)
+  if (res) {
+    setTimeout(function(){
+      versionDropdownList.value = res;
+    }, 1500)
+  }
   return versionDropdownList;
 };
 
@@ -87,6 +135,13 @@ LanguagesView.prototype.createTopicDropdown = function(language){
   topicDropdownList.id = "topicDropdownList";
   topicDropdownList.className = "topic_dropdown dropdown"
   this.createDummyOption("topic", topicDropdownList);
+  var res = this.compareSearchBarInfo()[2];
+  console.log(res)
+  if (res) {
+    setTimeout(function(){
+      topicDropdownList.value = res;
+    }, 1500)
+  }
   return topicDropdownList;
 };
 
