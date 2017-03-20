@@ -1,10 +1,35 @@
 function JQuery() {
   this.name = "JQuery",
   this.baseUrl = "http://api.jquery.com/",
+<<<<<<< Updated upstream
   this.offDocs = "API JQuery",
-  this.versions = [ "V1",
-                    "V2"
+=======
+>>>>>>> Stashed changes
+  this.versions = [
+                    "3.1",
+                    "3.0",
+                    "2.2",
+                    "2.1",
+                    "2.0",
+                    "1.12",
+                    "1.11",
+                    "1.10",
+                    "1.9",
+                    "1.8",
+                    "1.7",
+                    "1.6",
+                    "1.5",
+                    "1.4",
+                    "1.3",
+                    "1.2",
+                    "1.1",
+                    "1.0"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                   ],
+
 this.topics = [ "add()",
                 "addBack()",
                 "addClass()",
