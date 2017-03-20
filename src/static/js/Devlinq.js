@@ -24,7 +24,7 @@ function devlinqExtention() {
 function loadFont() {
   WebFont.load({
     google: {
-      families: ['Raleway:300,700,900']
+      families: ['Raleway:300,400, 500,700,900']
     }
     });
 }
@@ -91,7 +91,7 @@ function stackOverflowDiv(currentDiv) {
 
 function createStackOverflowTitle(stackOverflowDiv) {
   var stackOverflowTitle = document.createElement("h2");
-  stackOverflowTitle.className = "stackOverflow_title";
+  stackOverflowTitle.className = "stackoverflow_title";
   stackOverflowTitle.insertAdjacentHTML('afterbegin', "STACK OVERFLOW");
   stackOverflowDiv.insertAdjacentElement('afterbegin', stackOverflowTitle);
   return stackOverflowTitle;
@@ -109,7 +109,7 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     for(var i = 0; i < numberOfLinks; i++){
-      stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
+      stackOverflowDiv.insertAdjacentHTML('beforeend', '<a href='+items[i].getUrl()+'<p class="linq linq_so">'+items[i].getTitle()+'</p></a>');
     }
   });
 }

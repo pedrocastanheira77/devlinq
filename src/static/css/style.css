@@ -8,6 +8,10 @@ h2 {
   text-align: center;
 }
 
+p {
+  margin: 0.3em;
+}
+
 /*
 <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900" rel="stylesheet">
 */
@@ -56,27 +60,11 @@ body {
   margin: 3px;
   width: 180px;
   height: 30px;
-  /*border: thin solid #f6bcbc;*/
   border: none;
   border-bottom: 1px solid #EA4335;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
   background-color: white;
   font-size: 14px;
-  /*color: #FFF;*/
 }
-
-
-/*.language_dropdow
-, .version_dropdownList, .topic_dropdown {
-  padding: 3px;
-  margin: 3px;
-  width: 180px;
-  height: 30px;
-  /*border: thin solid #f6bcbc;*/
-  /*font-size: 15px;*/
-  /*color: #FFF;*/
-/*}*/
 
 #submitSearchButton {
   padding: 3px;
@@ -91,36 +79,40 @@ body {
   font-weight: bold;
 }
 
-/*#official {
-  display: block;
-  padding: 2px 0px 2px 20px;
-  margin: 2px;
-  top: 0px;
-  height: 80px;
-  font-size: 15px;
-  font-weight: bold;
-  color: #545454;
-  /*border: thin solid #545454;*/
-  /*background-color: #dadada;*/
-/*}*/
-
 /* Stack Overflow Bar */
 
 .stackoverflow_div {
   border-color: #FBBC05;
 }
 
-/*#stackoverflowbar {
-  display: block;
-  top: 0px;
-  height: 150px;
-  margin: 5px;
-  padding: 20px;
-  border: thin solid #545454;
-  /*background-color: #c22f2f;*/
-  /*color: #FFF;*/
-/*}*/
+.stackoverflow_title {
+  margin-bottom: 2em;
+}
 
+.linq {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-left: 100px;
+}
+
+.linq:link {
+  text-decoration: none;
+  color: black;
+}
+
+.linq:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.linq_so:hover {
+  border-bottom: 1px solid #FBBC05;
+  font-weight: 700;
+}
+
+.linq_la:hover {
+  border-bottom: 1px solid #EA4335;
+}
 
 #link:link {
     color: #545454;
