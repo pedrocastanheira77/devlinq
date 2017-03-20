@@ -12,9 +12,14 @@ p {
   margin: 0.3em;
 }
 
-/*
-<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900" rel="stylesheet">
-*/
+.hdtb-mitem, .hdtb-tl {
+  font-weight: 600;
+}
+
+._Rm {
+  font-weight: 600;
+  color: #34A853;
+}
 
 /* General */
 
@@ -44,7 +49,8 @@ body {
 
 /* Languages Bar */
 
-.languages_div {
+.langauges_title {
+  font-weight: 900;
 }
 
 .languages_select {
@@ -54,7 +60,6 @@ body {
   margin: 0 auto;
   margin-bottom: 2em;
 }
-
 
 .dropdown {
   padding: 3px;
@@ -88,42 +93,50 @@ body {
 
 .stackoverflow_title {
   margin-bottom: 2em;
+  font-weight: 900;
 }
 
 .linq {
   font-size: 1.1em;
-  font-weight: 500;
+  font-weight: 500 !important;
   margin-left: 100px;
 }
 
 .linq:link {
   text-decoration: none;
-  color: black;
+  color: black !important;
 }
 
 .linq:visited {
   text-decoration: none;
-  color: black;
+  color: black !important;
 }
 
 .linq_so:hover {
   border-bottom: 1px solid #FBBC05;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .linq_la:hover {
   border-bottom: 1px solid #EA4335;
-  font-weight: 700;
+  font-weight: 700 !important;
   width: 450px;
 }
 
 .d_link:hover {
   text-decoration: none;
 }
+
 .d_link:link {
   text-decoration: none;
-  color: black;
+  color: black !important;
 }
+
 .d_link:visited {
   text-decoration: none;
+}
+
+a:link, a:visited {
+  color: lightgrey !important;
+  font-weight: 700;
 }
