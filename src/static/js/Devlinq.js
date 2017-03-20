@@ -24,7 +24,7 @@ function devlinqExtention() {
 function loadFont() {
   WebFont.load({
     google: {
-      families: ['Raleway:300,400, 500,700,900']
+      families: ['Raleway:400,500,600,700,900']
     }
     });
 }

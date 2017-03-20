@@ -52,6 +52,7 @@ body {
   text-align: center;
   width: 600px;
   margin: 0 auto;
+  margin-bottom: 2em;
 }
 
 
@@ -112,20 +113,17 @@ body {
 
 .linq_la:hover {
   border-bottom: 1px solid #EA4335;
+  font-weight: 700;
+  width: 450px;
 }
 
-#link:link {
-    color: #545454;
+.d_link:hover {
+  text-decoration: none;
 }
-
-#link:visited {
-    color: #3d7938;
+.d_link:link {
+  text-decoration: none;
+  color: black;
 }
-
-#link:hover {
-    color: #c22f2f;
-}
-
-#link:active {
-    color: #545454;
+.d_link:visited {
+  text-decoration: none;
 }

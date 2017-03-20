@@ -1,6 +1,7 @@
 function Javascript() {
   this.name = "Javascript",
   this.baseUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/",
+  this.offDocs = "Mozilla (MDN)",
   this.versions = [ "ECMAScript5.1",
                     "ECMAScript6",
                     "ECMAScript7"
@@ -48,6 +49,11 @@ function Javascript() {
 Javascript.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("Intl.", "");
   return this.baseUrl + topic;
+};
+
+
+Javascript.prototype.nameOfDoc = function () {
+  return this.offDocs;
 };
 
 module.exports = Javascript;

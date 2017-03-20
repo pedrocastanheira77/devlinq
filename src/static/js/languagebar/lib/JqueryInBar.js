@@ -1,6 +1,7 @@
 function JQuery() {
   this.name = "JQuery",
   this.baseUrl = "http://api.jquery.com/",
+  this.offDocs = "API JQuery",
   this.versions = [ "V1",
                     "V2"
                   ],
@@ -75,6 +76,11 @@ this.topics = [ "add()",
 JQuery.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("()","")
   return this.baseUrl + topic;
+};
+
+
+JQuery.prototype.nameOfDoc = function () {
+  return this.offDocs;
 };
 
 module.exports = JQuery;

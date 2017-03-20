@@ -126,13 +126,15 @@ LanguagesView.prototype.submitSearchButtonEvent = function () {
   var chosenVersion = document.querySelector('#versionDropdownList').value;
   var chosenTopic = document.querySelector('#topicDropdownList').value;
   var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-  new LanguagesView().addLinktoTag(officialDocLink);
+  var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+  new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs);
+
 };
 
-LanguagesView.prototype.addLinktoTag = function(officialDocLink){
+LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs){
   var link = document.getElementById('link');
   link.href = officialDocLink;
-  link.innerHTML = officialDocLink;
+  link.innerHTML = '<p class="linq linq_la">'+chosenLanguage+' ('+chosenVersion+'): '+ chosenTopic +' (from '+ docs +')</p>';
 };
 
 LanguagesView.prototype.versionDropdownChangeEvent = function () {

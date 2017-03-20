@@ -44520,7 +44520,7 @@ function devlinqExtention() {
 function loadFont() {
   WebFont.load({
     google: {
-      families: ['Raleway:300,400, 500,700,900']
+      families: ['Raleway:400,500,600,700,900']
     }
     });
 }
@@ -44739,13 +44739,15 @@ LanguagesView.prototype.submitSearchButtonEvent = function () {
   var chosenVersion = document.querySelector('#versionDropdownList').value;
   var chosenTopic = document.querySelector('#topicDropdownList').value;
   var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-  new LanguagesView().addLinktoTag(officialDocLink);
+  var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+  new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs);
+
 };
 
-LanguagesView.prototype.addLinktoTag = function(officialDocLink){
+LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs){
   var link = document.getElementById('link');
   link.href = officialDocLink;
-  link.innerHTML = officialDocLink;
+  link.innerHTML = '<p class="linq linq_la">'+chosenLanguage+' ('+chosenVersion+'): '+ chosenTopic +' (from '+ docs +')</p>';
 };
 
 LanguagesView.prototype.versionDropdownChangeEvent = function () {
@@ -44768,6 +44770,7 @@ module.exports = LanguagesView;
 function createLink(){
   var link = document.createElement("a");
   link.id = "link";
+  link.className = "d_link";
   return link;
 };
 
@@ -44786,6 +44789,7 @@ module.exports = {
 function Javascript() {
   this.name = "Javascript",
   this.baseUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/",
+  this.offDocs = "Mozilla (MDN)",
   this.versions = [ "ECMAScript5.1",
                     "ECMAScript6",
                     "ECMAScript7"
@@ -44835,12 +44839,18 @@ Javascript.prototype.generateOfficialDocsURL = function (version, topic) {
   return this.baseUrl + topic;
 };
 
+
+Javascript.prototype.nameOfDoc = function () {
+  return this.offDocs;
+};
+
 module.exports = Javascript;
 
 },{}],194:[function(require,module,exports){
 function JQuery() {
   this.name = "JQuery",
   this.baseUrl = "http://api.jquery.com/",
+  this.offDocs = "API JQuery",
   this.versions = [ "V1",
                     "V2"
                   ],
@@ -44917,12 +44927,18 @@ JQuery.prototype.generateOfficialDocsURL = function (version, topic) {
   return this.baseUrl + topic;
 };
 
+
+JQuery.prototype.nameOfDoc = function () {
+  return this.offDocs;
+};
+
 module.exports = JQuery;
 
 },{}],195:[function(require,module,exports){
 function Ruby() {
   this.name = "Ruby",
   this.baseUrl = "https://ruby-doc.org/core-",
+  this.offDocs = "Ruby-doc",
   this.versions = [ "2.1.0",
                     "2.3.3",
                     "2.4.0"
@@ -45038,6 +45054,10 @@ function Ruby() {
 Ruby.prototype.generateOfficialDocsURL = function (version, topic) {
   topic = topic.replace("::", "/");
   return this.baseUrl + version + "/" + topic + ".html";
+};
+
+Ruby.prototype.nameOfDoc = function () {
+  return this.offDocs;
 };
 
 module.exports = Ruby;
