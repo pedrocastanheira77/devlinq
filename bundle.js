@@ -75580,7 +75580,7 @@ devlinqExtention()
 function devlinqExtention() {
   setTimeout(function() {
     loadFont();
-    replaceLogo();
+    // replaceLogo();
     createSpinner();
     var currentDiv = document.getElementById("appbar");
     languagesDiv(currentDiv);
@@ -75676,7 +75676,6 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
 var Ruby = require('./lib/RubyInBar.js');
 var Javascript = require('./lib/JavascriptInBar.js');
 var JQuery = require('./lib/JqueryInBar.js');
-var keys = Object.keys;
 
 function LanguagesView(){
   this.ruby = new Ruby();
@@ -75686,8 +75685,8 @@ function LanguagesView(){
 
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
-  for (var i=0;i<keys(new LanguagesView()).length;i++) {
-    var languageKey = keys(new LanguagesView())[i];
+  for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
+    var languageKey = Object.keys(new LanguagesView())[i];
     this.languageList.push(new LanguagesView()[languageKey].name);
   }
   return this.languageList;
@@ -75695,8 +75694,8 @@ LanguagesView.prototype.getLanguagesView = function() {
 
 LanguagesView.prototype.getVersions = function() {
   this.versionList = [];
-  for (var i=0;i<keys(new LanguagesView()).length;i++) {
-    var languageKey = keys(new LanguagesView())[i];
+  for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
+    var languageKey = Object.keys(new LanguagesView())[i];
     this.versionList.push(new LanguagesView()[languageKey].versions);
   }
   return this.versionList;
@@ -75704,8 +75703,8 @@ LanguagesView.prototype.getVersions = function() {
 
 LanguagesView.prototype.getTopics = function() {
   this.topicList = [];
-  for (var i=0;i<keys(new LanguagesView()).length;i++) {
-    var languageKey = keys(new LanguagesView())[i];
+  for (var i=0;i<Object.keys(new LanguagesView()).length;i++) {
+    var languageKey = Object.keys(new LanguagesView())[i];
     this.topicList.push(new LanguagesView()[languageKey].topics);
   }
   return this.topicList;
@@ -75838,6 +75837,7 @@ function createOfficialDiv(){
 };
 
 module.exports = {
+  createLink,
   createOfficialDiv
 }
 
@@ -76155,7 +76155,7 @@ StackOverflowBar.prototype.decideStringForAPI = function () {
 
 StackOverflowBar.prototype.getStackAPI = function (string, number) {
   return new Promise(function(resolve, reject) {
-    var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow";
+    var reqUri = "https://api.stackexchange.com/2.2/search/advanced?order=asc&sort=relevance&q="+string+"&site=stackoverflow&key=Gvi3HHcYwsdm2K69OzxUnQ((";
     request({
       uri: reqUri,
       json: true,
