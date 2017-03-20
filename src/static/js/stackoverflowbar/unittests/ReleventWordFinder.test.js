@@ -14,15 +14,15 @@ describe('ReleventWordFinder', function(){
 
   })
 
-  describe('#getKeyWords', function(){
-
-    it('returns the key words array', function(){
-      var rwf = new ReleventWordFinder("ruby array car");
-      assert.equal(rwf.getKeyWords(), ["ruby", "array", "hash"]);
-    })
-
-  })
-
+  // describe('#getKeyWords', function(){
+  //
+  //   it('returns the key words array', function(){
+  //     var rwf = new ReleventWordFinder("ruby array car");
+  //     assert.equal(rwf.getKeyWords(), ['ruby', 'array', 'hash']);
+  //   })
+  //
+  // })
+  //
   describe('#findKeyWords', function(){
 
     it('returns key words', function(){
