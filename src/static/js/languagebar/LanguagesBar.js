@@ -47,6 +47,7 @@ LanguagesView.prototype.createDummyOption = function(string, list) {
 LanguagesView.prototype.createLanguageDropdown = function(){
   var languageDropdownList = document.createElement("select");
   languageDropdownList.id = "languageDropdownList";
+  languageDropdownList.className = "language_dropdown dropdown"
   languageDropdownList.onchange = function(){
     new LanguagesView().versionDropdownChangeEvent();
     new LanguagesView().topicDropdownChangeEvent();
@@ -64,6 +65,7 @@ LanguagesView.prototype.createLanguageDropdown = function(){
 LanguagesView.prototype.createVersionDropdown = function(language){
   var versionDropdownList = document.createElement("select");
   versionDropdownList.id = "versionDropdownList";
+  versionDropdownList.className = "version_dropdown dropdown"
   this.createDummyOption("version", versionDropdownList);
   return versionDropdownList;
 };
@@ -82,6 +84,7 @@ LanguagesView.prototype.generateVersionOptions = function (versionDropdownList, 
 LanguagesView.prototype.createTopicDropdown = function(language){
   var topicDropdownList = document.createElement("select");
   topicDropdownList.id = "topicDropdownList";
+  topicDropdownList.className = "topic_dropdown dropdown"
   this.createDummyOption("topic", topicDropdownList);
   return topicDropdownList;
 };
@@ -110,6 +113,7 @@ LanguagesView.prototype.createSubmitSearchButton = function () {
 LanguagesView.prototype.createDropdownDiv = function() {
   var languageDiv = document.createElement("div");
   languageDiv.id = "language";
+  languageDiv.className = "languages_select";
   languageDiv.appendChild(this.createLanguageDropdown());
   languageDiv.appendChild(this.createVersionDropdown());
   languageDiv.appendChild(this.createTopicDropdown());
@@ -122,13 +126,15 @@ LanguagesView.prototype.submitSearchButtonEvent = function () {
   var chosenVersion = document.querySelector('#versionDropdownList').value;
   var chosenTopic = document.querySelector('#topicDropdownList').value;
   var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-  new LanguagesView().addLinktoTag(officialDocLink);
+  var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+  new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs);
+
 };
 
-LanguagesView.prototype.addLinktoTag = function(officialDocLink){
+LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs){
   var link = document.getElementById('link');
   link.href = officialDocLink;
-  link.innerHTML = officialDocLink;
+  link.innerHTML = '<p class="linq linq_la">'+chosenLanguage+' ('+chosenVersion+'): '+ chosenTopic +' (from '+ docs +')</p>';
 };
 
 LanguagesView.prototype.versionDropdownChangeEvent = function () {

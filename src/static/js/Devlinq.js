@@ -19,16 +19,22 @@ function devlinqExtention() {
   }, 3000);
 }
 
+// Preload
+
 function loadFont() {
   WebFont.load({
     google: {
-      families: ['Raleway:300,700']
+      families: ['Raleway:400,500,600,700,900']
     }
     });
 }
 
 function replaceLogo(){
-  document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  if (document.getElementById("logo")) {
+    document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  } else if (document.getElementById("logocont")) {
+    document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  }
 }
 
 function createSpinner() {
@@ -37,6 +43,8 @@ function createSpinner() {
     spinnerDiv.parentNode.removeChild(spinnerDiv);
   };
 }
+
+// Languages Div
 
 function languagesDiv(currentDiv) {
   var languagesDiv = createLanguagesDiv(currentDiv);
@@ -48,7 +56,7 @@ function languagesDiv(currentDiv) {
 function createLanguagesDiv(currentDiv) {
   var languagesDiv = document.createElement("div");
   languagesDiv.id = "languages_div";
-  languagesDiv.className = "languages_div";
+  languagesDiv.className = "devlinq_div languages_div";
   currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
   return languagesDiv;
 }
@@ -56,7 +64,7 @@ function createLanguagesDiv(currentDiv) {
 function createLanguagesTitle(languagesDiv) {
   var languagesTitle = document.createElement("h2");
   languagesTitle.className = "langauges_title";
-  languagesTitle.insertAdjacentHTML('afterbegin', "OFFICIAL DOCUMENT");
+  languagesTitle.insertAdjacentHTML('afterbegin', "OFFICIAL DOCUMENTATION");
   languagesDiv.insertAdjacentElement('afterbegin', languagesTitle);
   return languagesTitle;
 }
@@ -71,24 +79,28 @@ function insertOfficialDocsIntoLanguages(languagesDiv) {
   languagesDiv.insertAdjacentElement('beforeend', officialDiv)
 }
 
+// Stack Overflow Div
+
 function stackOverflowDiv(currentDiv) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
+  createStackOverflowTitle(stackOverflowDiv);
   var requestedNumberOfLinks = 5;
   insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
 function createStackOverflowTitle(stackOverflowDiv) {
   var stackOverflowTitle = document.createElement("h2");
-  stackOverflowTitle.className = "stackOverflow_title";
+  stackOverflowTitle.className = "stackoverflow_title";
   stackOverflowTitle.insertAdjacentHTML('afterbegin', "STACK OVERFLOW");
-  languagesDiv.insertAdjacentElement('afterbegin', languagesTitle);
+  stackOverflowDiv.insertAdjacentElement('afterbegin', stackOverflowTitle);
   return stackOverflowTitle;
 }
 
 function createStackOverflowDiv() {
   var stackOverflowDiv = document.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
+  stackOverflowDiv.className = "devlinq_div stackoverflow_div";
   return stackOverflowDiv;
 }
 
@@ -97,7 +109,7 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     for(var i = 0; i < numberOfLinks; i++){
-      stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
+      stackOverflowDiv.insertAdjacentHTML('beforeend', '<a href='+items[i].getUrl()+'<p class="linq linq_so">'+items[i].getTitle()+'</p></a>');
     }
   });
 }

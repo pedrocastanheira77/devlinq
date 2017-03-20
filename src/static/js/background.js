@@ -17,10 +17,10 @@ function triggerContentsScripts(tabId, changeInfo, tab) {
 
 function changeClickButtonStatus(){
   if (clickButtonStatus === "off"){
-    chrome.browserAction.setIcon({path:"green.png"})
+    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_color.png"})
     return clickButtonStatus = "on";
   } else {
-    chrome.browserAction.setIcon({path:"red.png"})
+    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_black.png"})
     return clickButtonStatus = "off";
   }
 }
