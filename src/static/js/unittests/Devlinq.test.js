@@ -91,9 +91,9 @@ describe('Devlinq', function(){
     });
   });
 
-  var chai = require('chai');
-  var spies = require('chai-spies');
-  chai.use(spies);
+  // var chai = require('chai');
+  // var spies = require('chai-spies');
+  // chai.use(spies);
 
   // describe('#insertStackOverflowAPI', function(){
   //   it('does something', function(){
@@ -101,6 +101,7 @@ describe('Devlinq', function(){
   //     stub(StackOverflowBar.prototype, 'decideStringForAPI')
   //     StackOverflowBar.prototype.decideStringForAPI.returns("ruby array")
   //     var spy = chai.spy.on(stackdiv, 'insertAdjacentHTML');
+  //     console.log(spy)
   //     insertStackOverflowAPI(5, stackdiv)
   //     expect(spy).to.have.been.called()
   //   });

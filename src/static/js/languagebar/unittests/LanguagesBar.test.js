@@ -320,7 +320,7 @@ describe('LanguagesView', function(){
 
       stub(LanguagesView.prototype, 'generateTopicOptions');
       var spy = chai.spy.on(LanguagesView.prototype, 'generateTopicOptions');
-      languagesView.topicDropdownChangeEvent()
+      languagesView.topicDropdownChangeEvent();
       expect(spy).to.have.been.called.with(topiclist, "thelanguage");
     });
   });

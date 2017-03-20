@@ -102,7 +102,7 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   });
 }
 
-module.exports ={
+module.exports = {
   createLanguagesDiv,
   createLanguagesTitle,
   createLanguagesTitle,
