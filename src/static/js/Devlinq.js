@@ -28,7 +28,7 @@ function loadFont() {
 }
 
 function replaceLogo(){
-  document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  document.getElementById("logocont").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
 }
 
 function createSpinner() {
@@ -96,8 +96,18 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   var stackoverflowsearch = stackbar.decideStringForAPI();
   stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
+    var googleResultUrls = document.getElementsByClassName("_Rm");
+    console.log(googleResultUrls, "all google results");
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
+      console.log(items[i].getUrl(), "returned stack item");
+      for(var x = 0; x < googleResultUrls.length; x++){
+        if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
+          console.log(googleResultUrls[x].innerHTML,"match found");
+          var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
+          if (box) {box.parentNode.removeChild(box)};
+        };
+      };
     }
   });
 }
