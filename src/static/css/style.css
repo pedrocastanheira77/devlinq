@@ -1,3 +1,18 @@
+/* Typography */
+
+body, .g, .gsfi {
+  font-family: 'Raleway', sans-serif !important;
+  text-align: center;
+}
+
+/*
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900" rel="stylesheet">
+font-family: 'Raleway', sans-serif;
+*/
+
+#logo img{
+  height: 32px;
+}
 
 #language {
   display: block;
@@ -5,8 +20,8 @@
   height: 30px;
   margin: 5px;
   padding: 20px;
-  border: thin solid #545454;
-  background-color: #c22f2f;
+  /*border: thin solid #545454;*/
+  /*background-color: #c22f2f;*/
   color: #FFF;
 }
 
@@ -17,8 +32,8 @@
   margin: 5px;
   padding: 20px;
   border: thin solid #545454;
-  background-color: #c22f2f;
-  color: #FFF;
+  /*background-color: #c22f2f;*/
+  /*color: #FFF;*/
 }
 
 #languageDropdownList, #versionDropdownList, #topicDropdownList {
@@ -27,9 +42,9 @@
   width: 180px;
   height: 30px;
   background-color: transparent;
-  border: thin solid #f6bcbc;
+  /*border: thin solid #f6bcbc;*/
   font-size: 15px;
-  color: #FFF;
+  /*color: #FFF;*/
 }
 
 #submitSearchButton {
@@ -55,8 +70,8 @@
   font-size: 15px;
   font-weight: bold;
   color: #545454;
-  border: thin solid #545454;
-  background-color: #dadada;
+  /*border: thin solid #545454;*/
+  /*background-color: #dadada;*/
 }
 
 #link:link {

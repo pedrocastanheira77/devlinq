@@ -5,7 +5,7 @@
   "version": "1.0",
 
   "description": "Tool to organise your coding-related search",
-  
+
   "background": {
     "scripts": ["src/static/js/background.js",
                 "src/static/js/Spinner.js",
@@ -18,10 +18,16 @@
     "tabs",
     "activeTab",
     "webNavigation",
+    "fontSettings",
     "https://www.google.co.uk/*"
   ],
 
   "browser_action": {
-    "default_icon": "red.png"
-  }
+    "default_icon": "public/images/devlinq_icon_black.png"
+  },
+
+  "web_accessible_resources": [
+    "public/images/*.png",
+    "https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900"
+  ]
 }
