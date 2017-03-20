@@ -1,6 +1,7 @@
 function createLink(){
   var link = document.createElement("a");
   link.id = "link";
+  link.className = "d_link";
   return link;
 };
 

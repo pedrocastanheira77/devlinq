@@ -4,8 +4,10 @@ var lang = new LanguagesView();
 var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackbar = new StackOverflowBar();
+var savedNumberOfLinks;
+getRequestedNumberOfLinks();
 
-devlinqExtention()
+devlinqExtention();
 
 function devlinqExtention() {
   setTimeout(function() {
@@ -14,28 +16,36 @@ function devlinqExtention() {
     createSpinner();
     var currentDiv = document.getElementById("appbar");
     languagesDiv(currentDiv);
-    stackOverflowDiv(currentDiv);
+    stackOverflowDiv(currentDiv, savedNumberOfLinks);
   }, 3000);
 }
+
+// Preload
 
 function loadFont() {
   WebFont.load({
     google: {
-      families: ['Raleway:300,700']
+      families: ['Raleway:400,500,600,700,900']
     }
     });
 }
 
 function replaceLogo(){
-  document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  if (document.getElementById("logo")) {
+    document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  } else if (document.getElementById("logocont")) {
+    document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  }
 }
 
 function createSpinner() {
   var spinnerDiv = document.querySelector("#spinner");
   if (spinnerDiv) {
     spinnerDiv.parentNode.removeChild(spinnerDiv);
-  };
+  }
 }
+
+// Languages Div
 
 function languagesDiv(currentDiv) {
   var languagesDiv = createLanguagesDiv(currentDiv);
@@ -47,7 +57,7 @@ function languagesDiv(currentDiv) {
 function createLanguagesDiv(currentDiv) {
   var languagesDiv = document.createElement("div");
   languagesDiv.id = "languages_div";
-  languagesDiv.className = "languages_div";
+  languagesDiv.className = "devlinq_div languages_div";
   currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
   return languagesDiv;
 }
@@ -62,25 +72,33 @@ function createLanguagesTitle(languagesDiv) {
 
 function insertDropdownIntoLanguages(languagesDiv) {
   var optionsDiv = lang.createDropdownDiv();
-  languagesDiv.insertAdjacentElement('beforeend', optionsDiv)
+  languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
 }
 
 function insertOfficialDocsIntoLanguages(languagesDiv) {
   var officialDiv = createOfficialDiv();
-  languagesDiv.insertAdjacentElement('beforeend', officialDiv)
+  languagesDiv.insertAdjacentElement('beforeend', officialDiv);
 }
 
-function stackOverflowDiv(currentDiv) {
+function getRequestedNumberOfLinks() {
+  chrome.storage.local.get(function(result){
+    savedNumberOfLinks = result.stackOverflowResults;
+  });
+}
+
+function stackOverflowDiv(currentDiv, requestedNumberOfLinks) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
   createStackOverflowTitle(stackOverflowDiv);
-  var requestedNumberOfLinks = 5;
+  if (!requestedNumberOfLinks) {
+      requestedNumberOfLinks = 5;
+    }
   insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
 function createStackOverflowTitle(stackOverflowDiv) {
   var stackOverflowTitle = document.createElement("h2");
-  stackOverflowTitle.className = "stackOverflow_title";
+  stackOverflowTitle.className = "stackoverflow_title";
   stackOverflowTitle.insertAdjacentHTML('afterbegin', "STACK OVERFLOW");
   stackOverflowDiv.insertAdjacentElement('afterbegin', stackOverflowTitle);
   return stackOverflowTitle;
@@ -89,6 +107,7 @@ function createStackOverflowTitle(stackOverflowDiv) {
 function createStackOverflowDiv() {
   var stackOverflowDiv = document.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
+  stackOverflowDiv.className = "devlinq_div stackoverflow_div";
   return stackOverflowDiv;
 }
 
@@ -96,8 +115,15 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
   var stackoverflowsearch = stackbar.decideStringForAPI();
   stackbar.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
+    var googleResultUrls = document.getElementsByClassName("_Rm");
     for(var i = 0; i < numberOfLinks; i++){
-      stackOverflowDiv.insertAdjacentHTML('beforeend', '<p><b>'+items[i].getTitle()+'</b>\n'+items[i].getUrl()+'</p>');
+      stackOverflowDiv.insertAdjacentHTML('beforeend', '<a href='+items[i].getUrl()+'<p class="linq linq_so">'+items[i].getTitle()+'</p></a>');
+      for(var x = 0; x < googleResultUrls.length; x++){
+        if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
+          var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
+          if (box) {box.parentNode.removeChild(box);}
+        }
+      }
     }
   });
 }
