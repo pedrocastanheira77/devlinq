@@ -99,8 +99,10 @@ body {
 .linq {
   font-size: 1.1em;
   font-weight: 500 !important;
-  margin-left: 100px;
+  margin-left: 250px;
+  margin-right: 250px;
   color: black !important;
+  margin-top: 1em;
 }
 
 .linq:link {
@@ -142,6 +144,12 @@ body {
 }
 
 a:link, a:visited {
-  color: lightgrey !important;
-  font-weight: 700;
+  color: grey !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.so_item {
+  display: inline;
+  text-align: center;
 }

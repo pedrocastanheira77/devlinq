@@ -4,6 +4,11 @@
   var stackoverflowbar = document.getElementById("stackoverflowbar");
   console.log(language_div);
   console.log(stackoverflowbar);
-  language_div.parentNode.removeChild(language_div);
-  stackoverflowbar.parentNode.removeChild(stackoverflowbar);
+  if (language_div) {
+    language_div.parentNode.removeChild(language_div);
+  }
+  if(stackoverflowbar){
+    stackoverflowbar.parentNode.removeChild(stackoverflowbar);
+  }
+
 }(this));
