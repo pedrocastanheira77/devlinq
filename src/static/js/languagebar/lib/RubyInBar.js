@@ -1,10 +1,7 @@
 function Ruby() {
   this.name = "Ruby",
   this.baseUrl = "https://ruby-doc.org/core-",
-<<<<<<< Updated upstream
   this.offDocs = "Ruby-doc",
-=======
->>>>>>> Stashed changes
   this.versions = [
                     "2.4.0",
                     "2.3.3",
