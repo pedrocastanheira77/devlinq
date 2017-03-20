@@ -90,6 +90,7 @@ function getRequestedNumberOfLinks() {
 function stackOverflowDiv(currentDiv, requestedNumberOfLinks) {
   var stackOverflowDiv = createStackOverflowDiv();
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
+  createStackOverflowTitle(stackOverflowDiv);
   if (!requestedNumberOfLinks) {
       requestedNumberOfLinks = 5;
     }
