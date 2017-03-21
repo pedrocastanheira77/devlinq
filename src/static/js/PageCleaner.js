@@ -7,5 +7,4 @@
   if(stackoverflowbar){
     stackoverflowbar.parentNode.removeChild(stackoverflowbar);
   }
-
 }(this));

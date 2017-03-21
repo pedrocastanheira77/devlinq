@@ -3,6 +3,7 @@ function loadOptions(resultsPromise, theDocument) {
     var currentValue = stackOverflowStoredResults ? stackOverflowStoredResults : "5";
     var stackOverflowResultsOption = theDocument.querySelector('option[value="' + currentValue + '"]');
     stackOverflowResultsOption.selected = "selected";
+    return theDocument;
   });
 }
 
@@ -21,6 +22,7 @@ function messageConfirmation(theDocument){
 }
 
 module.exports = {
+  messageConfirmation,
   loadOptions,
   saveOptions
 }

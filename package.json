@@ -35,7 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/public/jquery.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/static/js/Spinner.js",
+    "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/static/js/options/OptionsEvents.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/static/js/Spinner.js",
     "eject": "react-scripts eject"
   }
 }
