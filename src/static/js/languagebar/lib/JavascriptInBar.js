@@ -1,12 +1,11 @@
 function Javascript() {
-  this.name = "Javascript",
-  this.baseUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/",
-  this.offDocs = "Mozilla (MDN)",
-  this.versions = [ "ECMAScript5.1",
+  this.name = "Javascript";
+  this.baseUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/";
+  this.offDocs = "Mozilla (MDN)";
+  this.versions = ["ECMAScript5.1",
                     "ECMAScript6",
-                    "ECMAScript7"
-                  ],
-  this.topics = [ "Array",
+                    "ECMAScript7"];
+  this.topics = ["Array",
                   "ArrayBuffer",
                   "AsyncFunction",
                   "Atomics",
@@ -42,8 +41,7 @@ function Javascript() {
                   "RangeError",
                   "ReferenceError",
                   "Reflect",
-                  "RegExp"
-                ]
+                  "RegExp"];
 }
 
 Javascript.prototype.generateOfficialDocsURL = function (version, topic) {

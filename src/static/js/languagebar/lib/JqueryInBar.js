@@ -1,9 +1,8 @@
 function JQuery() {
-  this.name = "JQuery",
-  this.baseUrl = "http://api.jquery.com/",
-  this.offDocs = "API JQuery",
-  this.versions = [
-                    "3.1",
+  this.name = "JQuery";
+  this.baseUrl = "http://api.jquery.com/";
+  this.offDocs = "API JQuery";
+  this.versions = ["3.1",
                     "3.0",
                     "2.2",
                     "2.1",
@@ -20,8 +19,7 @@ function JQuery() {
                     "1.3",
                     "1.2",
                     "1.1",
-                    "1.0"
-                  ],
+                    "1.0"];
 this.topics = [ "add()",
                 "addBack()",
                 "addClass()",
@@ -86,8 +84,7 @@ this.topics = [ "add()",
                 "detach()",
                 "die()",
                 "each()",
-                "empty()"
-              ]
+                "empty()"];
 }
 
 JQuery.prototype.generateOfficialDocsURL = function (version, topic) {

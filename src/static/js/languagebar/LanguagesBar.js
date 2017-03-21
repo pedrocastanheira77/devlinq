@@ -24,7 +24,7 @@ function LanguagesView(){
 
 LanguagesView.prototype.languagesDiv = function (currentDiv) {
   var languagesDiv = this.createLanguagesDiv(currentDiv);
-  var languagesTitle = this.createLanguagesTitle(languagesDiv);
+  this.createLanguagesTitle(languagesDiv);
   this.insertDropdownIntoLanguages(languagesDiv);
   this.insertOfficialDocsIntoLanguages(languagesDiv);
 }
@@ -85,9 +85,9 @@ LanguagesView.prototype.compareSearchBarInfo = function () {
     }
   }
   if (language) {
-    for (var i = array.length - 1; i >= 0; i--){
-      var v = haveVersion(array[i], this[language.toLowerCase()]);
-      var t = haveTopic(array[i], this[language.toLowerCase()]);
+    for (var j = array.length - 1; j >= 0; j--){
+      var v = haveVersion(array[j], this[language.toLowerCase()]);
+      var t = haveTopic(array[j], this[language.toLowerCase()]);
       if (v > -1) {
         version = this[language.toLowerCase()].versions[v];
       } else if (t > -1) {
@@ -259,10 +259,11 @@ LanguagesView.prototype.submitSearchButtonEvent = function () {
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs){
   var link = document.getElementById('link');
   link.href = officialDocLink;
+  var topicReplace;
   if (chosenTopic === 'Choose a topic'){
-    var topicReplace = ''
+    topicReplace = ''
   } else {
-    var topicReplace = ':' + chosenTopic
+    topicReplace = ':' + chosenTopic
   }
   link.innerHTML = '<p class="linq linq_la">'+chosenLanguage+' ('+chosenVersion+')' + topicReplace + ' (from '+ docs +')</p>';
 };
@@ -271,14 +272,14 @@ LanguagesView.prototype.versionDropdownChangeEvent = function () {
   var chosenLanguage = document.querySelector('#languageDropdownList').value;
   var versionDropdown = document.getElementById("versionDropdownList");
   versionDropdown.innerHTML = "";
-  var versionOptions = new LanguagesView().generateVersionOptions(versionDropdown, chosenLanguage);
+  new LanguagesView().generateVersionOptions(versionDropdown, chosenLanguage);
 };
 
 LanguagesView.prototype.topicDropdownChangeEvent = function () {
   var chosenLanguage = document.querySelector('#languageDropdownList').value;
   var topicDropdown = document.getElementById("topicDropdownList");
   topicDropdown.innerHTML = "";
-  var topicOptions = new LanguagesView().generateTopicOptions(topicDropdown, chosenLanguage);
+  new LanguagesView().generateTopicOptions(topicDropdown, chosenLanguage);
 };
 
 module.exports = LanguagesView;

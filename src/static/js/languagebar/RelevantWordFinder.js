@@ -16,10 +16,10 @@ function splitStringIntoArray(string) {
 
 function isStringInArray(string, array) {
   var newArray = arrayToLowerCase(array);
-  var string = string.toLowerCase();
+  var string_low = string.toLowerCase();
   var string_many = string + 's';
   var string_one = string.slice(0, -1);
-  return Math.max(newArray.indexOf(string), newArray.indexOf(string_many), newArray.indexOf(string_one));
+  return Math.max(newArray.indexOf(string_low), newArray.indexOf(string_many), newArray.indexOf(string_one));
 }
 
 function arrayToLowerCase(array) {
