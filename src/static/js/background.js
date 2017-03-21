@@ -1,4 +1,4 @@
-var clickButtonStatus = "off";
+var clickButtonStatus = "on";
 
 chrome.browserAction.onClicked.addListener(function(tab){
   changeClickButtonStatus();
