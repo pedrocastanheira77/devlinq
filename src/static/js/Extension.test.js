@@ -1,6 +1,6 @@
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
-it('Extention add text to the google search results',  (done)=> {
+xit('Extention add text to the google search results',  (done)=> {
   var sw = require('selenium-webdriver');
   var assert = require('chai').assert;
   var chromeOptions = sw.Capabilities.chrome();
