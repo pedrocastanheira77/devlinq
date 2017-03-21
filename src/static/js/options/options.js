@@ -1,34 +1,36 @@
+var d = document;
+
 var resultsPromise = new Promise(function(resolve, reject){
   chrome.storage.local.get(function(result){
     resolve(result.stackOverflowResults);
   });
 });
 
-function loadOptions(resultsPromise) {
+function loadOptions(resultsPromise, theDocument) {
   resultsPromise.then(function(stackOverflowStoredResults){
     var currentValue = stackOverflowStoredResults ? stackOverflowStoredResults : "5";
-    var stackOverflowResultsOption = document.querySelector('option[value="' + currentValue + '"]');
+    var stackOverflowResultsOption = theDocument.querySelector('option[value="' + currentValue + '"]');
     stackOverflowResultsOption.selected = "selected";
   });
 }
 
-function saveOptions() {
-  var stackOverflowResults = document.getElementById('stackOverflowResults').value;
+function saveOptions(theDocument) {
+  var stackOverflowResults = theDocument.getElementById('stackOverflowResults').value;
   chrome.storage.local.set({"stackOverflowResults": stackOverflowResults});
-  messageConfirmation();
+  messageConfirmation(theDocument);
 }
 
-function messageConfirmation(){
-  var messageConfirmation = document.getElementById('saveConfirmation');
+function messageConfirmation(theDocument){
+  var messageConfirmation = theDocument.getElementById('saveConfirmation');
   messageConfirmation.innerHTML = "Saved successfully!";
   setTimeout(function() {
     messageConfirmation.innerHTML = '';
   }, 1000);
 }
 
-document.addEventListener('DOMContentLoaded', loadOptions(resultsPromise));
-document.getElementById('save').addEventListener('click', saveOptions);
+d.addEventListener('DOMContentLoaded', function(){loadOptions(resultsPromise, d)});
+d.getElementById('save').addEventListener('click', function(){saveOptions(d)});
 
 module.exports = {
   messageConfirmation
-}
+};
