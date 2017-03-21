@@ -1,11 +1,3 @@
-var d = document;
-
-var resultsPromise = new Promise(function(resolve, reject){
-  chrome.storage.local.get(function(result){
-    resolve(result.stackOverflowResults);
-  });
-});
-
 function loadOptions(resultsPromise, theDocument) {
   resultsPromise.then(function(stackOverflowStoredResults){
     var currentValue = stackOverflowStoredResults ? stackOverflowStoredResults : "5";
@@ -28,9 +20,7 @@ function messageConfirmation(theDocument){
   }, 1000);
 }
 
-d.addEventListener('DOMContentLoaded', function(){loadOptions(resultsPromise, d)});
-d.getElementById('save').addEventListener('click', function(){saveOptions(d)});
-
 module.exports = {
-  messageConfirmation
-};
+  loadOptions,
+  saveOptions
+}
