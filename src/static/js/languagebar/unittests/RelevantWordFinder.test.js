@@ -5,50 +5,47 @@ var haveVersion = require('../RelevantWordFinder.js').haveVersion;
 var haveTopic = require('../RelevantWordFinder.js').haveTopic;
 var splitStringIntoArray = require('../RelevantWordFinder.js').splitStringIntoArray;
 
-
 describe('ReleventWordFinder', function(){
   var lang = new Language();
+
   describe('#haveLanguage', function(){
+    var STRING = "jaVASCRIPT";
     it('checks if language is in our library', function(){
-      var string = "jaVASCRIPT";
-      assert.equal(haveLanguage(string, lang), 1);
-    })
+      assert.equal(haveLanguage(STRING, lang), 1);
+    });
     it('check is not case sensitive', function(){
-      var string = "jaVASCRIPT";
-      assert.equal(haveLanguage(string, lang), true);
-    })
+      assert.equal(haveLanguage(STRING, lang), true);
+    });
     it('pluralize and unpluralize', function(){
-      var string = "jaVASCRIPTs";
-      assert.equal(haveLanguage(string, lang), true);
-    })
-  })
+      assert.equal(haveLanguage(STRING, lang), true);
+    });
+  });
 
   describe('#haveVersion', function(){
+    var VERSION = "ecmascript5.1";
     it('checks if version is in our library', function(){
-      var version = "ecmascript5.1";
-      assert.equal(haveVersion(version, lang.javascript), 0);
-    })
-  })
+      assert.equal(haveVersion(VERSION, lang.javascript), 0);
+    });
+  });
 
   describe('#haveTopic', function(){
+    var TOPIC = "atomics";
     it('checks if topic is in our library', function(){
-      var topic = "atomics";
-      assert.equal(haveTopic(topic, lang.javascript), 3);
-    })
+      assert.equal(haveTopic(TOPIC, lang.javascript), 3);
+    });
     it('pluralize and unpluralize', function(){
-      var topic = "atomic";
-      assert.equal(haveTopic(topic, lang.javascript), 3);
-    })
-  })
+      assert.equal(haveTopic(TOPIC, lang.javascript), 3);
+    });
+  });
 
   describe('#splitStringIntoArray', function(){
     it('splits string into array by words', function(){
-      var string  = "ruby version array";
-      assert.deepEqual(splitStringIntoArray(string), [ 'ruby', 'version', 'array']);
-    })
+      var STRING  = "ruby version array";
+      assert.deepEqual(splitStringIntoArray(STRING), [ 'ruby', 'version', 'array']);
+    });
     it('removes all symbols other than full stops', function(){
-      var string  = "I dfdpsojfqwf *&^&@%£@ 2321 dsfsdf. 4343 ,efw e";
-      assert.deepEqual(splitStringIntoArray(string), [ 'I', 'dfdpsojfqwf', '£', '2321', 'dsfsdf.', '4343', 'efw', 'e' ]);
-    })
-  })
+      var STRING  = "I dfdpsojfqwf *&^&@%£@ 2321 dsfsdf. 4343 ,efw e";
+      assert.deepEqual(splitStringIntoArray(STRING), [ 'I', 'dfdpsojfqwf', '£', '2321', 'dsfsdf.', '4343', 'efw', 'e' ]);
+    });
+  });
 });
