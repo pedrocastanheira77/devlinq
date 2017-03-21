@@ -1,6 +1,7 @@
 var Ruby = require('./lib/RubyInBar.js');
 var Javascript = require('./lib/JavascriptInBar.js');
 var JQuery = require('./lib/JqueryInBar.js');
+var ChromeExtensions = require('./lib/ChromeExtensionsInBar.js');
 var haveLanguage = require('./RelevantWordFinder.js').haveLanguage;
 var haveVersion = require('./RelevantWordFinder.js').haveVersion;
 var haveTopic = require('./RelevantWordFinder.js').haveTopic;
@@ -10,7 +11,12 @@ function LanguagesView(){
   this.ruby = new Ruby();
   this.javascript = new Javascript();
   this.jquery = new JQuery();
-  this.listOfLanguages = [this.ruby.name, this.javascript.name, this.jquery.name];
+  this.chromeextensions = new ChromeExtensions();
+  this.listOfLanguages = [  this.ruby.name,
+                            this.javascript.name,
+                            this.jquery.name,
+                            this.chromeextensions.name
+                          ];
 };
 
 LanguagesView.prototype.getInfoFromSearchBar = function () {
