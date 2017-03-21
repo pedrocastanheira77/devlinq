@@ -21,11 +21,13 @@
   },
   "devDependencies": {
     "babel-plugin-istanbul": "^4.0.0",
+    "chai-spies": "^0.7.1",
     "istanbul": "^0.4.5",
     "jasmine-react-helpers": "^0.2.2",
     "jest": "^18.1.0",
     "mocha": "^3.2.0",
     "react-scripts": "0.9.5",
+    "sinon": "^2.1.0",
     "ts-jest": "^18.0.3",
     "typescript": "^2.2.1",
     "zombie": "^5.0.5"
