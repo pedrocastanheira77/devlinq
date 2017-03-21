@@ -16,7 +16,8 @@ function StackOverflowBar(){
 
 StackOverflowBar.prototype.decideStringForAPI = function () {
   var searched = document.getElementById("lst-ib").value;
-  return searched;
+  var stringForAPI = searched.replace(/(?:\d*\.)?\d+/g, '');
+  return stringForAPI;
 }
 
 StackOverflowBar.prototype.getStackAPI = function (string, number) {

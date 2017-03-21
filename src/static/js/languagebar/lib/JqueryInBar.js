@@ -91,8 +91,12 @@ this.topics = [ "add()",
 }
 
 JQuery.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace("()","")
-  return this.baseUrl + topic;
+  if (topic === 'Choose a topic'){
+    return this.baseUrl
+  } else {
+    topic = topic.replace("()","")
+    return this.baseUrl + topic;
+  }
 };
 
 

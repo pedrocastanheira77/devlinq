@@ -47,8 +47,12 @@ function Javascript() {
 }
 
 Javascript.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace("Intl.", "");
-  return this.baseUrl + topic;
+  if (topic === 'Choose a topic'){
+    return this.baseUrl
+  } else {
+    topic = topic.replace("Intl.", "");
+    return this.baseUrl + topic;
+  }
 };
 
 
