@@ -24,13 +24,15 @@ LanguagesView.prototype.languagesDiv = function (currentDiv) {
 }
 
 LanguagesView.prototype.createLanguagesDiv = function (currentDiv) {
-  if (!document.getElementById("languages_div")){
-    var languagesDiv = document.createElement("div");
-    languagesDiv.id = "languages_div";
-    languagesDiv.className = "devlinq_div languages_div";
-    currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
-    return languagesDiv;
+  var languages_div = document.getElementById("languages_div")
+  if (languages_div){
+    languages_div.parentNode.removeChild(languages_div)
   }
+  var languagesDiv = document.createElement("div");
+  languagesDiv.id = "languages_div";
+  languagesDiv.className = "devlinq_div languages_div";
+  currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
+  return languagesDiv;
 }
 
 LanguagesView.prototype.createLanguagesTitle = function (languagesDiv) {

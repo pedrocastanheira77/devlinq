@@ -24,10 +24,13 @@ class App extends Component {
     stackbar.getStackAPI(value, 5).then(function(items) {
       that.setState({items: items});
     })
-  }
 
-  onItemClick() {
-    console.log(1)
+    document.querySelector("#lst-ib").addEventListener('change', function(evt) {
+      lang.languagesDiv(currentDiv);
+      stackbar.getStackAPI(document.getElementById("lst-ib").value, 5).then(function(items) {
+        that.setState({items: items});
+      })
+    })
   }
 
   render(data) {
@@ -50,10 +53,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-function myFunction() {
-  console.log(1)
 }
 
 
