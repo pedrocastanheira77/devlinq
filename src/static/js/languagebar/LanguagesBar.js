@@ -6,6 +6,7 @@ var haveLanguage = require('./RelevantWordFinder.js').haveLanguage;
 var haveVersion = require('./RelevantWordFinder.js').haveVersion;
 var haveTopic = require('./RelevantWordFinder.js').haveTopic;
 var splitStringIntoArray = require('./RelevantWordFinder.js').splitStringIntoArray;
+var createOfficialDiv = require("./OfficialDocsResults.js").createOfficialDiv;
 
 function LanguagesView(){
   this.ruby = new Ruby();
@@ -19,9 +20,59 @@ function LanguagesView(){
                           ];
 };
 
+///////////// new
+
+LanguagesView.prototype.languagesDiv = function (currentDiv) {
+  var languagesDiv = this.createLanguagesDiv(currentDiv);
+  var languagesTitle = this.createLanguagesTitle(languagesDiv);
+  this.insertDropdownIntoLanguages(languagesDiv);
+  this.insertOfficialDocsIntoLanguages(languagesDiv);
+}
+
+LanguagesView.prototype.createLanguagesDiv = function (currentDiv) {
+  var languages_div = document.getElementById("languages_div")
+  if (languages_div){
+    languages_div.parentNode.removeChild(languages_div)
+  }
+  var languagesDiv = document.createElement("div");
+  languagesDiv.id = "languages_div";
+  languagesDiv.className = "devlinq_div languages_div";
+  currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
+  return languagesDiv;
+}
+
+LanguagesView.prototype.createLanguagesTitle = function (languagesDiv) {
+  if (languagesDiv) {
+    var languagesTitle = document.createElement("h2");
+    languagesTitle.className = "langauges_title";
+    languagesTitle.insertAdjacentHTML('afterbegin', "OFFICIAL DOCUMENTATION");
+    languagesDiv.insertAdjacentElement('afterbegin', languagesTitle);
+    return languagesTitle;
+  }
+}
+
+LanguagesView.prototype.insertDropdownIntoLanguages = function (languagesDiv) {
+  if (languagesDiv) {
+    var optionsDiv = this.createDropdownDiv();
+    languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
+  }
+}
+
+LanguagesView.prototype.insertOfficialDocsIntoLanguages = function (languagesDiv) {
+  if (languagesDiv) {
+    var officialDiv = createOfficialDiv();
+    languagesDiv.insertAdjacentElement('beforeend', officialDiv);
+  }
+}
+
+///////////// new
+
 LanguagesView.prototype.getInfoFromSearchBar = function () {
   var searched = document.getElementById("lst-ib").value;
-  return array = splitStringIntoArray(searched);
+  if (!searched) {
+    searched = document.getElementById("lst-ib").innerHTML;
+  }
+  return splitStringIntoArray(searched);
 }
 
 LanguagesView.prototype.compareSearchBarInfo = function () {

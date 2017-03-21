@@ -29,7 +29,6 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
       gzip: true
     }).then(function(response) {
         var array = [];
-        console.log(response)
         for (var i = 0; i < number; i++) {
           if (response.items[i]) {
             var item = [response.items[i].title, response.items[i].link, response.items[i].view_count, response.items[i].answer_count, response.items[i].score];
