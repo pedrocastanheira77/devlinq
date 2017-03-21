@@ -71,8 +71,12 @@ function ChromeExtensions() {
 }
 
 ChromeExtensions.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace(".", "_");
-  return this.baseUrl + topic;
+  if (topic === 'Choose a topic'){
+    return this.baseUrl
+  } else {
+    topic = topic.replace(".", "_");
+    return this.baseUrl + topic;
+  }
 };
 
 

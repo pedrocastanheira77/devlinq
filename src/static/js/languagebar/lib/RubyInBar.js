@@ -137,8 +137,12 @@ function Ruby() {
 }
 
 Ruby.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace("::", "/");
-  return this.baseUrl + version + "/" + topic + ".html";
+  if (topic === 'Choose a topic'){
+    return this.baseUrl + version + "/"
+  } else {
+    topic = topic.replace("::", "/");
+    return this.baseUrl + version + "/" + topic + ".html";
+  }
 };
 
 Ruby.prototype.nameOfDoc = function () {
