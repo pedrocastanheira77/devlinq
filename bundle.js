@@ -41335,18 +41335,18 @@ module.exports={
   "_args": [
     [
       {
-        "raw": "tough-cookie@~2.3.0",
+        "raw": "tough-cookie@^2.3.2",
         "scope": null,
         "escapedName": "tough-cookie",
         "name": "tough-cookie",
-        "rawSpec": "~2.3.0",
-        "spec": ">=2.3.0 <2.4.0",
+        "rawSpec": "^2.3.2",
+        "spec": ">=2.3.2 <3.0.0",
         "type": "range"
       },
-      "/Users/frankieshaw/Desktop/Coding/devlinq/node_modules/request"
+      "/Users/KateLoschinina/Workspace/MakersAcademy/devlinq/node_modules/jsdom"
     ]
   ],
-  "_from": "tough-cookie@>=2.3.0 <2.4.0",
+  "_from": "tough-cookie@>=2.3.2 <3.0.0",
   "_id": "tough-cookie@2.3.2",
   "_inCache": true,
   "_location": "/tough-cookie",
@@ -41362,26 +41362,25 @@ module.exports={
   "_npmVersion": "3.10.8",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "tough-cookie@~2.3.0",
+    "raw": "tough-cookie@^2.3.2",
     "scope": null,
     "escapedName": "tough-cookie",
     "name": "tough-cookie",
-    "rawSpec": "~2.3.0",
-    "spec": ">=2.3.0 <2.4.0",
+    "rawSpec": "^2.3.2",
+    "spec": ">=2.3.2 <3.0.0",
     "type": "range"
   },
   "_requiredBy": [
-    "/jest-environment-jsdom/jsdom",
     "/jsdom",
-    "/react-scripts/jsdom",
     "/request",
-    "/zombie"
+    "/zombie",
+    "/zombie/jsdom"
   ],
   "_resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.2.tgz",
   "_shasum": "f081f76e4c85720e6c37a5faced737150d84072a",
   "_shrinkwrap": null,
-  "_spec": "tough-cookie@~2.3.0",
-  "_where": "/Users/frankieshaw/Desktop/Coding/devlinq/node_modules/request",
+  "_spec": "tough-cookie@^2.3.2",
+  "_where": "/Users/KateLoschinina/Workspace/MakersAcademy/devlinq/node_modules/jsdom",
   "author": {
     "name": "Jeremy Stashewsky",
     "email": "jstashewsky@salesforce.com"
@@ -44530,11 +44529,17 @@ function loadFont() {
 }
 
 function replaceLogo(){
+  var logo;
   if (document.getElementById("logo")) {
-    document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+    logo = document.getElementById("logo");
+    logo.children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   } else if (document.getElementById("logocont")) {
-    document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+    logo = document.getElementById("logocont");
+    logo.children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   }
+  // new code
+  logo.setAttribute('href', 'https://devlinq.herokuapp.com/');
+  // new code
 }
 
 function createSpinner() {
@@ -44619,7 +44624,7 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
     var googleResultUrls = document.getElementsByClassName("_Rm");
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend',
-        '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>');
+        '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: <mark class="score">'+items[i].getViewCount()+'</mark>Answer Count: <mark class="score">'+items[i].getAnswerCount()+'</mark>Score: <mark class="score">'+items[i].getScore()+'</mark></p></a></div>');
       for(var x = 0; x < googleResultUrls.length; x++){
         if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
           var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
@@ -44665,7 +44670,6 @@ function LanguagesView(){
 ///////////// new
 
 LanguagesView.prototype.languagesDiv = function (currentDiv) {
-
   var languagesDiv = this.createLanguagesDiv(currentDiv);
   this.createLanguagesTitle(languagesDiv);
   this.insertDropdownIntoLanguages(languagesDiv);
@@ -44860,7 +44864,7 @@ LanguagesView.prototype.createSubmitSearchButton = function () {
   submitSearchButton.onclick = function(){
     new LanguagesView().submitSearchButtonEvent();
   };
-  submitSearchButton.innerHTML = "Search!";
+  submitSearchButton.innerHTML = "SEARCH";
   return submitSearchButton;
 };
 
