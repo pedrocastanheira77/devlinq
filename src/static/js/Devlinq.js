@@ -8,13 +8,13 @@ var savedNumberOfLinks;
 
 // getRequestedNumberOfLinks();
 
-devlinqExtention();
+// devlinqExtention();
 
 function devlinqExtention(theDocument, theChrome) {
   setTimeout(function() {
     loadFont();
     replaceLogo(theDocument, theChrome);
-    createSpinner();
+    createSpinner(theDocument);
     var currentDiv = theDocument.getElementById("appbar");
     lang.languagesDiv(currentDiv);
     stackOverflowDiv(currentDiv, savedNumberOfLinks);
@@ -39,8 +39,8 @@ function replaceLogo(theDocument, theChrome){
   }
 }
 
-function createSpinner() {
-  var spinnerDiv = document.querySelector("#spinner");
+function createSpinner(theDocument) {
+  var spinnerDiv = theDocument.querySelector("#spinner");
   if (spinnerDiv) {
     spinnerDiv.parentNode.removeChild(spinnerDiv);
   }
