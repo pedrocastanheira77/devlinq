@@ -71,8 +71,8 @@ StackOverflowBar.prototype.stackOverflowDiv = function(currentDiv, requestedNumb
   this.createStackOverflowTitle(stackOverflowDiv, document);
   if (!requestedNumberOfLinks) {
       requestedNumberOfLinks = 5;
-    }
-  this.insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
+  }
+  this.insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv, document);
 }
 
 StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, theDocument) {
@@ -83,6 +83,7 @@ StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, 
   return stackOverflowTitle;
 }
 
+
 StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
   var stackOverflowDiv = theDocument.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
@@ -90,11 +91,12 @@ StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
   return stackOverflowDiv;
 }
 
-StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLinks, stackOverflowDiv){
-  var stackoverflowsearch = this.decideStringForAPI(document);
+StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLinks, stackOverflowDiv, theDocument){
+  var stackoverflowsearch = this.decideStringForAPI(theDocument);
+  var doc = theDocument
   this.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
-    var googleResultUrls = document.getElementsByClassName("_Rm");
+    var googleResultUrls = doc.getElementsByClassName("_Rm");
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend',
         '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>');

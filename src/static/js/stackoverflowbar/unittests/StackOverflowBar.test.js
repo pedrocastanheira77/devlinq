@@ -163,7 +163,7 @@ describe('StackOverflowBar', function(){
       aDocument.getElementById('lst-ib').value = "hey there"
       var stackdiv = stackbar.createStackOverflowDiv(aDocument)
       console.log(stackdiv)
-      expect(stackbar.createStackOverflowTitle(stackdiv).tagName).to.equal('hello')
+      expect(stackbar.createStackOverflowTitle(stackdiv, aDocument).tagName).to.equal('hello')
     });
   })
 });
