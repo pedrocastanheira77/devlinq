@@ -1,22 +1,22 @@
 var expect = require('chai').expect;
-var Ruby = require('../lib/RubyInBar.js');
+var ChromeExtensions = require('../lib/ChromeExtensionsInBar.js');
 var language;
 
-describe('Ruby', function(){
+describe('ChromeExtensions', function(){
   beforeEach(function(){
-    language = new Ruby;
+    language = new ChromeExtensions;
   });
 
   it("#generateOfficialDocsURL", function(){
-    var version = "2.1.3";
-    var topic = "Array";
+    var version = "N/A";
+    var topic = "alarms";
     var resultURL = language.generateOfficialDocsURL(version, topic);
-    var expectedURL = "https://ruby-doc.org/core-2.1.3/Array.html";
+    var expectedURL = "https://developer.chrome.com/extensions/alarms";
     expect(resultURL).to.equal(expectedURL);
   });
 
   it("#nameOfDoc", function(){
     var offDocs = language.nameOfDoc();
-    expect(offDocs).to.equal("Ruby-doc");
+    expect(offDocs).to.equal("Chrome Extensions");
   });
 });
