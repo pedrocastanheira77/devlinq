@@ -14,8 +14,8 @@ function StackOverflowBar(){
 
 }
 
-StackOverflowBar.prototype.decideStringForAPI = function () {
-  var searched = document.getElementById("lst-ib").value;
+StackOverflowBar.prototype.decideStringForAPI = function (theDocument) {
+  var searched = theDocument.getElementById("lst-ib").value;
   var stringForAPI = searched.replace(/(?:\d*\.)?\d+/g, '');
   return stringForAPI;
 }
@@ -41,11 +41,11 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
 }
 
 
-StackOverflowBar.prototype.stackAPIresult = function () {
-  var exampleSOresult = document.createElement("p");
+StackOverflowBar.prototype.stackAPIresult = function (theDocument) {
+  var exampleSOresult = theDocument.createElement("p");
   exampleSOresult.id = "exampleSOresult";
   // 'HERE!' IS WHERE GETSTACKAPI(STRING, NUMBER) SHOULD BE USED
-  exampleSOresult.innerHTML = this.decideStringForAPI()
+  exampleSOresult.innerHTML = this.decideStringForAPI(theDocument)
   return exampleSOresult;
 }
 
@@ -53,7 +53,7 @@ StackOverflowBar.prototype.stackAPIresult = function () {
 StackOverflowBar.prototype.createStackOverflowDiv = function (theDocument) {
   var stackOverflowDiv = theDocument.createElement('div');
   stackOverflowDiv.id = "stackOverflow";
-  stackOverflowDiv.appendChild(this.stackAPIresult());
+  stackOverflowDiv.appendChild(this.stackAPIresult(theDocument));
   return stackOverflowDiv
 };
 
@@ -91,7 +91,7 @@ StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
 }
 
 StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLinks, stackOverflowDiv){
-  var stackoverflowsearch = this.decideStringForAPI();
+  var stackoverflowsearch = this.decideStringForAPI(document);
   this.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     var googleResultUrls = document.getElementsByClassName("_Rm");
