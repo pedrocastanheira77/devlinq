@@ -29,15 +29,19 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
       gzip: true
     }).then(function(response) {
         var array = [];
-        for (var i = 0; i < number; i++) {
-          if (response.items[i]) {
-            var item = [response.items[i].title, response.items[i].link, response.items[i].view_count, response.items[i].answer_count, response.items[i].score];
-            array.push(new stackitem(item[0], item[1], item[2], item[3], item[4]));
-          };
-        }
+        insertResponse(array, response, number)
       resolve(array);
     });
   });
+}
+
+function insertResponse(array, response, number){
+  for (var i = 0; i < number; i++) {
+    if (response.items[i]) {
+      var item = [response.items[i].title, response.items[i].link, response.items[i].view_count, response.items[i].answer_count, response.items[i].score];
+      array.push(new stackitem(item[0], item[1], item[2], item[3], item[4]));
+    };
+  };
 }
 
 
