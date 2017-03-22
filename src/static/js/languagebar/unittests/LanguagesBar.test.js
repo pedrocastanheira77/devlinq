@@ -2,6 +2,7 @@ var chai = require('chai');
 var expect = require('chai').expect;
 var spies = require('chai-spies');
 chai.use(spies);
+var jsdom = require('jsdom').jsdom;
 var stub = require('sinon').stub;
 var Ruby = require('../lib/RubyInBar.js')
 var LanguagesView = require('../LanguagesBar.js');
@@ -55,11 +56,15 @@ describe('LanguagesView', function(){
     var element;
     var dummyoption;
     var dummyoptionLanguage
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
 
     beforeEach(function(){
-      element = document.createElement('div');
-      dummyoption = languagesView.createDummyOption("Hello", element);
-      dummyoptionLanguage = languagesView.createDummyOption("language", element);
+      element = ourDocument.createElement('div');
+      dummyoption = languagesView.createDummyOption("Hello", element, ourDocument);
+      dummyoptionLanguage = languagesView.createDummyOption("language", element, ourDocument);
     })
 
     it('assigns child node with given string to the div', function(){
@@ -120,12 +125,18 @@ describe('LanguagesView', function(){
   // });
 
   describe('#createVersionDropdown', function(){
+
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
+
     it('returns a html element with id versionDropdownList', function(){
-      expect(languagesView.createVersionDropdown("Ruby").id).to.equal("versionDropdownList")
+      expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
     });
 
     it('returns a html element with id versionDropdownList', function(){
-      expect(languagesView.createVersionDropdown("Ruby").id).to.equal("versionDropdownList")
+      expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
     });
 
     it('calls create dummy object with correct parameters', function(){
@@ -134,27 +145,37 @@ describe('LanguagesView', function(){
 
       chai.use(spies);
       var spy = chai.spy.on(languagesView, 'createDummyOption');
-      languagesView.createVersionDropdown("Ruby")
+      languagesView.createVersionDropdown("Ruby", ourDocument)
       expect(spy).to.have.been.called();
     });
 
   });
 
   describe('generateVersionOptions', function(){
+
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
+
     it('adds list of version options to the version dropdown with 2 choose a version options', function(){
-      var dropdown = languagesView.createVersionDropdown("Ruby")
-      languagesView.generateVersionOptions(dropdown, "Ruby")
+      var dropdown = languagesView.createVersionDropdown("Ruby", ourDocument)
+      languagesView.generateVersionOptions(dropdown, "Ruby", ourDocument)
       expect(dropdown.childNodes[0].value).to.equal("Choose a version")
     });
   });
 
   describe('#createTopicDropdown', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
     it('returns a select element', function(){
-      expect(languagesView.createTopicDropdown().tagName).to.equal("SELECT")
+      expect(languagesView.createTopicDropdown(ourDocument).tagName).to.equal("SELECT")
     });
 
     it('returns a select element with id topicDropdownList', function(){
-      expect(languagesView.createTopicDropdown("Ruby").id).to.equal("topicDropdownList")
+      expect(languagesView.createTopicDropdown(ourDocument).id).to.equal("topicDropdownList")
     });
 
     it('calls create dummy object with correct parameters', function(){
@@ -162,40 +183,48 @@ describe('LanguagesView', function(){
       var spies = require('chai-spies');
       chai.use(spies);
       var spy = chai.spy.on(languagesView, 'createDummyOption');
-      languagesView.createTopicDropdown("Ruby")
+      languagesView.createTopicDropdown(ourDocument)
       expect(spy).to.have.been.called();
     });
   });
 
   describe('#generateTopicOptions', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
     it('adds list of topic options to the topic dropdown with 1 choose a version options', function(){
-      var dropdown = languagesView.createTopicDropdown("Ruby")
-      languagesView.generateTopicOptions(dropdown, "Ruby")
+      var dropdown = languagesView.createTopicDropdown(ourDocument)
+      languagesView.generateTopicOptions(dropdown, "Ruby", ourDocument)
       expect(dropdown.childNodes[0].value).to.equal("Choose a topic")
     });
 
     it('adds list of topic options to the topic dropdown with 2 choose a version options', function(){
-      var dropdown = languagesView.createTopicDropdown("Ruby")
-      languagesView.generateTopicOptions(dropdown, "Ruby")
+      var dropdown = languagesView.createTopicDropdown(ourDocument)
+      languagesView.generateTopicOptions(dropdown, "Ruby", ourDocument)
       expect(dropdown.childNodes[2].value).to.equal("ARGF")
     });
   });
 
   describe('#createSubmitSearchButton', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
     it('returns a html button element', function(){
-      expect(languagesView.createSubmitSearchButton().tagName).to.equal("BUTTON")
+      expect(languagesView.createSubmitSearchButton(ourDocument).tagName).to.equal("BUTTON")
     });
 
     it('returns a html button element with id submitSearchButton', function(){
-      expect(languagesView.createSubmitSearchButton().id).to.equal("submitSearchButton")
+      expect(languagesView.createSubmitSearchButton(ourDocument).id).to.equal("submitSearchButton")
     });
 
     it('returns a html button element with a function onclick', function(){
-      expect(typeof(languagesView.createSubmitSearchButton().onclick)).to.equal("function")
+      expect(typeof(languagesView.createSubmitSearchButton(ourDocument).onclick)).to.equal("function")
     });
 
     it('returns a html button element with innerHTML search', function(){
-      expect(languagesView.createSubmitSearchButton().innerHTML).to.equal("Search!")
+      expect(languagesView.createSubmitSearchButton(ourDocument).innerHTML).to.equal("Search!")
     });
   });
 
@@ -238,24 +267,31 @@ describe('LanguagesView', function(){
 
 
   describe('#addLinktoTag', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                    '<h1 id="link"></h1>' +
+                                '</body>');
     it('adds a href as matches the link fed', function(){
+      var link = ourDocument.getElementById('link');
       var officialDocLink = "http://www.google.co.uk"
-      var stublink = document.createElement('link')
-      stub(document, 'getElementById');
-      document.getElementById.withArgs('link').returns(stublink)
-      languagesView.addLinktoTag(officialDocLink);
-      expect(stublink.href).to.equal("http://www.google.co.uk/")
+      languagesView.addLinktoTag(officialDocLink, "Ruby", "2.4.0", "array", "Ruby-doc", ourDocument);
+      expect(link.href).to.equal("http://www.google.co.uk")
     });
   });
 
   describe('#topicDropdownChangeEvent', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
     it('calls generateTopicOptions with correct arguments', function(){
-      var topiclist = document.createElement('option')
-      document.getElementById.withArgs('topicDropdownList').returns(topiclist)
-      var langoption = document.createElement('option')
-      stub(document, 'querySelector');
-      document.querySelector.withArgs('#languageDropdownList').returns(langoption)
-      document.querySelector("#languageDropdownList").value="thelanguage"
+      var topiclist = ourDocument.createElement('option')
+      ourDocument.getElementById.withArgs('topicDropdownList').returns(topiclist)
+      var langoption = ourDocument.createElement('option')
+      stub(ourDocument, 'querySelector');
+      ourDocument.querySelector.withArgs('#languageDropdownList').returns(langoption)
+      ourDocument.querySelector("#languageDropdownList").value="thelanguage"
 
       stub(LanguagesView.prototype, 'generateTopicOptions');
       var spy = chai.spy.on(LanguagesView.prototype, 'generateTopicOptions');
@@ -279,28 +315,33 @@ describe('LanguagesView', function(){
   });
 
   describe('#createDropdownDiv', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
+
     it('returns a div element', function(){
-      expect(languagesView.createDropdownDiv().tagName).to.equal('DIV')
+      expect(languagesView.createDropdownDiv(ourDocument).tagName).to.equal('DIV')
     })
 
     it('returns a div element with 4 child nodes', function(){
-      expect(languagesView.createDropdownDiv().childNodes.length).to.equal(4)
+      expect(languagesView.createDropdownDiv(ourDocument).childNodes.length).to.equal(4)
     })
 
     it('returns a div element with 4 child nodes with one language dropdow', function(){
-      expect(languagesView.createDropdownDiv().childNodes[0].id).to.equal("languageDropdownList")
+      expect(languagesView.createDropdownDiv(ourDocument).childNodes[0].id).to.equal("languageDropdownList")
     })
 
     it('returns a div element with 4 child nodes with one version dropdown', function(){
-      expect(languagesView.createDropdownDiv().childNodes[1].id).to.equal("versionDropdownList")
+      expect(languagesView.createDropdownDiv(ourDocument).childNodes[1].id).to.equal("versionDropdownList")
     })
 
     it('returns a div element with 4 child nodes with one topic dropdown', function(){
-      expect(languagesView.createDropdownDiv().childNodes[2].id).to.equal("topicDropdownList")
+      expect(languagesView.createDropdownDiv(ourDocument).childNodes[2].id).to.equal("topicDropdownList")
     })
 
     it('returns a div element with 4 child nodes with one submit search button', function(){
-      expect(languagesView.createDropdownDiv().childNodes[3].id).to.equal("submitSearchButton")
+      expect(languagesView.createDropdownDiv(ourDocument).childNodes[3].id).to.equal("submitSearchButton")
     })
 
 

@@ -38,8 +38,8 @@ function getInfoFromSearchBar(theDocument) {
   return splitStringIntoArray(searched);
 }
 
-function compareSearchBarInfo(getLanguagesView, that) {
-  var array = getInfoFromSearchBar(document);
+function compareSearchBarInfo(getLanguagesView, that, doc) {
+  var array = getInfoFromSearchBar(doc);
   var language, version, topic;
   for (var i = array.length - 1; i >= 0; i--){
     var l = haveLanguage(array[i], that);
