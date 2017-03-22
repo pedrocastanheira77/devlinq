@@ -52,6 +52,7 @@ body {
 .langauges_title {
   font-size: 20px;
   font-weight: 900;
+  line-height: 3em;
 }
 
 .languages_select {
@@ -88,8 +89,6 @@ body {
 
 .linq_la:hover {
   border-bottom: 1px solid #EA4335;
-  font-weight: 700 !important;
-  width: 450px;
 }
 
 /* Stack Overflow Bar */
@@ -100,19 +99,29 @@ body {
 
 .stackoverflow_title {
   font-size: 20px;
-  margin-bottom: 2em;
   font-weight: 900;
+  line-height: 3em;
 }
 
 .linq {
   font-size: 16px;
   font-weight: 500 !important;
+  color: black !important;
+
   margin-left: 250px;
   margin-right: 250px;
-  color: black !important;
   margin-top: 2em;
   margin-bottom: .6em;
+
   line-height: 1.3em;
+  text-align: center;
+}
+
+.linq:hover {
+  text-decoration: none;
+  color: black !important;
+  font-weight: 700 !important;
+  text-align: center;
 }
 
 .linq:link {
@@ -127,8 +136,27 @@ body {
 
 .linq_so:hover {
   border-bottom: 1px solid #FBBC05;
-  font-weight: 700 !important;
 }
+
+.so_item {
+  display: inline;
+  text-align: center;
+}
+
+.so_info {
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.score {
+  background-color: white;
+  border: 1px solid #FBBC05;
+  padding: 0.3em;
+  margin: 0.3em;
+  margin-right: 1em;
+}
+
+/* Google typography */
 
 .d_link:hover {
   text-decoration: none;
@@ -151,21 +179,4 @@ a:link, a:visited {
   color: grey !important;
   font-weight: 600;
   text-decoration: none;
-}
-
-.so_item {
-  display: inline;
-  text-align: center;
-}
-
-.so_info {
-  font-weight: 500;
-}
-
-.score {
-  background-color: white;
-  border: 1px solid #FBBC05;
-  padding: 0.3em;
-  margin: 0.3em;
-  margin-right: 1em;
 }
