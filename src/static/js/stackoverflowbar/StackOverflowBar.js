@@ -97,18 +97,28 @@ StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLi
   this.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     var googleResultUrls = doc.getElementsByClassName("_Rm");
-    for(var i = 0; i < numberOfLinks; i++){
-      stackOverflowDiv.insertAdjacentHTML('beforeend',
-        '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>');
-      for(var x = 0; x < googleResultUrls.length; x++){
-        if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
-          var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
-          if (box) {box.parentNode.removeChild(box);}
-        }
-      }
-    }
+    createStackLinks(numberOfLinks, googleResultUrls, items, stackOverflowDiv);
   });
 }
 
+function createStackLinks(numberOfLinks, googleResultUrls, items, stackOverflowDiv){
+  for(var i = 0; i < numberOfLinks; i++){
+    var html = '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>';
+    stackOverflowDiv.insertAdjacentHTML('beforeend', html);
+    fillLinks(i, items, googleResultUrls);
+  }
+}
+
+function fillLinks(i, items, googleResultUrls){
+  for(var link = 0; link < googleResultUrls.length; link++){
+    var googleResultsContainSame = items[i].getUrl().includes(googleResultUrls[link].innerHTML);
+    if (googleResultsContainSame){ removeGoogleResult(googleResultUrls, link) };
+  }
+}
+
+function removeGoogleResult(googleResultUrls, x){
+  var box = googleResultUrls[link].parentNode.parentNode.parentNode.parentNode;
+  if (box) {box.parentNode.removeChild(box);};
+}
 
 module.exports = StackOverflowBar;
