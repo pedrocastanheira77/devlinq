@@ -24,7 +24,7 @@
   ],
 
   "browser_action": {
-    "default_icon": "public/images/devlinq_icon_black.png"
+    "default_icon": "public/images/devlinq_icon_color.png"
   },
 
   "web_accessible_resources": [
