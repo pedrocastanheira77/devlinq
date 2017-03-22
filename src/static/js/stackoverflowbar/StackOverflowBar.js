@@ -9,7 +9,7 @@
 
 var stackitem = require('./StackOverflowOutputItem.js');
 var request = require('request-promise');
-var theChrome = chrome;
+
 function StackOverflowBar(){
 
 }
@@ -50,8 +50,8 @@ StackOverflowBar.prototype.stackAPIresult = function () {
 }
 
 
-StackOverflowBar.prototype.createStackOverflowDiv = function () {
-  var stackOverflowDiv = document.createElement('div');
+StackOverflowBar.prototype.createStackOverflowDiv = function (theDocument) {
+  var stackOverflowDiv = theDocument.createElement('div');
   stackOverflowDiv.id = "stackOverflow";
   stackOverflowDiv.appendChild(this.stackAPIresult());
   return stackOverflowDiv
@@ -66,7 +66,7 @@ StackOverflowBar.prototype.getRequestedNumberOfLinks = function(theChrome) {
 }
 
 StackOverflowBar.prototype.stackOverflowDiv = function(currentDiv, requestedNumberOfLinks) {
-  var stackOverflowDiv = this.createStackOverflowDiv();
+  var stackOverflowDiv = this.createStackOverflowDiv(document);
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
   this.createStackOverflowTitle(stackOverflowDiv);
   if (!requestedNumberOfLinks) {
@@ -83,8 +83,8 @@ StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv) 
   return stackOverflowTitle;
 }
 
-StackOverflowBar.prototype.createStackOverflowDiv = function() {
-  var stackOverflowDiv = document.createElement("div");
+StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
+  var stackOverflowDiv = theDocument.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
   stackOverflowDiv.className = "devlinq_div stackoverflow_div";
   return stackOverflowDiv;
