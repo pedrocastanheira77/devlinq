@@ -1,5 +1,5 @@
 function haveLanguage(string, lang) {
-  return isStringInArray(string, lang.listOfLanguages);
+  return isStringInArray(string, lang.getLanguagesView());
 }
 
 function haveVersion(string, lang) {
