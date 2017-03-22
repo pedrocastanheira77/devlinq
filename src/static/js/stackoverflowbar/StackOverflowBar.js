@@ -9,7 +9,7 @@
 
 var stackitem = require('./StackOverflowOutputItem.js');
 var request = require('request-promise');
-
+var theChrome = chrome;
 function StackOverflowBar(){
 
 }
@@ -57,8 +57,10 @@ StackOverflowBar.prototype.createStackOverflowDiv = function () {
   return stackOverflowDiv
 };
 
-StackOverflowBar.prototype.getRequestedNumberOfLinks = function() {
-  chrome.storage.local.get(function(result){
+//TEST FROM HERE
+
+StackOverflowBar.prototype.getRequestedNumberOfLinks = function(theChrome) {
+  theChrome.storage.local.get(function(result){
     savedNumberOfLinks = result.stackOverflowResults;
   });
 }
@@ -106,13 +108,5 @@ StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLi
   });
 }
 
-// var stack = new StackOverflowBar();
-//
-//
-// var output = stack.getStackAPI("ruby array sort", 5);
-//
-// output.then(function(data){
-//   console.log(data)
-// })
 
 module.exports = StackOverflowBar;

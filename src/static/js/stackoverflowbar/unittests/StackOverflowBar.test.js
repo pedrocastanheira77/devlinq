@@ -3,6 +3,8 @@ var assert = require('chai').assert;
 var StackOverflowBar = require('../StackOverflowBar.js')
 var chai = require('chai');
 var stub = require('sinon').stub;
+var ourChrome = require('sinon-chrome');
+var jsdom = require('jsdom');
 
 describe('StackOverflowBar', function(){
   // what this tests is commented out
@@ -39,15 +41,21 @@ describe('StackOverflowBar', function(){
   //
   // };
 
-  // describe('#createStackOverflowDiv', function(){
-  //   it('returns a div element', function(){
-  //     expect(createStackOverflowDiv().tagName).to.equal('DIV')
-  //   });
-  //
-  //   it('returns a div element with id stackoverflowbar', function(){
-  //     expect(createStackOverflowDiv().id).to.equal('stackoverflowbar')
-  //   });
-  // });
+  describe('#createStackOverflowDiv', function(){
+    it('returns a div element', function(){
+      var stackbar = new StackOverflowBar;
+      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
+      aDocument.getElementById('lst-ib').value = "hey there"
+      expect(stackbar.createStackOverflowDiv(aDocument).tagName).to.equal('DIV')
+    });
+
+    it('returns a div element with id stackoverflowbar', function(){
+      var stackbar = new StackOverflowBar;
+      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
+      aDocument.getElementById('lst-ib').value = "hey there"
+      expect(stackbar.createStackOverflowDiv(aDocument).id).to.equal('stackoverflowbar')
+    });
+  });
 
   // var chai = require('chai');
   // var spies = require('chai-spies');
@@ -64,16 +72,16 @@ describe('StackOverflowBar', function(){
   //     expect(spy).to.have.been.called()
   //   });
   // });
-  describe('#decideStringForAPI', function(){
+  describe('#getStackAPI', function(){
 
-    it('returns a promise', function(){
-      var stackbar = new StackOverflowBar;
-      var element = document.createElement('div')
-      element.value = "ruby array"
-      stub(document, 'getElementById')
-      document.getElementById.withArgs("lst-ib").returns(element)
-      expect(stackbar.decideStringForAPI()).to.equal(element.value)
-    });
+    // it('returns a promise', function(){
+    //   var stackbar = new StackOverflowBar;
+    //   var element = document.createElement('div')
+    //   element.value = "ruby array"
+    //   stub(document, 'getElementById')
+    //   document.getElementById.withArgs("lst-ib").returns(element)
+    //   expect(stackbar.decideStringForAPI()).to.equal(element.value)
+    // });
 
     it('returns an array of StackOverflowOutputItems', function(done){
          var stackbar = new StackOverflowBar;
@@ -111,37 +119,51 @@ describe('StackOverflowBar', function(){
 
   describe('#stackAPIresult', function(){
     it('returns a HTML paragraph element', function(){
+      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>')
+      aDoc.getElementById('lst-ib').value = "hey there";
       var stackbar = new StackOverflowBar;
-      expect(stackbar.stackAPIresult().tagName).to.equal('P')
+      expect(stackbar.stackAPIresult(aDoc).tagName).to.equal('P')
     });
+
     it('returns a HTML paragraph element with id exampleSOresult', function(){
+      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>')
+      aDoc.getElementById('lst-ib').value = "hey there"
       var stackbar = new StackOverflowBar;
-      expect(stackbar.stackAPIresult().id).to.equal('exampleSOresult')
+      expect(stackbar.stackAPIresult(aDoc).id).to.equal('exampleSOresult')
     });
 
     it('returns a HTML paragraph element with innerHTML from decideStringForAPI', function(){
       var stackbar = new StackOverflowBar;
-      stub(stackbar, 'decideStringForAPI')
-      stackbar.decideStringForAPI.returns("hello tester")
-      expect(stackbar.stackAPIresult().innerHTML).to.equal('hello tester')
+      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>')
+      aDoc.getElementById('lst-ib').value = "hey there"
+      expect(stackbar.stackAPIresult(aDoc).innerHTML).to.equal('hey there')
     });
   });
 
-  describe('#createStackOverflowDiv', function(){
-    it('returns an element of type div', function(){
-      var stackbar = new StackOverflowBar;
-      var pelement = document.createElement('p')
-      stub(stackbar, 'stackAPIresult');
-      stackbar.stackAPIresult.returns(document.createElement('p'))
-      expect(stackbar.createStackOverflowDiv().tagName).to.equal('DIV')
-    });
+  // describe('getRequestedNumberOfLinks', function(){
+  //   it('returns the value from chrome local storage', function(){
+  //     getRequestedNumberOfLinks(ourChrome);
+  //     assert.ok(ourChrome.storage.local.get.calledOnce);
+  //   });
+  // });
 
-    it('returns an element of type div', function(){
+  describe('decideStringForAPI', function(){
+    it('returns the value of the correct element', function(){
+      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
+      aDocument.getElementById('lst-ib').value = "hey there"
       var stackbar = new StackOverflowBar;
-      var pelement = document.createElement('p')
-      stub(stackbar, 'stackAPIresult');
-      stackbar.stackAPIresult.returns(document.createElement('p'))
-      expect(stackbar.createStackOverflowDiv().id).to.equal('stackOverflow')
+      expect(stackbar.decideStringForAPI(aDocument)).to.equal("hey there")
     })
   });
+
+  describe('createStackOverflowTitle', function(){
+    it('returns a div element', function(){
+      var stackbar = new StackOverflowBar;
+      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
+      aDocument.getElementById('lst-ib').value = "hey there"
+      var stackdiv = stackbar.createStackOverflowDiv(aDocument)
+      console.log(stackdiv)
+      expect(stackbar.createStackOverflowTitle(stackdiv).tagName).to.equal('hello')
+    });
+  })
 });
