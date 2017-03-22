@@ -68,15 +68,15 @@ StackOverflowBar.prototype.getRequestedNumberOfLinks = function(theChrome) {
 StackOverflowBar.prototype.stackOverflowDiv = function(currentDiv, requestedNumberOfLinks) {
   var stackOverflowDiv = this.createStackOverflowDiv(document);
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
-  this.createStackOverflowTitle(stackOverflowDiv);
+  this.createStackOverflowTitle(stackOverflowDiv, document);
   if (!requestedNumberOfLinks) {
       requestedNumberOfLinks = 5;
     }
   this.insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
 }
 
-StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv) {
-  var stackOverflowTitle = document.createElement("h2");
+StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, theDocument) {
+  var stackOverflowTitle = theDocument.createElement("h2");
   stackOverflowTitle.className = "stackoverflow_title";
   stackOverflowTitle.insertAdjacentHTML('afterbegin', "STACK OVERFLOW");
   stackOverflowDiv.insertAdjacentElement('afterbegin', stackOverflowTitle);
