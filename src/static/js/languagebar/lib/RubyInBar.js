@@ -1,9 +1,8 @@
 function Ruby() {
-  this.name = "Ruby",
-  this.baseUrl = "https://ruby-doc.org/core-",
-  this.offDocs = "Ruby-doc",
-  this.versions = [
-                    "2.4.0",
+  this.name = "Ruby";
+  this.baseUrl = "https://ruby-doc.org/core-";
+  this.offDocs = "Ruby-doc";
+  this.versions = ["2.4.0",
                     "2.3.3",
                     "2.3.2",
                     "2.3.1",
@@ -26,8 +25,7 @@ function Ruby() {
                     "2.1.1",
                     "2.1.0",
                     "2.0.0",
-                    "1.9.3"
-                  ],
+                    "1.9.3"];
   this.topics = [ "ARGF",
                   "ArgumentError",
                   "Array",
@@ -132,13 +130,16 @@ function Ruby() {
                   "UnboundMethod",
                   "ZeroDivisionError",
                   "fatal",
-                  "unknown"
-                ]
+                  "unknown"];
 }
 
 Ruby.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace("::", "/");
-  return this.baseUrl + version + "/" + topic + ".html";
+  if (topic === 'Choose a topic'){
+    return this.baseUrl + version + "/"
+  } else {
+    topic = topic.replace("::", "/");
+    return this.baseUrl + version + "/" + topic + ".html";
+  }
 };
 
 Ruby.prototype.nameOfDoc = function () {

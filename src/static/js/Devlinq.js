@@ -5,7 +5,7 @@ var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOf
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackbar = new StackOverflowBar();
 var savedNumberOfLinks;
-getRequestedNumberOfLinks();
+// getRequestedNumberOfLinks();
 
 devlinqExtention();
 
@@ -80,6 +80,8 @@ function insertOfficialDocsIntoLanguages(languagesDiv) {
   languagesDiv.insertAdjacentElement('beforeend', officialDiv);
 }
 
+// Stack Overflow Div
+
 function getRequestedNumberOfLinks() {
   chrome.storage.local.get(function(result){
     savedNumberOfLinks = result.stackOverflowResults;
@@ -132,11 +134,13 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
 module.exports = {
   createLanguagesDiv,
   createLanguagesTitle,
-  createLanguagesTitle,
   insertDropdownIntoLanguages,
   insertOfficialDocsIntoLanguages,
   stackOverflowDiv,
   createStackOverflowTitle,
   createStackOverflowDiv,
-  insertStackOverflowAPI
+  insertStackOverflowAPI,
+  devlinqExtention,
+  loadFont,
+  languagesDiv
 }

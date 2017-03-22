@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
 import '../css/App.css';
+import '../css/style.css';
 var StackOverflowBar = require('./stackoverflowbar/StackOverflowBar.js');
 var stackbar = new StackOverflowBar();
+var currentDiv = document.getElementById("appbar");
+var value = document.getElementById("lst-ib").value
+// var devlinqExtention = require('./Devlinq.js').devlinqExtention;
+// var loadFont = require('./Devlinq.js').loadFont;
+// var languagesDiv = require('./Devlinq.js').languagesDiv;
+var LanguagesView = require("./languagebar/LanguagesBar.js");
+var lang = new LanguagesView();
+// var stackOverflowDiv = require('./Devlinq.js').stackOverflowDiv;
 
 class App extends Component {
   constructor() {
@@ -12,25 +20,34 @@ class App extends Component {
 
   componentDidMount() {
     var that = this;
-    stackbar.getStackAPI("ruby array sort", 5).then(function(items) {
+    stackbar.getStackAPI(value, 5).then(function(items) {
       that.setState({items: items});
+    })
+
+    document.querySelector("#lst-ib").addEventListener('change', function(evt) {
+      lang.languagesDiv(currentDiv);
+      stackbar.getStackAPI(document.getElementById("lst-ib").value, 5).then(function(items) {
+        that.setState({items: items});
+      })
     })
   }
 
-  render() {
+  render(data) {
     return (
       <div className="App">
-       <div className="App-header">
-         <img src={logo} className="App-logo" alt="logo" />
-         <h2>Welcome to React</h2>
-       </div>
-
-       <div id="language">{}</div>
-       <div id="language">{}</div>
-       <div className="StackOverflow">
-        {this.state.items.map((item, i) => {
-          return (<div key={i}><p><b>{item.getTitle()}</b></p><p>{item.getUrl()}</p></div>)
-        })}
+       <div id="language">{lang.languagesDiv(currentDiv)}</div>
+       <div className="devlinq_div stackoverflow_div" id="stackoverflowbar">
+        <h2 className="stackoverflow_title">STACK OVERFLOW</h2>
+          {this.state.items.map((item, i) => {
+            return (
+              <div key={i} className="so_item">
+                <a href="{item.getUrl()}">
+                  <p className="linq linq_so">{item.getTitle()}</p>
+                  <p className="so_info">View Count: {item.getViewCount()}; Answer Count: {item.getAnswerCount()}; Score: {item.getScore()}.</p>
+                </a>
+              </div>
+            )
+          })}
        </div>
       </div>
     );

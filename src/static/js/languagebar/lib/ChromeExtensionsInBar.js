@@ -1,9 +1,8 @@
 function ChromeExtensions() {
-  this.name = "ChromeExtensions",
-  this.baseUrl = "https://developer.chrome.com/extensions/",
-  this.offDocs = "Chrome Extensions",
-  this.versions = [ "N/A"
-                  ],
+  this.name = "ChromeExtensions";
+  this.baseUrl = "https://developer.chrome.com/extensions/";
+  this.offDocs = "Chrome Extensions";
+  this.versions = [ "N/A"];
   this.topics = [ "accessibilityFeatures",
                   "alarms",
                   "bookmarks",
@@ -66,13 +65,16 @@ function ChromeExtensions() {
                   "webNavigation",
                   "webRequest",
                   "webstore",
-                  "windows"
-                ]
+                  "windows"];
 }
 
 ChromeExtensions.prototype.generateOfficialDocsURL = function (version, topic) {
-  topic = topic.replace(".", "_");
-  return this.baseUrl + topic;
+  if (topic === 'Choose a topic'){
+    return this.baseUrl
+  } else {
+    topic = topic.replace(".", "_");
+    return this.baseUrl + topic;
+  }
 };
 
 
