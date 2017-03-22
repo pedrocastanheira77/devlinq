@@ -65,14 +65,14 @@ StackOverflowBar.prototype.getRequestedNumberOfLinks = function(theChrome) {
   });
 }
 
-StackOverflowBar.prototype.stackOverflowDiv = function(currentDiv, requestedNumberOfLinks) {
-  var stackOverflowDiv = this.createStackOverflowDiv(document);
+StackOverflowBar.prototype.stackOverflowDiv = function(currentDiv, requestedNumberOfLinks, theDocument) {
+  var stackOverflowDiv = this.createStackOverflowDiv(theDocument);
   currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
-  this.createStackOverflowTitle(stackOverflowDiv, document);
+  this.createStackOverflowTitle(stackOverflowDiv, theDocument);
   if (!requestedNumberOfLinks) {
       requestedNumberOfLinks = 5;
   }
-  this.insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv, document);
+  this.insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv, theDocument);
 }
 
 StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, theDocument) {

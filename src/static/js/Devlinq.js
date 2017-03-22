@@ -23,7 +23,7 @@ function preload(theDocument, theChrome){
 function createLangAndStackDiv(theDocument){
   var currentDiv = theDocument.getElementById("appbar");
   lang.languagesDiv(currentDiv, theDocument);
-  stackbar.stackOverflowDiv(currentDiv, savedNumberOfLinks);
+  stackbar.stackOverflowDiv(currentDiv, savedNumberOfLinks, theDocument);
 }
 
 function loadFont() {
