@@ -1,6 +1,6 @@
 /* Typography */
 
-body, .g, .gsfi {
+body, .g, .gsfi, button {
   font-family: 'Raleway', sans-serif !important;
 }
 
@@ -89,6 +89,10 @@ body {
 
 .linq_la:hover {
   border-bottom: 1px solid #EA4335;
+}
+
+button {
+  font-weight: 700 !important;
 }
 
 /* Stack Overflow Bar */
