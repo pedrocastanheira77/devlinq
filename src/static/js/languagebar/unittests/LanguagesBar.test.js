@@ -1,4 +1,9 @@
+var chai = require('chai');
 var expect = require('chai').expect;
+var spies = require('chai-spies');
+chai.use(spies);
+var stub = require('sinon').stub;
+var Ruby = require('../lib/RubyInBar.js')
 var LanguagesView = require('../LanguagesBar.js');
 var languagesView;
 
@@ -9,24 +14,24 @@ describe('LanguagesView', function(){
 
   describe('#getLanguagesView', function(){
     it('Returns languages list of correct length', function(){
-      var numberOfLanguages = languagesView.listOfLanguages.length;
+      var numberOfLanguages = (Object.keys(new LanguagesView())).length-1;
       expect(languagesView.getLanguagesView().length).to.equal(numberOfLanguages);
     });
 
     it("Returns languages list of languages with first Ruby", function(){
-      var index = languagesView.listOfLanguages.indexOf("Ruby");
+      var index = languagesView.getLanguagesView().indexOf("Ruby");
       expect(languagesView.getLanguagesView()[index]).to.equal("Ruby");
     });
   });
 
   describe('#getVersions', function(){
     it('Returns version list of correct length', function(){
-      var numberOfLanguages = languagesView.listOfLanguages.length;
+      var numberOfLanguages = languagesView.getLanguagesView().length;
       expect(languagesView.getVersions().length).to.equal(numberOfLanguages);
     });
 
     it("Returns languages list of languages with first Ruby and relevant versions", function(){
-      var index = languagesView.listOfLanguages.indexOf("Ruby");
+      var index = languagesView.getLanguagesView().indexOf("Ruby");
       var version240 = languagesView.ruby.versions.indexOf("2.4.0");
       expect(languagesView.getVersions()[index][version240]).to.equal("2.4.0");
     });
@@ -34,13 +39,13 @@ describe('LanguagesView', function(){
 
   describe('#getTopics', function(){
     it('Returns topics list of length 105 for Ruby ', function(){
-      var index = languagesView.listOfLanguages.indexOf("Ruby");
+      var index = languagesView.getLanguagesView().indexOf("Ruby");
       var numberRubyTopics = languagesView.ruby.topics.length;
       expect(languagesView.getTopics()[index].length).to.equal(numberRubyTopics);
     });
 
     it('Returns topics list with first entry ARGF for Ruby ', function(){
-      var index = languagesView.listOfLanguages.indexOf("Ruby");
+      var index = languagesView.getLanguagesView().indexOf("Ruby");
       var indexARGF = languagesView.ruby.topics.indexOf("ARGF");
       expect(languagesView.getTopics()[index][indexARGF]).to.equal("ARGF");
     });
@@ -49,10 +54,12 @@ describe('LanguagesView', function(){
   describe('#createDummyOption', function(){
     var element;
     var dummyoption;
+    var dummyoptionLanguage
 
     beforeEach(function(){
       element = document.createElement('div');
       dummyoption = languagesView.createDummyOption("Hello", element);
+      dummyoptionLanguage = languagesView.createDummyOption("language", element);
     })
 
     it('assigns child node with given string to the div', function(){
@@ -67,46 +74,50 @@ describe('LanguagesView', function(){
       expect(element.childNodes[0].selected).to.equal(true);
     });
 
-    it('has child node with disabled returning boolean true by default', function(){
-      expect(element.childNodes[0].disabled).to.equal(true);
+    it('has child node with disabled returning boolean false, by default', function(){
+      expect(element.childNodes[0].disabled).to.equal(false);
+    });
+
+    it('has child node with disabled returning boolean true, if language', function(){
+      expect(element.childNodes[1].disabled).to.equal(true);
     });
   });
-
-  describe('#createLanguageDropdown', function(){
-
-    it('creates a html list with id languageDropdownList', function(){
-      console.log(languagesView.createLanguageDropdown().id);
-      expect(languagesView.createLanguageDropdown().id).to.equal("languageDropdownList")
-    });
-
-    it('creates a html list with onChange function', function(){
-      expect(typeof(languagesView.createLanguageDropdown().onchange)).to.equal("function")
-    });
-
-    it('creates a html list with 4 options as child nodes', function(){
-      expect(languagesView.createLanguageDropdown().childNodes.length).to.equal(4)
-    });
-
-    it('creates list with first option value Choose a Language', function(){
-      expect(languagesView.createLanguageDropdown().childNodes[0].value).to.equal("Choose a language")
-    });
-
-    it('creates list with first option innerHTML Choose a Language', function(){
-      expect(languagesView.createLanguageDropdown().childNodes[0].innerHTML).to.equal("Choose a language")
-    });
-
-    it('creates list with second option value Ruby', function(){
-      expect(languagesView.createLanguageDropdown().childNodes[1].value).to.equal("Ruby")
-    });
-
-    it('creates list with third option value Javascript', function(){
-      expect(languagesView.createLanguageDropdown().childNodes[2].value).to.equal("Javascript")
-    });
-
-    it('creates list with fourth option value Jquery', function(){
-      expect(languagesView.createLanguageDropdown().childNodes[3].value).to.equal("JQuery")
-    });
-  });
+// getInfoFromSearchBar() cant document.getElementById("lst-ib").value in test
+  // describe('#createLanguageDropdown', function(){
+  //
+  //   it('creates a html list with id languageDropdownList', function(){
+  //     console.log(languagesView.createLanguageDropdown().id);
+  //     expect(languagesView.createLanguageDropdown().id).to.equal("languageDropdownList")
+  //   });
+  //
+  //   it('creates a html list with onChange function', function(){
+  //     expect(typeof(languagesView.createLanguageDropdown().onchange)).to.equal("function")
+  //   });
+  //
+  //   it('creates a html list with 4 options as child nodes', function(){
+  //     expect(languagesView.createLanguageDropdown().childNodes.length).to.equal(4)
+  //   });
+  //
+  //   it('creates list with first option value Choose a Language', function(){
+  //     expect(languagesView.createLanguageDropdown().childNodes[0].value).to.equal("Choose a language")
+  //   });
+  //
+  //   it('creates list with first option innerHTML Choose a Language', function(){
+  //     expect(languagesView.createLanguageDropdown().childNodes[0].innerHTML).to.equal("Choose a language")
+  //   });
+  //
+  //   it('creates list with second option value Ruby', function(){
+  //     expect(languagesView.createLanguageDropdown().childNodes[1].value).to.equal("Ruby")
+  //   });
+  //
+  //   it('creates list with third option value Javascript', function(){
+  //     expect(languagesView.createLanguageDropdown().childNodes[2].value).to.equal("Javascript")
+  //   });
+  //
+  //   it('creates list with fourth option value Jquery', function(){
+  //     expect(languagesView.createLanguageDropdown().childNodes[3].value).to.equal("JQuery")
+  //   });
+  // });
 
   describe('#createVersionDropdown', function(){
     it('returns a html element with id versionDropdownList', function(){
@@ -225,11 +236,6 @@ describe('LanguagesView', function(){
   //   });
   // });
 
-  var chai = require('chai');
-  var stub = require('sinon').stub;
-  var spies = require('chai-spies');
-  chai.use(spies);
-  var Ruby = require('../lib/RubyInBar.js')
 
   describe('#addLinktoTag', function(){
     it('adds a href as matches the link fed', function(){
