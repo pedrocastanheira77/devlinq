@@ -2,6 +2,7 @@
 var loadOptions = require('./OptionsModules.js').loadOptions;
 var saveOptions = require('./OptionsModules.js').saveOptions;
 var d = document;
+var c = chrome;
 var resultsPromise = new Promise(function(resolve, reject){
   chrome.storage.local.get(function(result){
     resolve(result.stackOverflowResults);
@@ -9,7 +10,7 @@ var resultsPromise = new Promise(function(resolve, reject){
 });
 
 d.addEventListener('DOMContentLoaded', function(){loadOptions(resultsPromise, d);});
-d.getElementById('save').addEventListener('click', function(){saveOptions(d);});
+d.getElementById('save').addEventListener('click', function(){saveOptions(d, c);});
 
 },{"./OptionsModules.js":2}],2:[function(require,module,exports){
 function loadOptions(resultsPromise, theDocument) {
@@ -17,10 +18,11 @@ function loadOptions(resultsPromise, theDocument) {
     var currentValue = stackOverflowStoredResults ? stackOverflowStoredResults : "5";
     var stackOverflowResultsOption = theDocument.querySelector('option[value="' + currentValue + '"]');
     stackOverflowResultsOption.selected = "selected";
+    return theDocument;
   });
 }
 
-function saveOptions(theDocument) {
+function saveOptions(theDocument, chrome) {
   var stackOverflowResults = theDocument.getElementById('stackOverflowResults').value;
   chrome.storage.local.set({"stackOverflowResults": stackOverflowResults});
   messageConfirmation(theDocument);
@@ -35,6 +37,7 @@ function messageConfirmation(theDocument){
 }
 
 module.exports = {
+  messageConfirmation,
   loadOptions,
   saveOptions
 }

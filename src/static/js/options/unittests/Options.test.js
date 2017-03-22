@@ -2,12 +2,14 @@ var messageConfirmation = require('../OptionsModules.js').messageConfirmation;
 var loadOptions = require('../OptionsModules.js').loadOptions;
 var saveOptions = require('../OptionsModules.js').saveOptions;
 var expect = require('chai').expect;
+var assert = require('chai').assert;
 var stub = require('sinon').stub;
 var jsdom = require('jsdom');
 var chai = require('chai');
 var spies = require('chai-spies');
 chai.use(spies);
 var ourDocument;
+var ourChrome = require('sinon-chrome');
 
 describe('Options', function() {
   beforeEach(function(){
@@ -32,6 +34,14 @@ describe('Options', function() {
       messageConfirmation(ourDocument);
       expect(ourDocument.getElementById("saveConfirmation").innerHTML).to.equal("Saved successfully!");
     });
+
+    it('After 1s the message is empty', function(done){
+      messageConfirmation(ourDocument);
+      setTimeout(function(){
+        expect(ourDocument.getElementById("saveConfirmation").innerHTML).to.equal("");
+        done();
+      }, 2000);
+    });
   });
 
   describe('#loadOptions', function() {
@@ -45,6 +55,14 @@ describe('Options', function() {
         expect(select.options[ select.selectedIndex ].value).to.equal("10");
         done();
       }, 500);
+    });
+
+});
+
+  describe('#saveOptions', function() {
+    it('Saves chosen number of stack overflow results', function() {
+      saveOptions(ourDocument, ourChrome);
+      assert.ok(ourChrome.storage.local.set.calledOnce);
     });
   });
 });

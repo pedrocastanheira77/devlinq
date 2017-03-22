@@ -7,9 +7,9 @@ function loadOptions(resultsPromise, theDocument) {
   });
 }
 
-function saveOptions(theDocument) {
+function saveOptions(theDocument, theChrome) {
   var stackOverflowResults = theDocument.getElementById('stackOverflowResults').value;
-  chrome.storage.local.set({"stackOverflowResults": stackOverflowResults});
+  theChrome.storage.local.set({"stackOverflowResults": stackOverflowResults});
   messageConfirmation(theDocument);
 }
 
