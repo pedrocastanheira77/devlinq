@@ -4,6 +4,8 @@ var chai = require('chai')
 chai.use(spies);
 var WebFont = require('webfontloader');
 var loadFont = require('../Devlinq.js').loadFont;
+var createSpinner = require('../Devlinq.js').createSpinner;
+
 var jsdom = require('jsdom');
 var ourDocument = jsdom.jsdom ('<a id="logo"><div><div id="hello"></div></div></a>');
 var ourChrome = require('sinon-chrome');
@@ -51,33 +53,14 @@ describe('Devlinq', function(){
     });
   });
 
-  // describe('#createSpinner', function(){
-  //
-  // };
+  describe('#createSpinner', function(){
+    it('gets the spinner div and deletes it if already present', function(){
+      var anotherDocument = jsdom.jsdom ('<div id="spinner"></div>');
+      createSpinner(anotherDocument);
+      expect(anotherDocument.getElementById('spinner')).to.equal(null)
+    });
+  });
 
-  // describe('#languagesDiv', function(){
-  //
-  // };
-
-
-  // describe('#createLanguagesTitle', function(){
-  //   it('returns a h2 element', function(){
-  //     var parentNode = document.createElement('div')
-  //     var childNode = document.createElement('div')
-  //     parentNode.appendChild(childNode)
-  //     parentNode.appendChild(childNode)
-  //     var langdiv = createLanguagesDiv(childNode)
-  //     expect(createLanguagesTitle(langdiv).tagName).to.equal('H2')
-  //   })
-  // });
-
-  // describe('#insertDropdownIntoLanguages', function(){
-  //
-  // };
-
-  // describe('#insertOfficialDocsIntoLanguages', function(){
-  //
-  // };
 
   // describe('#stackOverflowDiv', function(){
   //

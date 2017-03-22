@@ -57,6 +57,55 @@ StackOverflowBar.prototype.createStackOverflowDiv = function () {
   return stackOverflowDiv
 };
 
+StackOverflowBar.prototype.getRequestedNumberOfLinks = function() {
+  chrome.storage.local.get(function(result){
+    savedNumberOfLinks = result.stackOverflowResults;
+  });
+}
+
+StackOverflowBar.prototype.stackOverflowDiv = function(currentDiv, requestedNumberOfLinks) {
+  var stackOverflowDiv = this.createStackOverflowDiv();
+  currentDiv.parentNode.insertBefore(stackOverflowDiv, currentDiv);
+  this.createStackOverflowTitle(stackOverflowDiv);
+  if (!requestedNumberOfLinks) {
+      requestedNumberOfLinks = 5;
+    }
+  this.insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv);
+}
+
+StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv) {
+  var stackOverflowTitle = document.createElement("h2");
+  stackOverflowTitle.className = "stackoverflow_title";
+  stackOverflowTitle.insertAdjacentHTML('afterbegin', "STACK OVERFLOW");
+  stackOverflowDiv.insertAdjacentElement('afterbegin', stackOverflowTitle);
+  return stackOverflowTitle;
+}
+
+StackOverflowBar.prototype.createStackOverflowDiv = function() {
+  var stackOverflowDiv = document.createElement("div");
+  stackOverflowDiv.id = "stackoverflowbar";
+  stackOverflowDiv.className = "devlinq_div stackoverflow_div";
+  return stackOverflowDiv;
+}
+
+StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLinks, stackOverflowDiv){
+  var stackoverflowsearch = this.decideStringForAPI();
+  this.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
+    var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
+    var googleResultUrls = document.getElementsByClassName("_Rm");
+    for(var i = 0; i < numberOfLinks; i++){
+      stackOverflowDiv.insertAdjacentHTML('beforeend',
+        '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>');
+      for(var x = 0; x < googleResultUrls.length; x++){
+        if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
+          var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
+          if (box) {box.parentNode.removeChild(box);}
+        }
+      }
+    }
+  });
+}
+
 // var stack = new StackOverflowBar();
 //
 //
