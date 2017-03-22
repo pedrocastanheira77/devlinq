@@ -31,11 +31,17 @@ function loadFont() {
 }
 
 function replaceLogo(){
+  var logo;
   if (document.getElementById("logo")) {
-    document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+    logo = document.getElementById("logo");
+    logo.children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   } else if (document.getElementById("logocont")) {
-    document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+    logo = document.getElementById("logocont");
+    logo.children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   }
+  // new code
+  logo.setAttribute('href', 'https://devlinq.herokuapp.com/');
+  // new code
 }
 
 function createSpinner() {
