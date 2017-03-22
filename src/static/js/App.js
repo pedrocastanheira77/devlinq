@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../css/App.css';
 import '../css/style.css';
+import '../css/App.css';
 var StackOverflowBar = require('./stackoverflowbar/StackOverflowBar.js');
 var stackbar = new StackOverflowBar();
 var currentDiv = document.getElementById("appbar");
@@ -43,7 +43,7 @@ class App extends Component {
               <div key={i} className="so_item">
                 <a href="{item.getUrl()}">
                   <p className="linq linq_so">{item.getTitle()}</p>
-                  <p className="so_info">View Count: {item.getViewCount()}; Answer Count: {item.getAnswerCount()}; Score: {item.getScore()}.</p>
+                  <p className="so_info">View Count: <mark className="score">{item.getViewCount()}</mark>Answer Count: <mark className="score">{item.getAnswerCount()}</mark>Score: <mark className="score">{item.getScore()}</mark></p>
                 </a>
               </div>
             )

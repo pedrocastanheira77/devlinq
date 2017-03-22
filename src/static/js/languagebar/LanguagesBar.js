@@ -212,7 +212,7 @@ LanguagesView.prototype.createSubmitSearchButton = function () {
   submitSearchButton.onclick = function(){
     new LanguagesView().submitSearchButtonEvent();
   };
-  submitSearchButton.innerHTML = "Search!";
+  submitSearchButton.innerHTML = "SEARCH";
   return submitSearchButton;
 };
 

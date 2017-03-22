@@ -31,11 +31,17 @@ function loadFont() {
 }
 
 function replaceLogo(){
+  var logo;
   if (document.getElementById("logo")) {
-    document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+    logo = document.getElementById("logo");
+    logo.children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   } else if (document.getElementById("logocont")) {
-    document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+    logo = document.getElementById("logocont");
+    logo.children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
   }
+  // new code
+  logo.setAttribute('href', 'https://devlinq.herokuapp.com/');
+  // new code
 }
 
 function createSpinner() {
@@ -120,7 +126,7 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
     var googleResultUrls = document.getElementsByClassName("_Rm");
     for(var i = 0; i < numberOfLinks; i++){
       stackOverflowDiv.insertAdjacentHTML('beforeend',
-        '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>');
+        '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: <mark class="score">'+items[i].getViewCount()+'</mark>Answer Count: <mark class="score">'+items[i].getAnswerCount()+'</mark>Score: <mark class="score">'+items[i].getScore()+'</mark></p></a></div>');
       for(var x = 0; x < googleResultUrls.length; x++){
         if (items[i].getUrl().includes(googleResultUrls[x].innerHTML)){
           var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
