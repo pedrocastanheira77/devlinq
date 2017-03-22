@@ -30,6 +30,40 @@ describe('StackOverflowBar', function(){
   //     })
   //   })
   // })
+
+  // describe('#stackOverflowDiv', function(){
+  //
+  // };
+
+  // describe('#createStackOverflowTitle', function(){
+  //
+  // };
+
+  // describe('#createStackOverflowDiv', function(){
+  //   it('returns a div element', function(){
+  //     expect(createStackOverflowDiv().tagName).to.equal('DIV')
+  //   });
+  //
+  //   it('returns a div element with id stackoverflowbar', function(){
+  //     expect(createStackOverflowDiv().id).to.equal('stackoverflowbar')
+  //   });
+  // });
+
+  // var chai = require('chai');
+  // var spies = require('chai-spies');
+  // chai.use(spies);
+
+  // describe('#insertStackOverflowAPI', function(){
+  //   it('does something', function(){
+  //     var stackdiv = createStackOverflowDiv();
+  //     stub(StackOverflowBar.prototype, 'decideStringForAPI')
+  //     StackOverflowBar.prototype.decideStringForAPI.returns("ruby array")
+  //     var spy = chai.spy.on(stackdiv, 'insertAdjacentHTML');
+  //     console.log(spy)
+  //     insertStackOverflowAPI(5, stackdiv)
+  //     expect(spy).to.have.been.called()
+  //   });
+  // });
   describe('#decideStringForAPI', function(){
 
     it('returns a promise', function(){

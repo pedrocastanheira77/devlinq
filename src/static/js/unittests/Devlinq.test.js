@@ -13,7 +13,6 @@ var replaceLogo = require('../Devlinq.js').replaceLogo;
 var stub = require('sinon').stub;
 var StackOverflowBar = require("../stackoverflowbar/StackOverflowBar.js");
 
-
 describe('Devlinq', function(){
   describe('#devlinqExtention', function(){
     it('calls languagesDiv', function(done){
@@ -67,9 +66,9 @@ describe('Devlinq', function(){
       var theDocument = jsdom.jsdom ('<a id="logocont"><div><div></div></div></a>');
       setTimeout(function(){
         replaceLogo(theDocument, ourChrome)
-        var logourl = theDocument.getElementById("logocont").children[0].children[0].src
-        expect(logourl).to.equal("oururl")
-        done()
+        var logourl = theDocument.getElementById("logocont").children[0].children[0].src;
+        expect(logourl).to.equal("oururl");
+        done();
       }, 1000)
     });
   });
@@ -78,42 +77,7 @@ describe('Devlinq', function(){
     it('gets the spinner div and deletes it if already present', function(){
       var anotherDocument = jsdom.jsdom ('<div id="spinner"></div>');
       createSpinner(anotherDocument);
-      expect(anotherDocument.getElementById('spinner')).to.equal(null)
+      expect(anotherDocument.getElementById('spinner')).to.equal(null);
     });
   });
-
-
-  // describe('#stackOverflowDiv', function(){
-  //
-  // };
-
-  // describe('#createStackOverflowTitle', function(){
-  //
-  // };
-
-  // describe('#createStackOverflowDiv', function(){
-  //   it('returns a div element', function(){
-  //     expect(createStackOverflowDiv().tagName).to.equal('DIV')
-  //   });
-  //
-  //   it('returns a div element with id stackoverflowbar', function(){
-  //     expect(createStackOverflowDiv().id).to.equal('stackoverflowbar')
-  //   });
-  // });
-
-  // var chai = require('chai');
-  // var spies = require('chai-spies');
-  // chai.use(spies);
-
-  // describe('#insertStackOverflowAPI', function(){
-  //   it('does something', function(){
-  //     var stackdiv = createStackOverflowDiv();
-  //     stub(StackOverflowBar.prototype, 'decideStringForAPI')
-  //     StackOverflowBar.prototype.decideStringForAPI.returns("ruby array")
-  //     var spy = chai.spy.on(stackdiv, 'insertAdjacentHTML');
-  //     console.log(spy)
-  //     insertStackOverflowAPI(5, stackdiv)
-  //     expect(spy).to.have.been.called()
-  //   });
-  // });
 });
