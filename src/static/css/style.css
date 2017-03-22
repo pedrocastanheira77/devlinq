@@ -50,6 +50,7 @@ body {
 /* Languages Bar */
 
 .langauges_title {
+  font-size: 20px;
   font-weight: 900;
 }
 
@@ -85,6 +86,12 @@ body {
   font-weight: bold;
 }
 
+.linq_la:hover {
+  border-bottom: 1px solid #EA4335;
+  font-weight: 700 !important;
+  width: 450px;
+}
+
 /* Stack Overflow Bar */
 
 .stackoverflow_div {
@@ -92,17 +99,20 @@ body {
 }
 
 .stackoverflow_title {
+  font-size: 20px;
   margin-bottom: 2em;
   font-weight: 900;
 }
 
 .linq {
-  font-size: 1.1em;
+  font-size: 16px;
   font-weight: 500 !important;
   margin-left: 250px;
   margin-right: 250px;
   color: black !important;
-  margin-top: 1em;
+  margin-top: 2em;
+  margin-bottom: .6em;
+  line-height: 1.3em;
 }
 
 .linq:link {
@@ -118,12 +128,6 @@ body {
 .linq_so:hover {
   border-bottom: 1px solid #FBBC05;
   font-weight: 700 !important;
-}
-
-.linq_la:hover {
-  border-bottom: 1px solid #EA4335;
-  font-weight: 700 !important;
-  width: 450px;
 }
 
 .d_link:hover {
@@ -152,4 +156,16 @@ a:link, a:visited {
 .so_item {
   display: inline;
   text-align: center;
+}
+
+.so_info {
+  font-weight: 500;
+}
+
+.score {
+  background-color: white;
+  border: 1px solid #FBBC05;
+  padding: 0.3em;
+  margin: 0.3em;
+  margin-right: 1em;
 }
