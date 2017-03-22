@@ -129,7 +129,7 @@ LanguagesView.prototype.getTopics = function() {
 LanguagesView.prototype.createDummyOption = function(string, list) {
   var option_dummy = document.createElement('option');
   option_dummy.selected = "selected";
-  option_dummy.disabled = "disabled";
+  if (string == 'language'){option_dummy.disabled = "disabled";}
   option_dummy.value = "Choose a " + string;
   option_dummy.innerHTML = "Choose a " + string;
   list.appendChild(option_dummy);
@@ -263,7 +263,7 @@ LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage,
   if (chosenTopic === 'Choose a topic'){
     topicReplace = ''
   } else {
-    topicReplace = ':' + chosenTopic
+    topicReplace = ': ' + chosenTopic
   }
   link.innerHTML = '<p class="linq linq_la">'+chosenLanguage+' ('+chosenVersion+')' + topicReplace + ' (from '+ docs +')</p>';
 };
