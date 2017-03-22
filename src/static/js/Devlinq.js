@@ -36,10 +36,13 @@ function loadFont() {
 }
 
 function replaceLogo(theDocument, theChrome){
-  if (theDocument.getElementById("logo")) {
-    theDocument.getElementById("logo").children[0].src = theChrome.extension.getURL("/public/images/devlinq_logo_color.png");
-  } else if (theDocument.getElementById("logocont")) {
-    theDocument.getElementById("logocont").children[0].children[0].src = theChrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  var logo = theDocument.getElementById("logo");
+  var logocont = theDocument.getElementById("logocont");
+  var logourl = theChrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  if (logo) {
+    logo.children[0].src = logourl;
+  } else if (logocont) {
+    logocont.children[0].children[0].src = logourl;
   }
 }
 
