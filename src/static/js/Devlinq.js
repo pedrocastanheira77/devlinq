@@ -15,7 +15,7 @@ function devlinqExtention() {
     replaceLogo();
     createSpinner();
     var currentDiv = document.getElementById("appbar");
-    languagesDiv(currentDiv);
+    lang.languagesDiv(currentDiv);
     stackOverflowDiv(currentDiv, savedNumberOfLinks);
   }, 3000);
 }
@@ -43,41 +43,6 @@ function createSpinner() {
   if (spinnerDiv) {
     spinnerDiv.parentNode.removeChild(spinnerDiv);
   }
-}
-
-// Languages Div
-
-function languagesDiv(currentDiv) {
-  var languagesDiv = createLanguagesDiv(currentDiv);
-  var languagesTitle = createLanguagesTitle(languagesDiv);
-  insertDropdownIntoLanguages(languagesDiv);
-  insertOfficialDocsIntoLanguages(languagesDiv);
-}
-
-function createLanguagesDiv(currentDiv) {
-  var languagesDiv = document.createElement("div");
-  languagesDiv.id = "languages_div";
-  languagesDiv.className = "devlinq_div languages_div";
-  currentDiv.parentNode.insertBefore(languagesDiv, currentDiv);
-  return languagesDiv;
-}
-
-function createLanguagesTitle(languagesDiv) {
-  var languagesTitle = document.createElement("h2");
-  languagesTitle.className = "langauges_title";
-  languagesTitle.insertAdjacentHTML('afterbegin', "OFFICIAL DOCUMENTATION");
-  languagesDiv.insertAdjacentElement('afterbegin', languagesTitle);
-  return languagesTitle;
-}
-
-function insertDropdownIntoLanguages(languagesDiv) {
-  var optionsDiv = lang.createDropdownDiv();
-  languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
-}
-
-function insertOfficialDocsIntoLanguages(languagesDiv) {
-  var officialDiv = createOfficialDiv();
-  languagesDiv.insertAdjacentElement('beforeend', officialDiv);
 }
 
 // Stack Overflow Div
@@ -132,15 +97,10 @@ function insertStackOverflowAPI(requestedNumberOfLinks, stackOverflowDiv){
 }
 
 module.exports = {
-  createLanguagesDiv,
-  createLanguagesTitle,
-  insertDropdownIntoLanguages,
-  insertOfficialDocsIntoLanguages,
   stackOverflowDiv,
   createStackOverflowTitle,
   createStackOverflowDiv,
   insertStackOverflowAPI,
   devlinqExtention,
-  loadFont,
-  languagesDiv
+  loadFont
 }
