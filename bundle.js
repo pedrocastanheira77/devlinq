@@ -44660,16 +44660,12 @@ function LanguagesView(){
   this.javascript = new Javascript();
   this.jquery = new JQuery();
   this.chromeextensions = new ChromeExtensions();
-  this.listOfLanguages = [  this.ruby.name,
-                            this.javascript.name,
-                            this.jquery.name,
-                            this.chromeextensions.name
-                          ];
 };
 
 ///////////// new
 
 LanguagesView.prototype.languagesDiv = function (currentDiv) {
+
   var languagesDiv = this.createLanguagesDiv(currentDiv);
   this.createLanguagesTitle(languagesDiv);
   this.insertDropdownIntoLanguages(languagesDiv);
@@ -44728,7 +44724,7 @@ LanguagesView.prototype.compareSearchBarInfo = function () {
   for (var i = array.length - 1; i >= 0; i--){
     var l = haveLanguage(array[i], this);
     if (l > -1) {
-      language = this.listOfLanguages[l];
+      language = this.getLanguagesView()[l];
     }
   }
   if (language) {
@@ -44953,7 +44949,7 @@ module.exports = {
 
 },{}],193:[function(require,module,exports){
 function haveLanguage(string, lang) {
-  return isStringInArray(string, lang.listOfLanguages);
+  return isStringInArray(string, lang.getLanguagesView());
 }
 
 function haveVersion(string, lang) {
