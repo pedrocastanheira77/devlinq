@@ -1,11 +1,10 @@
 var WebFont = require('webfontloader');
 var LanguagesView = require("./languagebar/LanguagesBar.js");
 var lang = new LanguagesView();
-var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
+var stackOverflowDiv = require("./stackoverflowbar/StackOverflowBar.js").stackOverflowDiv;
 var stackbar = new StackOverflowBar();
 var savedNumberOfLinks;
-var stackOverflowDiv = require("./stackoverflowbar/StackOverflowBar.js").stackOverflowDiv;
 
 
 function devlinqExtention(theDocument, theChrome) {
@@ -32,7 +31,7 @@ function loadFont() {
     google: {
       families: ['Raleway:400,500,600,700,900']
     }
-    });
+  });
 }
 
 function replaceLogo(theDocument, theChrome){
