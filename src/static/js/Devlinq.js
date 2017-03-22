@@ -5,16 +5,17 @@ var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOf
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackbar = new StackOverflowBar();
 var savedNumberOfLinks;
+
 // getRequestedNumberOfLinks();
 
 devlinqExtention();
 
-function devlinqExtention() {
+function devlinqExtention(theDocument, theChrome) {
   setTimeout(function() {
     loadFont();
-    replaceLogo();
+    replaceLogo(theDocument, theChrome);
     createSpinner();
-    var currentDiv = document.getElementById("appbar");
+    var currentDiv = theDocument.getElementById("appbar");
     lang.languagesDiv(currentDiv);
     stackOverflowDiv(currentDiv, savedNumberOfLinks);
   }, 3000);
@@ -30,11 +31,11 @@ function loadFont() {
     });
 }
 
-function replaceLogo(){
-  if (document.getElementById("logo")) {
-    document.getElementById("logo").children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
-  } else if (document.getElementById("logocont")) {
-    document.getElementById("logocont").children[0].children[0].src = chrome.extension.getURL("/public/images/devlinq_logo_color.png");
+function replaceLogo(theDocument, theChrome){
+  if (theDocument.getElementById("logo")) {
+    theDocument.getElementById("logo").children[0].src = theChrome.extension.getURL("/public/images/devlinq_logo_color.png");
+  } else if (theDocument.getElementById("logocont")) {
+    theDocument.getElementById("logocont").children[0].children[0].src = theChrome.extension.getURL("/public/images/devlinq_logo_color.png");
   }
 }
 
@@ -102,5 +103,6 @@ module.exports = {
   createStackOverflowDiv,
   insertStackOverflowAPI,
   devlinqExtention,
+  replaceLogo,
   loadFont
 }
