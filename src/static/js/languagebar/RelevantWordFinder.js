@@ -30,17 +30,16 @@ function arrayToLowerCase(array) {
   return newArray;
 }
 
-function getInfoFromSearchBar() {
-  var doc = document
-  var searched = doc.getElementById("lst-ib").value;
+function getInfoFromSearchBar(theDocument) {
+  var searched = theDocument.getElementById("lst-ib").value;
   if (!searched) {
-    searched = doc.getElementById("lst-ib").innerHTML;
+    searched = theDocument.getElementById("lst-ib").innerHTML;
   }
   return splitStringIntoArray(searched);
 }
 
 function compareSearchBarInfo(getLanguagesView, that) {
-  var array = getInfoFromSearchBar();
+  var array = getInfoFromSearchBar(document);
   var language, version, topic;
   for (var i = array.length - 1; i >= 0; i--){
     var l = haveLanguage(array[i], that);
@@ -63,5 +62,12 @@ function compareSearchBarInfo(getLanguagesView, that) {
 }
 
 module.exports = {
+  haveLanguage,
+  haveVersion,
+  haveTopic,
+  arrayToLowerCase,
+  isStringInArray,
+  splitStringIntoArray,
+  getInfoFromSearchBar,
   compareSearchBarInfo
 };

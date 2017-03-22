@@ -60,10 +60,6 @@ LanguagesView.prototype.insertOfficialDocsIntoLanguages = function (languagesDiv
 
 ///////////// new
 
-
-
-// this.getLanguagesView()
-
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length-1;i++) {
