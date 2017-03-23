@@ -1,5 +1,3 @@
-<<<<<<< 7be4855847b0c113a20310f0c114dcd9dfacbf36
-=======
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
@@ -44655,7 +44653,6 @@ var RubyonRails = require('./lib/RubyonRailsInBar.js');
 var Javascript = require('./lib/JavascriptInBar.js');
 var JQuery = require('./lib/JqueryInBar.js');
 var ChromeExtensions = require('./lib/ChromeExtensionsInBar.js');
-var compareSearchBarInfo = require('./RelevantWordFinder.js').compareSearchBarInfo;
 var Selenium = require('./lib/SeleniumInBar.js');
 var React = require('./lib/ReactInBar.js');
 var Chai = require('./lib/ChaiInBar.js');
@@ -44663,10 +44660,7 @@ var Browserify = require('./lib/BrowserifyInBar.js');
 var Haskell = require('./lib/HaskellInBar.js');
 var Lisp = require('./lib/LispInBar.js');
 var Cplusplus = require('./lib/CplusplusInBar.js');
-var haveLanguage = require('./RelevantWordFinder.js').haveLanguage;
-var haveVersion = require('./RelevantWordFinder.js').haveVersion;
-var haveTopic = require('./RelevantWordFinder.js').haveTopic;
-var splitStringIntoArray = require('./RelevantWordFinder.js').splitStringIntoArray;
+var compareSearchBarInfo = require('./RelevantWordFinder.js').compareSearchBarInfo;
 var createOfficialDiv = require("./OfficialDocsResults.js").createOfficialDiv;
 
 function LanguagesView(){
@@ -44682,20 +44676,6 @@ function LanguagesView(){
   this.ruby = new Ruby();
   this.rubyonrails = new RubyonRails();
   this.selenium = new Selenium();
-  this.listOfLanguages = [
-                            this.browserify.name,
-                            this.chai.name,
-                            this.chromeextensions.name,
-                            this.cplusplus.name,
-                            this.haskell.name,
-                            this.lisp.name,
-                            this.javascript.name,
-                            this.jquery.name,
-                            this.react.name,
-                            this.ruby.name,
-                            this.rubyonrails.name,
-                            this.selenium.name
-                          ];
 };
 
 ///////////// new
@@ -44775,7 +44755,7 @@ LanguagesView.prototype.getTopics = function() {
 LanguagesView.prototype.createDummyOption = function(string, list, doc) {
   var option_dummy = doc.createElement('option');
   option_dummy.selected = "selected";
-  if (string === 'language'){ option_dummy.disabled = "disabled"; }
+  if (string === 'technology'){ option_dummy.disabled = "disabled"; }
   option_dummy.value = "Choose a " + string;
   option_dummy.innerHTML = "Choose a " + string;
   list.appendChild(option_dummy);
@@ -44789,7 +44769,7 @@ LanguagesView.prototype.createLanguageDropdown = function(doc){
     new LanguagesView().versionDropdownChangeEvent(doc);
     new LanguagesView().topicDropdownChangeEvent(doc);
   };
-  this.createDummyOption("technology", languageDropdownList);
+  this.createDummyOption("technology", languageDropdownList, doc);
   for (var i=0;i<this.getLanguagesView().length;i++){
     var option = doc.createElement('option');
     option.value = this.getLanguagesView()[i];
@@ -44894,13 +44874,13 @@ LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
   var chosenTopic = doc.querySelector('#topicDropdownList').value;
-  if (this[chosenLanguage.toLowerCase()]) {
-    setTimeout(function(){
+  // setTimeout(function(){
+    if (this[chosenLanguage.toLowerCase()]) {
       var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
       var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
       new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-    }, 1500)
-  }
+    }
+  // }, 1500)
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
@@ -76825,4 +76805,3 @@ function extend() {
 }
 
 },{}]},{},[190]);
->>>>>>> Add new languages to the lib
