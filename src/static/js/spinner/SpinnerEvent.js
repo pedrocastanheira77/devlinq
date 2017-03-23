@@ -20,6 +20,7 @@ var opts = {
 , hwaccel: false // Whether to use hardware acceleration
 , position: 'absolute' // Element positioning
 };
+
 var spinner = new Spinner(opts)
 var spinnerDiv = document.createElement("div");
 spinnerDiv.id = "spinner";

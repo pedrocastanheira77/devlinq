@@ -38,7 +38,7 @@ function runSpinner() {
   chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
     var specTab = tabs[0];
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/Spinner.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/SpinnerView.js"});
+    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/SpinnerEvent.js"});
   });
 }
 

@@ -7,19 +7,19 @@ function triggerContentsScripts(tabId, changeInfo, tab) {
   }
 }
 
-function changeClickButtonStatus(){
+function changeClickButtonStatus(clickButtonStatus, chrome){
   if (clickButtonStatus === "off"){
     chrome.browserAction.setIcon({path:"public/images/devlinq_icon_color.png"})
-    return clickButtonStatus = "on";
+    return "on";
   } else {
     chrome.browserAction.setIcon({path:"public/images/devlinq_icon_black.png"})
-    return clickButtonStatus = "off";
+    return "off";
   }
 }
 
-function pageRefresher(){
-  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
-    chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+function pageRefresher(theChrome){
+  theChrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+    theChrome.tabs.update(tabs[0].id, {url: tabs[0].url});
   });
 }
 
