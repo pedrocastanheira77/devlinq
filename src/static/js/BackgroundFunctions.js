@@ -1,13 +1,3 @@
-var clickButtonStatus = "on";
-var c = chrome
-
-chrome.browserAction.onClicked.addListener(function(tab){
-  changeClickButtonStatus();
-  pageRefresher(c);
-});
-
-chrome.tabs.onUpdated.addListener(triggerContentsScripts);
-
 function triggerContentsScripts(tabId, changeInfo, tab) {
   if (changeInfo.status === "complete" && clickButtonStatus === "on") {
     pageCleaner();
@@ -27,10 +17,9 @@ function changeClickButtonStatus(){
   }
 }
 
-function pageRefresher(ourChrome){
-  console.log("HERE");
-  ourChrome.tabs.query({currentWindow:true, active:true}, function(tabs){
-    ourChrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+function pageRefresher(){
+  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+    chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
   });
 }
 
@@ -58,5 +47,7 @@ function pageCleaner() {
 }
 
 module.exports = {
+  triggerContentsScripts,
+  changeClickButtonStatus,
   pageRefresher
 }
