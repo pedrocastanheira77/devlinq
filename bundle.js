@@ -44546,8 +44546,8 @@ function createSpinner() {
 
 // Languages Div
 
-function languagesDiv(currentDiv, document) {
-  var languagesDiv = createLanguagesDiv(currentDiv);
+function languagesDiv(currentDiv, doc) {
+  var languagesDiv = createLanguagesDiv(currentDiv, doc);
   var languagesTitle = createLanguagesTitle(languagesDiv);
   insertDropdownIntoLanguages(languagesDiv);
   insertOfficialDocsIntoLanguages(languagesDiv);

@@ -124,46 +124,46 @@ describe('LanguagesView', function(){
   //   });
   // });
 
-  describe('#createVersionDropdown', function(){
+  // describe('#createVersionDropdown', function(){
+  //
+  //   var ourDocument = jsdom ('<body>'+
+  //                                 'Google Search:'+
+  //                                   '<input type="text" id="lst-ib" value="ruby array">' +
+  //                               '</body>');
+  //
+  //   it('returns a html element with id versionDropdownList', function(){
+  //     expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
+  //   });
+  //
+  //   it('returns a html element with id versionDropdownList', function(){
+  //     expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
+  //   });
+  //
+  //   it('calls create dummy object with correct parameters', function(){
+  //     var chai = require('chai');
+  //     var spies = require('chai-spies');
+  //
+  //     chai.use(spies);
+  //     var spy = chai.spy.on(languagesView, 'createDummyOption');
+  //     languagesView.createVersionDropdown("Ruby", ourDocument)
+  //     expect(spy).to.have.been.called();
+  //   });
+  //
+  // });
 
-    var ourDocument = jsdom ('<body>'+
-                                  'Google Search:'+
-                                    '<input type="text" id="lst-ib" value="ruby array">' +
-                                '</body>');
-
-    it('returns a html element with id versionDropdownList', function(){
-      expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
-    });
-
-    it('returns a html element with id versionDropdownList', function(){
-      expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
-    });
-
-    it('calls create dummy object with correct parameters', function(){
-      var chai = require('chai');
-      var spies = require('chai-spies');
-
-      chai.use(spies);
-      var spy = chai.spy.on(languagesView, 'createDummyOption');
-      languagesView.createVersionDropdown("Ruby", ourDocument)
-      expect(spy).to.have.been.called();
-    });
-
-  });
-
-  describe('generateVersionOptions', function(){
-
-    var ourDocument = jsdom ('<body>'+
-                                  'Google Search:'+
-                                    '<input type="text" id="lst-ib" value="ruby array">' +
-                                '</body>');
-
-    it('adds list of version options to the version dropdown with 2 choose a version options', function(){
-      var dropdown = languagesView.createVersionDropdown("Ruby", ourDocument)
-      languagesView.generateVersionOptions(dropdown, "Ruby", ourDocument)
-      expect(dropdown.childNodes[0].value).to.equal("Choose a version")
-    });
-  });
+  // describe('generateVersionOptions', function(){
+  //
+  //   var ourDocument = jsdom ('<body>'+
+  //                                 'Google Search:'+
+  //                                   '<input type="text" id="lst-ib" value="ruby array">' +
+  //                               '</body>');
+  //
+  //   it('adds list of version options to the version dropdown with 2 choose a version options', function(){
+  //     var dropdown = languagesView.createVersionDropdown("Ruby", ourDocument)
+  //     languagesView.generateVersionOptions(dropdown, "Ruby", ourDocument)
+  //     expect(dropdown.childNodes[0].value).to.equal("Choose a version")
+  //   });
+  // });
 
   describe('#createTopicDropdown', function(){
     var ourDocument = jsdom ('<body>'+
@@ -280,39 +280,39 @@ describe('LanguagesView', function(){
     });
   });
 
-  describe('#topicDropdownChangeEvent', function(){
-    var ourDocument = jsdom ('<body>'+
-                                  'Google Search:'+
-                                    '<input type="text" id="lst-ib" value="ruby array">' +
-                                '</body>');
-    it('calls generateTopicOptions with correct arguments', function(){
-      var topiclist = ourDocument.createElement('option')
-      ourDocument.getElementById.withArgs('topicDropdownList').returns(topiclist)
-      var langoption = ourDocument.createElement('option')
-      stub(ourDocument, 'querySelector');
-      ourDocument.querySelector.withArgs('#languageDropdownList').returns(langoption)
-      ourDocument.querySelector("#languageDropdownList").value="thelanguage"
+  // describe('#topicDropdownChangeEvent', function(){
+  //   var ourDocument = jsdom ('<body>'+
+  //                                 'Google Search:'+
+  //                                   '<input type="text" id="lst-ib" value="ruby array">' +
+  //                               '</body>');
+  //   it('calls generateTopicOptions with correct arguments', function(){
+  //     var topiclist = ourDocument.createElement('option')
+  //     ourDocument.getElementById.withArgs('topicDropdownList').returns(topiclist)
+  //     var langoption = ourDocument.createElement('option')
+  //     stub(ourDocument, 'querySelector');
+  //     ourDocument.querySelector.withArgs('#languageDropdownList').returns(langoption)
+  //     ourDocument.querySelector("#languageDropdownList").value="thelanguage"
+  //
+  //     stub(LanguagesView.prototype, 'generateTopicOptions');
+  //     var spy = chai.spy.on(LanguagesView.prototype, 'generateTopicOptions');
+  //     languagesView.topicDropdownChangeEvent();
+  //     expect(spy).to.have.been.called.with(topiclist, "thelanguage");
+  //   });
+  // });
 
-      stub(LanguagesView.prototype, 'generateTopicOptions');
-      var spy = chai.spy.on(LanguagesView.prototype, 'generateTopicOptions');
-      languagesView.topicDropdownChangeEvent();
-      expect(spy).to.have.been.called.with(topiclist, "thelanguage");
-    });
-  });
-
-  describe('#versionDropdownChangeEvent', function(){
-    it('calls generateTopicOptions', function(){
-      var versionlist = document.createElement('option')
-      document.getElementById.withArgs('versionDropdownList').returns(versionlist)
-      var langoption = document.createElement('option')
-      document.querySelector.withArgs('#languageDropdownList').returns(langoption)
-      document.querySelector("#languageDropdownList").value="thelanguage"
-      stub(LanguagesView.prototype, 'generateVersionOptions');
-      var spy = chai.spy.on(LanguagesView.prototype, 'generateVersionOptions');
-      languagesView.versionDropdownChangeEvent()
-      expect(spy).to.have.been.called.with(versionlist, "thelanguage");
-    });
-  });
+  // describe('#versionDropdownChangeEvent', function(){
+  //   it('calls generateTopicOptions', function(){
+  //     var versionlist = document.createElement('option')
+  //     document.getElementById.withArgs('versionDropdownList').returns(versionlist)
+  //     var langoption = document.createElement('option')
+  //     document.querySelector.withArgs('#languageDropdownList').returns(langoption)
+  //     document.querySelector("#languageDropdownList").value="thelanguage"
+  //     stub(LanguagesView.prototype, 'generateVersionOptions');
+  //     var spy = chai.spy.on(LanguagesView.prototype, 'generateVersionOptions');
+  //     languagesView.versionDropdownChangeEvent()
+  //     expect(spy).to.have.been.called.with(versionlist, "thelanguage");
+  //   });
+  // });
 
   describe('#createDropdownDiv', function(){
     var ourDocument = jsdom ('<body>'+
@@ -348,46 +348,46 @@ describe('LanguagesView', function(){
   })
 
 
-  describe('#submitSearchButton', function(){
-    it('calls language#generateOfficialDocsURL with correct arguments', function(){
-      var langoption = document.createElement('option')
-      var versionoption = document.createElement('option')
-      var topicoption = document.createElement('option')
-      document.querySelector.withArgs('#languageDropdownList').returns(langoption)
-      document.querySelector("#languageDropdownList").value="ruby"
-      document.querySelector.withArgs('#versionDropdownList').returns(versionoption)
-      document.querySelector("#versionDropdownList").value="aversion"
-      document.querySelector.withArgs('#topicDropdownList').returns(topicoption)
-      document.querySelector("#topicDropdownList").value="atopic"
-
-      var spy = chai.spy.on(Ruby.prototype, 'generateOfficialDocsURL');
-      languagesView.submitSearchButtonEvent();
-
-      expect(spy).to.have.been.called.with("aversion", "atopic");
-    });
-
-    it('calls addLinktoTag with correct arguments', function(){
-      // var langoption = document.createElement('option')
-      // var versionoption = document.createElement('option')
-      // var topicoption = document.createElement('option')
-      // document.querySelector.withArgs('#languageDropdownList').returns(langoption)
-      // document.querySelector("#languageDropdownList").value="ruby"
-      // document.querySelector.withArgs('#versionDropdownList').returns(versionoption)
-      // document.querySelector("#versionDropdownList").value="aversion"
-      // document.querySelector.withArgs('#topicDropdownList').returns(topicoption)
-      // document.querySelector("#topicDropdownList").value="atopic"
-      //
-      // var lang = new Ruby();
-      // var url = lang.generateOfficialDocsURL('aversion', 'atopic');
-      //
-      // stub(this, 'addLinktoTag')
-      // var spy = require('sinon').spy(addLinktoTag);
-      // submitSearchButtonEvent();
-      // addLinktoTag()
-      //
-      // expect(spy).to.be.called();
-    });
-  });
+  // describe('#submitSearchButton', function(){
+  //   it('calls language#generateOfficialDocsURL with correct arguments', function(){
+  //     var langoption = document.createElement('option')
+  //     var versionoption = document.createElement('option')
+  //     var topicoption = document.createElement('option')
+  //     document.querySelector.withArgs('#languageDropdownList').returns(langoption)
+  //     document.querySelector("#languageDropdownList").value="ruby"
+  //     document.querySelector.withArgs('#versionDropdownList').returns(versionoption)
+  //     document.querySelector("#versionDropdownList").value="aversion"
+  //     document.querySelector.withArgs('#topicDropdownList').returns(topicoption)
+  //     document.querySelector("#topicDropdownList").value="atopic"
+  //
+  //     var spy = chai.spy.on(Ruby.prototype, 'generateOfficialDocsURL');
+  //     languagesView.submitSearchButtonEvent();
+  //
+  //     expect(spy).to.have.been.called.with("aversion", "atopic");
+  //   });
+  //
+  //   it('calls addLinktoTag with correct arguments', function(){
+  //     var langoption = document.createElement('option')
+  //     var versionoption = document.createElement('option')
+  //     var topicoption = document.createElement('option')
+  //     document.querySelector.withArgs('#languageDropdownList').returns(langoption)
+  //     document.querySelector("#languageDropdownList").value="ruby"
+  //     document.querySelector.withArgs('#versionDropdownList').returns(versionoption)
+  //     document.querySelector("#versionDropdownList").value="aversion"
+  //     document.querySelector.withArgs('#topicDropdownList').returns(topicoption)
+  //     document.querySelector("#topicDropdownList").value="atopic"
+  //
+  //     var lang = new Ruby();
+  //     var url = lang.generateOfficialDocsURL('aversion', 'atopic');
+  //
+  //     stub(this, 'addLinktoTag')
+  //     var spy = require('sinon').spy(addLinktoTag);
+  //     submitSearchButtonEvent();
+  //     addLinktoTag()
+  //
+  //     expect(spy).to.be.called();
+  //   });
+  // });
 
 
 });
