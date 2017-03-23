@@ -7,13 +7,13 @@ function triggerContentsScripts(tabId, changeInfo, tab) {
   }
 }
 
-function changeClickButtonStatus(){
+function changeClickButtonStatus(clickButtonStatus, chrome){
   if (clickButtonStatus === "off"){
     chrome.browserAction.setIcon({path:"public/images/devlinq_icon_color.png"})
-    return clickButtonStatus = "on";
+    return "on";
   } else {
     chrome.browserAction.setIcon({path:"public/images/devlinq_icon_black.png"})
-    return clickButtonStatus = "off";
+    return "off";
   }
 }
 
