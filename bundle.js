@@ -44890,15 +44890,19 @@ LanguagesView.prototype.fillInVersion = function(){
   };
 };
 
-LanguagesView.prototype.submitSearchButtonEvent = function() {
-  this.fillInVersion();
+LanguagesView.prototype.submitSearchButtonEvent = function(){
   var chosenLanguage = document.querySelector('#languageDropdownList').value;
   var chosenVersion = document.querySelector('#versionDropdownList').value;
   var chosenTopic = document.querySelector('#topicDropdownList').value;
+  if (chosenVersion === 'Choose a version' && this[chosenLanguage.toLowerCase()]) {
+    document.querySelector('#versionDropdownList').value = this[chosenLanguage.toLowerCase()].versions[0];
+  };
   setTimeout(function(){
-    var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-    var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
-    new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs);
+    if (this[chosenLanguage.toLowerCase()]) {
+      var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
+      var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+      new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs);
+    }
   }, 1500)
 
 };
