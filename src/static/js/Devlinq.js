@@ -4,8 +4,7 @@ var lang = new LanguagesView();
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackOverflowDiv = require("./stackoverflowbar/StackOverflowBar.js").stackOverflowDiv;
 var stackbar = new StackOverflowBar();
-var savedNumberOfLinks;
-
+var savedNumberOfLinks = getRequestedNumberOfLinks();
 
 function devlinqExtention(theDocument, theChrome) {
   setTimeout(function() {
@@ -43,6 +42,7 @@ function replaceLogo(theDocument, theChrome){
   } else if (logocont) {
     logocont.children[0].children[0].src = logourl;
   }
+  logo.setAttribute('href', 'https://devlinq.herokuapp.com/');
 }
 
 function createSpinner(theDocument) {

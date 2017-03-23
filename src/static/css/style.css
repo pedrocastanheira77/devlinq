@@ -1,6 +1,6 @@
 /* Typography */
 
-body, .g, .gsfi {
+body, .g, .gsfi, button {
   font-family: 'Raleway', sans-serif !important;
 }
 
@@ -50,7 +50,9 @@ body {
 /* Languages Bar */
 
 .langauges_title {
+  font-size: 20px;
   font-weight: 900;
+  line-height: 3em;
 }
 
 .languages_select {
@@ -67,7 +69,9 @@ body {
   width: 180px;
   height: 30px;
   border: none;
-  border-bottom: 1px solid #EA4335;
+  -webkit-box-box-shadow: 0.3em 0.3em 0.3em #ccc;
+  box-shadow: 0.3em 0.3em 0.3em #ccc;
+  border-bottom: 2px solid #EA4335;
   background-color: white;
   font-size: 14px;
 }
@@ -79,10 +83,17 @@ body {
   height: 30px;
   background-color: #FFF;
   border: thin solid #FFF;
-  border-radius: 4px;
   font-size: 15px;
   color: #c22f2f;
   font-weight: bold;
+}
+
+.linq_la:hover {
+  border-bottom: 1px solid #EA4335;
+}
+
+button {
+  font-weight: 700 !important;
 }
 
 /* Stack Overflow Bar */
@@ -92,17 +103,30 @@ body {
 }
 
 .stackoverflow_title {
-  margin-bottom: 2em;
+  font-size: 20px;
   font-weight: 900;
+  line-height: 3em;
 }
 
 .linq {
-  font-size: 1.1em;
+  font-size: 16px;
   font-weight: 500 !important;
+  color: black !important;
+
   margin-left: 250px;
   margin-right: 250px;
+  margin-top: 2em;
+  margin-bottom: .6em;
+
+  line-height: 1.3em;
+  text-align: center;
+}
+
+.linq:hover {
+  text-decoration: none;
   color: black !important;
-  margin-top: 1em;
+  font-weight: 700 !important;
+  text-align: center;
 }
 
 .linq:link {
@@ -117,14 +141,28 @@ body {
 
 .linq_so:hover {
   border-bottom: 1px solid #FBBC05;
-  font-weight: 700 !important;
 }
 
-.linq_la:hover {
-  border-bottom: 1px solid #EA4335;
-  font-weight: 700 !important;
-  width: 450px;
+.so_item {
+  display: inline;
+  text-align: center;
 }
+
+.so_info {
+  font-weight: 500;
+  margin-bottom: 1em;
+  font-size: 14px;
+}
+
+.score {
+  background-color: white;
+  border: 1px solid #FBBC05;
+  padding: 0.3em;
+  margin: 0.3em;
+  margin-right: 1em;
+}
+
+/* Google typography */
 
 .d_link:hover {
   text-decoration: none;
@@ -147,9 +185,4 @@ a:link, a:visited {
   color: grey !important;
   font-weight: 600;
   text-decoration: none;
-}
-
-.so_item {
-  display: inline;
-  text-align: center;
 }

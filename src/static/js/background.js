@@ -1,8 +1,9 @@
 var clickButtonStatus = "on";
+var c = chrome
 
 chrome.browserAction.onClicked.addListener(function(tab){
   changeClickButtonStatus();
-  pageRefresher();
+  pageRefresher(c);
 });
 
 chrome.tabs.onUpdated.addListener(triggerContentsScripts);
@@ -26,17 +27,18 @@ function changeClickButtonStatus(){
   }
 }
 
-function pageRefresher(){
-  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
-    chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+function pageRefresher(ourChrome){
+  console.log("HERE");
+  ourChrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+    ourChrome.tabs.update(tabs[0].id, {url: tabs[0].url});
   });
 }
 
 function runSpinner() {
   chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
     var specTab = tabs[0];
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/Spinner.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/SpinnerView.js"});
+    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/Spinner.js"});
+    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/SpinnerView.js"});
   });
 }
 
@@ -53,4 +55,8 @@ function pageCleaner() {
     var specTab = tabs[0];
     chrome.tabs.executeScript(specTab.id, {file:"src/static/js/PageCleaner.js"});
   });
+}
+
+module.exports = {
+  pageRefresher
 }

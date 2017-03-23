@@ -1,5 +1,5 @@
 function haveLanguage(string, lang) {
-  return isStringInArray(string, lang.listOfLanguages);
+  return isStringInArray(string, lang.getLanguagesView());
 }
 
 function haveVersion(string, lang) {
@@ -30,9 +30,44 @@ function arrayToLowerCase(array) {
   return newArray;
 }
 
+function getInfoFromSearchBar(theDocument) {
+  var searched = theDocument.getElementById("lst-ib").value;
+  if (!searched) {
+    searched = theDocument.getElementById("lst-ib").innerHTML;
+  }
+  return splitStringIntoArray(searched);
+}
+
+function compareSearchBarInfo(getLanguagesView, that, doc) {
+  var array = getInfoFromSearchBar(doc);
+  var language, version, topic;
+  for (var i = array.length - 1; i >= 0; i--){
+    var l = haveLanguage(array[i], that);
+    if (l > -1) {
+      language = getLanguagesView[l];
+    }
+  }
+  if (language) {
+    for (var j = array.length - 1; j >= 0; j--){
+      var v = haveVersion(array[j], that[language.toLowerCase()]);
+      var t = haveTopic(array[j], that[language.toLowerCase()]);
+      if (v > -1) {
+        version = that[language.toLowerCase()].versions[v];
+      } else if (t > -1) {
+        topic = that[language.toLowerCase()].topics[t];
+      }
+    }
+  }
+  return [language, version, topic]
+}
+
 module.exports = {
   haveLanguage,
   haveVersion,
   haveTopic,
-  splitStringIntoArray
+  arrayToLowerCase,
+  isStringInArray,
+  splitStringIntoArray,
+  getInfoFromSearchBar,
+  compareSearchBarInfo
 };
