@@ -7,16 +7,27 @@ describe('Ruby', function(){
     language = new Ruby;
   });
 
-  it("#generateOfficialDocsURL", function(){
-    var version = "2.1.3";
-    var topic = "Array";
-    var resultURL = language.generateOfficialDocsURL(version, topic);
-    var expectedURL = "https://ruby-doc.org/core-2.1.3/Array.html";
-    expect(resultURL).to.equal(expectedURL);
+  describe("#generateOfficialDocsURL", function(){
+    it('returns correct url for no given topic', function(){
+      var version = "2.1.3";
+      var topic = "Array";
+      var resultURL = language.generateOfficialDocsURL(version, topic);
+      expect(resultURL).to.equal(language.baseUrl+'2.1.3/Array.html');
+    });
+
+    it('returns correct url for given topic', function(){
+      var version = "2.1.3";
+      var topic = "Array";
+      var resultURL = language.generateOfficialDocsURL(version, topic);
+      var expectedURL = "https://ruby-doc.org/core-2.1.3/Array.html";
+      expect(resultURL).to.equal(expectedURL);
+    });
   });
 
-  it("#nameOfDoc", function(){
-    var offDocs = language.nameOfDoc();
-    expect(offDocs).to.equal("Ruby-doc");
+  describe("#nameOfDoc", function(){
+    it('does something', function(){
+      var offDocs = language.nameOfDoc();
+      expect(offDocs).to.equal("Ruby-doc");
+    });
   });
 });

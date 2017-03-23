@@ -24,7 +24,6 @@ describe('Browserify', function(){
     });
   });
 
-
   describe("#nameOfDoc", function(){
     it('does something', function(){
       var offDocs = language.nameOfDoc();
