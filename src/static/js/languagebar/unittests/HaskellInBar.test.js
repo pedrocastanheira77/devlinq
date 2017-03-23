@@ -1,23 +1,23 @@
 var expect = require('chai').expect;
-var JQuery = require('../lib/JqueryInBar.js');
+var Haskell = require('../lib/HaskellInBar.js');
 var language;
 
-describe('JQuery', function(){
+describe('Haskell', function(){
   beforeEach(function(){
-    language = new JQuery;
+    language = new Haskell;
   });
 
   it("#generateOfficialDocsURL", function(){
-    var version = "V1";
+    var version = "Comming soon!";
     var topic = "add()";
     var resultURL = language.generateOfficialDocsURL(version, topic);
-    var expectedURL = "http://api.jquery.com/add";
+    var expectedURL = "https://www.haskell.orgadd()";
     expect(resultURL).to.equal(expectedURL);
   });
 
 
   it("#nameOfDoc", function(){
     var offDocs = language.nameOfDoc();
-    expect(offDocs).to.equal("API JQuery");
+    expect(offDocs).to.equal("Haskell");
   });
 });
