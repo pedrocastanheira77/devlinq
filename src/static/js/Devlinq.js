@@ -52,6 +52,12 @@ function createSpinner(theDocument) {
   }
 }
 
+function getRequestedNumberOfLinks() {
+  chrome.storage.local.get(function(result){
+    savedNumberOfLinks = result.stackOverflowResults;
+  });
+}
+
 module.exports = {
   devlinqExtention,
   createSpinner,
