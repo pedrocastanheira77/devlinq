@@ -44655,9 +44655,7 @@ var RubyonRails = require('./lib/RubyonRailsInBar.js');
 var Javascript = require('./lib/JavascriptInBar.js');
 var JQuery = require('./lib/JqueryInBar.js');
 var ChromeExtensions = require('./lib/ChromeExtensionsInBar.js');
-<<<<<<< 8ac42d7917f2125e8b18c41098ccc3735094873d
 var compareSearchBarInfo = require('./RelevantWordFinder.js').compareSearchBarInfo;
-=======
 var Selenium = require('./lib/SeleniumInBar.js');
 var React = require('./lib/ReactInBar.js');
 var Chai = require('./lib/ChaiInBar.js');
@@ -44669,7 +44667,6 @@ var haveLanguage = require('./RelevantWordFinder.js').haveLanguage;
 var haveVersion = require('./RelevantWordFinder.js').haveVersion;
 var haveTopic = require('./RelevantWordFinder.js').haveTopic;
 var splitStringIntoArray = require('./RelevantWordFinder.js').splitStringIntoArray;
->>>>>>> Add new languages to the lib
 var createOfficialDiv = require("./OfficialDocsResults.js").createOfficialDiv;
 
 function LanguagesView(){
@@ -44681,9 +44678,6 @@ function LanguagesView(){
   this.lisp = new Lisp();
   this.javascript = new Javascript();
   this.jquery = new JQuery();
-<<<<<<< 8ac42d7917f2125e8b18c41098ccc3735094873d
-  this.chromeextensions = new ChromeExtensions();
-=======
   this.react = new React();
   this.ruby = new Ruby();
   this.rubyonrails = new RubyonRails();
@@ -44702,7 +44696,6 @@ function LanguagesView(){
                             this.rubyonrails.name,
                             this.selenium.name
                           ];
->>>>>>> Add new languages to the lib
 };
 
 ///////////// new
@@ -44796,11 +44789,7 @@ LanguagesView.prototype.createLanguageDropdown = function(doc){
     new LanguagesView().versionDropdownChangeEvent(doc);
     new LanguagesView().topicDropdownChangeEvent(doc);
   };
-<<<<<<< 8ac42d7917f2125e8b18c41098ccc3735094873d
-  this.createDummyOption("language", languageDropdownList, doc);
-=======
   this.createDummyOption("technology", languageDropdownList);
->>>>>>> Add new languages to the lib
   for (var i=0;i<this.getLanguagesView().length;i++){
     var option = doc.createElement('option');
     option.value = this.getLanguagesView()[i];
@@ -44895,8 +44884,8 @@ LanguagesView.prototype.createDropdownDiv = function(doc) {
 LanguagesView.prototype.fillInVersion = function(doc){
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
-  if (chosenVersion === 'Choose a version'){
-    doc.querySelector('#versionDropdownList').value = new LanguagesView()[chosenLanguage.toLowerCase()].versions[0];
+  if (chosenVersion === 'Choose a version' && this[chosenLanguage.toLowerCase()]){
+    doc.querySelector('#versionDropdownList').value = this[chosenLanguage.toLowerCase()].versions[0];
   };
 };
 
@@ -44905,11 +44894,13 @@ LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
   var chosenTopic = doc.querySelector('#topicDropdownList').value;
-  setTimeout(function(){
-    var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-    var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
-    new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-  }, 1500)
+  if (this[chosenLanguage.toLowerCase()]) {
+    setTimeout(function(){
+      var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
+      var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+      new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
+    }, 1500)
+  }
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
