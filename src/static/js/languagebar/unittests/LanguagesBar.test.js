@@ -87,42 +87,44 @@ describe('LanguagesView', function(){
       expect(element.childNodes[1].disabled).to.equal(true);
     });
   });
-// getInfoFromSearchBar() cant document.getElementById("lst-ib").value in test
-  // describe('#createLanguageDropdown', function(){
-  //
-  //   it('creates a html list with id languageDropdownList', function(){
-  //     console.log(languagesView.createLanguageDropdown().id);
-  //     expect(languagesView.createLanguageDropdown().id).to.equal("languageDropdownList")
-  //   });
-  //
-  //   it('creates a html list with onChange function', function(){
-  //     expect(typeof(languagesView.createLanguageDropdown().onchange)).to.equal("function")
-  //   });
-  //
-  //   it('creates a html list with 4 options as child nodes', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes.length).to.equal(4)
-  //   });
-  //
-  //   it('creates list with first option value Choose a Language', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[0].value).to.equal("Choose a language")
-  //   });
-  //
-  //   it('creates list with first option innerHTML Choose a Language', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[0].innerHTML).to.equal("Choose a language")
-  //   });
-  //
-  //   it('creates list with second option value Ruby', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[1].value).to.equal("Ruby")
-  //   });
-  //
-  //   it('creates list with third option value Javascript', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[2].value).to.equal("Javascript")
-  //   });
-  //
-  //   it('creates list with fourth option value Jquery', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[3].value).to.equal("JQuery")
-  //   });
-  // });
+
+  describe('#createLanguageDropdown', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<input type="text" id="lst-ib" value="ruby array">' +
+                                '</body>');
+    it('creates a html list with id languageDropdownList', function(){
+      expect(languagesView.createLanguageDropdown(ourDocument).id).to.equal("languageDropdownList")
+    });
+
+    it('creates a html list with onChange function', function(){
+      expect(typeof(languagesView.createLanguageDropdown(ourDocument).onchange)).to.equal("function")
+    });
+
+    it('creates a html list with 4 options as child nodes', function(){
+      expect(languagesView.createLanguageDropdown(ourDocument).childNodes.length).to.equal(4)
+    });
+
+    it('creates list with first option value Choose a Language', function(){
+      expect(languagesView.createLanguageDropdown(ourDocument).childNodes[0].value).to.equal("Choose a language")
+    });
+
+    it('creates list with first option innerHTML Choose a Language', function(){
+      expect(languagesView.createLanguageDropdown(ourDocument).childNodes[0].innerHTML).to.equal("Choose a language")
+    });
+
+    it('creates list with second option value Ruby', function(){
+      expect(languagesView.createLanguageDropdown(ourDocument).childNodes[1].value).to.equal("Ruby")
+    });
+
+    it('creates list with third option value Javascript', function(){
+      expect(languagesView.createLanguageDropdown(ourDocument).childNodes[2].value).to.equal("Javascript")
+    });
+
+    it('creates list with fourth option value Jquery', function(){
+      expect(languagesView.createLanguageDropdown(ourDocument).childNodes[3].value).to.equal("JQuery")
+    });
+  });
 
   // describe('#createVersionDropdown', function(){
   //
@@ -228,42 +230,40 @@ describe('LanguagesView', function(){
     });
   });
 
-  // describe('#createLanguageDiv', function(){
-  //   it('returns a html element of type div', function(){
-  //     var languagesView = new LanguagesView;
-  //     expect(languagesView.createLanguageDiv().tagName).to.equal('DIV')
-  //   });
-  //
-  //   it('returns a html element with id language', function(){
-  //     var languagesView = new LanguagesView;
-  //     expect(languagesView.createLanguageDiv().id).to.equal('language')
-  //   });
-  //
-  //   it('returns a html element with four child nodes', function(){
-  //     var languagesView = new LanguagesView;
-  //     expect(languagesView.createLanguageDiv().childNodes.length).to.equal(4)
-  //   });
-  //
-  //   it('returns a html element with first child node a language dropdown', function(){
-  //     var languagesView = new LanguagesView;
-  //     expect(languagesView.createLanguageDiv().childNodes[0].id).to.equal("languageDropdownList")
-  //   });
-  //
-  //   it('returns a html element with second child node a version dropdown', function(){
-  //     var languagesView = new LanguagesView;
-  //     expect(languagesView.createLanguageDiv().childNodes[1].id).to.equal("versionDropdownList")
-  //   });
-  //
-  //   it('returns a html element with third child node a topic dropdown', function(){
-  //     var languagesView = new LanguagesView;
-  //     expect(languagesView.createLanguageDiv().childNodes[2].id).to.equal("topicDropdownList")
-  //   });
-  //
-  //   it('returns a html element with fourth child node a search button', function(){
-  //     var languagesView = new LanguagesView;
-  //     expect(languagesView.createLanguageDiv().childNodes[3].id).to.equal("submitSearchButton")
-  //   });
-  // });
+  describe('#createLanguagesDiv', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                  '<div id="parent_div1">' +
+                                    '<div id="parent_div2">' +
+                                    '</div>' +
+                                  '</div>' +
+                                '</body>');
+    it('returns a html element of type div', function(){
+      var languagesView = new LanguagesView;
+      expect(languagesView.createLanguagesDiv(ourDocument.getElementById("parent_div2"), ourDocument).tagName).to.equal('DIV')
+    });
+
+    it('returns a html element with id language', function(){
+      var languagesView = new LanguagesView;
+      expect(languagesView.createLanguagesDiv(ourDocument.getElementById("parent_div2"), ourDocument).id).to.equal('languages_div')
+    });
+  });
+
+  describe('#createLanguagesTitle', function(){
+    var ourDocument = jsdom ('<body>'+
+                                  'Google Search:'+
+                                    '<div style="text-align: left" id="parent_div2"></div>' +
+                                '</body>');
+    it('inserts a html element of type h2', function(){
+      var languagesView = new LanguagesView;
+      expect(languagesView.createLanguagesTitle(ourDocument.getElementById("parent_div2"), ourDocument).tagName).to.equal('H2')
+    });
+
+    it('returns a html element with id language', function(){
+      var languagesView = new LanguagesView;
+      expect(languagesView.createLanguagesTitle(ourDocument.getElementById("parent_div2"), ourDocument).className).to.equal('languages_title')
+    });
+  });
 
 
   describe('#addLinktoTag', function(){
