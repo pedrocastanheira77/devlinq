@@ -4,8 +4,7 @@ var lang = new LanguagesView();
 var createOfficialDiv = require("./languagebar/OfficialDocsResults.js").createOfficialDiv;
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackbar = new StackOverflowBar();
-var savedNumberOfLinks;
-// getRequestedNumberOfLinks();
+var savedNumberOfLinks = getRequestedNumberOfLinks();
 
 devlinqExtention();
 
