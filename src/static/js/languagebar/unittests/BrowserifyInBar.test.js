@@ -1,23 +1,23 @@
 var expect = require('chai').expect;
-var JQuery = require('../lib/JqueryInBar.js');
+var Browserify = require('../lib/BrowserifyInBar.js');
 var language;
 
-describe('JQuery', function(){
+describe('Browserify', function(){
   beforeEach(function(){
-    language = new JQuery;
+    language = new Browserify();
   });
 
   it("#generateOfficialDocsURL", function(){
-    var version = "V1";
+    var version = "Comming soon!";
     var topic = "add()";
     var resultURL = language.generateOfficialDocsURL(version, topic);
-    var expectedURL = "http://api.jquery.com/add";
+    var expectedURL = "http://browserify.orgadd()";
     expect(resultURL).to.equal(expectedURL);
   });
 
 
   it("#nameOfDoc", function(){
     var offDocs = language.nameOfDoc();
-    expect(offDocs).to.equal("API JQuery");
+    expect(offDocs).to.equal("Browserify");
   });
 });

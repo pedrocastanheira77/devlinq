@@ -1,23 +1,23 @@
 var expect = require('chai').expect;
-var JQuery = require('../lib/JqueryInBar.js');
+var Cplusplus = require('../lib/CplusplusInBar.js');
 var language;
 
-describe('JQuery', function(){
+describe('Cplusplus', function(){
   beforeEach(function(){
-    language = new JQuery;
+    language = new Cplusplus;
   });
 
   it("#generateOfficialDocsURL", function(){
-    var version = "V1";
+    var version = "C++";
     var topic = "add()";
     var resultURL = language.generateOfficialDocsURL(version, topic);
-    var expectedURL = "http://api.jquery.com/add";
+    var expectedURL = "https://isocpp.orgadd()";
     expect(resultURL).to.equal(expectedURL);
   });
 
 
   it("#nameOfDoc", function(){
     var offDocs = language.nameOfDoc();
-    expect(offDocs).to.equal("API JQuery");
+    expect(offDocs).to.equal("C++");
   });
 });
