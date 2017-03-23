@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": " react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/static/js/options/OptionsEvents.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/static/js/Spinner.js --collectCoverageFrom=!src/static/js/App.js",
+    "test": " react-scripts test --env=jsdom --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/static/js/options/OptionsEvents.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/static/js/Spinner.js --collectCoverageFrom=!src/static/js/DevlinqEvent.js --collectCoverageFrom=!src/static/js/App.js",
     "eject": "react-scripts eject"
   }
 }
