@@ -4,12 +4,11 @@ var lang = new LanguagesView();
 var StackOverflowBar = require("./stackoverflowbar/StackOverflowBar.js");
 var stackOverflowDiv = require("./stackoverflowbar/StackOverflowBar.js").stackOverflowDiv;
 var stackbar = new StackOverflowBar();
-var savedNumberOfLinks = getRequestedNumberOfLinks();
 
-function devlinqExtention(theDocument, theChrome) {
+function devlinqExtention(theDocument, theChrome, savedNumberOfLinks) {
   setTimeout(function() {
     preload(theDocument, theChrome)
-    createLangAndStackDiv(theDocument)
+    createLangAndStackDiv(theDocument, savedNumberOfLinks)
   }, 3000);
 }
 
@@ -19,7 +18,7 @@ function preload(theDocument, theChrome){
   createSpinner(theDocument);
 }
 
-function createLangAndStackDiv(theDocument){
+function createLangAndStackDiv(theDocument,savedNumberOfLinks){
   var currentDiv = theDocument.getElementById("appbar");
   lang.languagesDiv(currentDiv, theDocument);
   stackbar.stackOverflowDiv(currentDiv, savedNumberOfLinks, theDocument);
@@ -52,11 +51,7 @@ function createSpinner(theDocument) {
   }
 }
 
-function getRequestedNumberOfLinks() {
-  chrome.storage.local.get(function(result){
-    savedNumberOfLinks = result.stackOverflowResults;
-  });
-}
+
 
 module.exports = {
   devlinqExtention,
