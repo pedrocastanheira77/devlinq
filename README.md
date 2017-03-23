@@ -2,9 +2,9 @@
 
 ## Core features Implemented
 ***When Google Searching***:
-* Separate Official Docs results
-* Separate StackOverflow results from StackExchange API
-* No repetition between results
+* Show separately results from Official Language documentation
+* Show separately search results StackOverflow APIs
+* Remove repetition between results
 
 ## User Stories
 ```
@@ -48,7 +48,7 @@ Framework:
  - Chrome Extension structure
  - Javascript
  - Node.js
- - React.js
+ - React
  - Browserify
  - HTML & CSS
 
@@ -60,8 +60,8 @@ Testing:
 * Clone this repo
 * Run in the command line
 ```
-npm install
-browserify src/static/js/DevlinqEvent.js -o bundle.js
+$ npm install
+$ browserify src/static/js/DevlinqEvent.js -o bundle.js
 ```
 * Open Google Chrome
 * Visit *chrome://extensions*
