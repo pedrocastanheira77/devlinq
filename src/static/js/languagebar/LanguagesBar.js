@@ -14,14 +14,14 @@ function LanguagesView(){
 
 ///////////// new
 
-LanguagesView.prototype.languagesDiv = function (currentDiv, doc) {
+LanguagesView.prototype.languagesDiv = function(currentDiv, doc) {
   var languagesDiv = this.createLanguagesDiv(currentDiv, doc);
   this.createLanguagesTitle(languagesDiv, doc);
   this.insertDropdownIntoLanguages(languagesDiv, doc);
   this.insertOfficialDocsIntoLanguages(languagesDiv);
 }
 
-LanguagesView.prototype.createLanguagesDiv = function (currentDiv, doc) {
+LanguagesView.prototype.createLanguagesDiv = function(currentDiv, doc) {
   var languages_div = doc.getElementById("languages_div")
   if (languages_div){
     languages_div.parentNode.removeChild(languages_div)
@@ -33,7 +33,7 @@ LanguagesView.prototype.createLanguagesDiv = function (currentDiv, doc) {
   return languagesDiv;
 }
 
-LanguagesView.prototype.createLanguagesTitle = function (languagesDiv, doc) {
+LanguagesView.prototype.createLanguagesTitle = function(languagesDiv, doc) {
   if (languagesDiv) {
     var languagesTitle = doc.createElement("h2");
     languagesTitle.className = "langauges_title";
@@ -43,14 +43,14 @@ LanguagesView.prototype.createLanguagesTitle = function (languagesDiv, doc) {
   }
 }
 
-LanguagesView.prototype.insertDropdownIntoLanguages = function (languagesDiv, doc) {
+LanguagesView.prototype.insertDropdownIntoLanguages = function(languagesDiv, doc) {
   if (languagesDiv) {
     var optionsDiv = this.createDropdownDiv(doc);
     languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
   }
 }
 
-LanguagesView.prototype.insertOfficialDocsIntoLanguages = function (languagesDiv) {
+LanguagesView.prototype.insertOfficialDocsIntoLanguages = function(languagesDiv) {
   if (languagesDiv) {
     var officialDiv = createOfficialDiv();
     languagesDiv.insertAdjacentElement('beforeend', officialDiv);
@@ -89,7 +89,7 @@ LanguagesView.prototype.getTopics = function() {
 LanguagesView.prototype.createDummyOption = function(string, list, doc) {
   var option_dummy = doc.createElement('option');
   option_dummy.selected = "selected";
-  if (string === 'language'){option_dummy.disabled = "disabled";}
+  if (string === 'language'){ option_dummy.disabled = "disabled"; }
   option_dummy.value = "Choose a " + string;
   option_dummy.innerHTML = "Choose a " + string;
   list.appendChild(option_dummy);
@@ -98,8 +98,8 @@ LanguagesView.prototype.createDummyOption = function(string, list, doc) {
 LanguagesView.prototype.createLanguageDropdown = function(doc){
   var languageDropdownList = doc.createElement("select");
   languageDropdownList.id = "languageDropdownList";
-  languageDropdownList.className = "language_dropdown dropdown"
-  languageDropdownList.onchange = function(){
+  languageDropdownList.className = "language_dropdown dropdown";
+  languageDropdownList.onchange = function() {
     new LanguagesView().versionDropdownChangeEvent(doc);
     new LanguagesView().topicDropdownChangeEvent(doc);
   };
@@ -135,7 +135,7 @@ LanguagesView.prototype.createVersionDropdown = function(doc){
   return versionDropdownList;
 };
 
-LanguagesView.prototype.generateVersionOptions = function (versionDropdownList, language, doc) {
+LanguagesView.prototype.generateVersionOptions = function(versionDropdownList, language, doc) {
   var languageIndex = this.getLanguagesView().indexOf(language);
   this.createDummyOption("version", versionDropdownList, doc);
   for (var i=0; i<this.getVersions()[languageIndex].length; i++){
@@ -171,17 +171,17 @@ LanguagesView.prototype.generateTopicOptions = function(topicDropdownList, langu
   }
 };
 
-LanguagesView.prototype.createSubmitSearchButton = function (doc) {
+LanguagesView.prototype.createSubmitSearchButton = function(doc) {
   var submitSearchButton = doc.createElement("button");
   submitSearchButton.id = "submitSearchButton";
   submitSearchButton.onclick = function(){
     new LanguagesView().submitSearchButtonEvent(doc);
   };
-  submitSearchButton.innerHTML = "Search!";
+  submitSearchButton.innerHTML = "SEARCH";
   return submitSearchButton;
 };
 
-LanguagesView.prototype.createDropdownDiv = function (doc) {
+LanguagesView.prototype.createDropdownDiv = function(doc) {
   var languageDiv = doc.createElement("div");
   languageDiv.id = "language";
   languageDiv.className = "languages_select";
@@ -203,7 +203,7 @@ LanguagesView.prototype.fillInVersion = function(doc){
   };
 };
 
-LanguagesView.prototype.submitSearchButtonEvent = function (doc) {
+LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   this.fillInVersion(doc);
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
@@ -213,7 +213,6 @@ LanguagesView.prototype.submitSearchButtonEvent = function (doc) {
     var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
     new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
   }, 1500)
-
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
@@ -221,21 +220,21 @@ LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage,
   link.href = officialDocLink;
   var topicReplace;
   if (chosenTopic === 'Choose a topic'){
-    topicReplace = ''
+    topicReplace = '';
   } else {
-    topicReplace = ': ' + chosenTopic
+    topicReplace = ': ' + chosenTopic;
   }
   link.innerHTML = '<p class="linq linq_la">'+chosenLanguage+' ('+chosenVersion+')' + topicReplace + ' (from '+ docs +')</p>';
 };
 
-LanguagesView.prototype.versionDropdownChangeEvent = function (doc) {
+LanguagesView.prototype.versionDropdownChangeEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var versionDropdown = doc.getElementById("versionDropdownList");
   versionDropdown.innerHTML = "";
   new LanguagesView().generateVersionOptions(versionDropdown, chosenLanguage, doc);
 };
 
-LanguagesView.prototype.topicDropdownChangeEvent = function (doc) {
+LanguagesView.prototype.topicDropdownChangeEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var topicDropdown = doc.getElementById("topicDropdownList");
   topicDropdown.innerHTML = "";
