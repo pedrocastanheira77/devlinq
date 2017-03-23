@@ -45644,7 +45644,7 @@ StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, 
 StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
   var stackOverflowDiv = theDocument.getElementById("stackoverflowbar");
   if (stackOverflowDiv) {
-    languages_div.parentNode.removeChild(stackOverflowDiv)
+    languages_div.parentNode.removeChild(languages_div)
   }
   var stackOverflowDiv = theDocument.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
@@ -45664,7 +45664,7 @@ StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLi
 
 function createStackLinks(numberOfLinks, googleResultUrls, items, stackOverflowDiv){
   for(var i = 0; i < numberOfLinks; i++){
-    var html = '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: '+items[i].getViewCount()+'; Answer Count: '+items[i].getAnswerCount()+'; Score: '+items[i].getScore()+'</p></a></div>';
+    var html = '<div class="so_item"><a href='+items[i].getUrl()+'><p class="linq linq_so">'+items[i].getTitle()+'</p><p class="so_info">View Count: <mark class="score">'+items[i].getViewCount()+'</mark>Answer Count: <mark class="score">'+items[i].getAnswerCount()+'</mark>Score: <mark class="score">'+items[i].getScore()+'</mark></p></a></div>';
     stackOverflowDiv.insertAdjacentHTML('beforeend', html);
     fillLinks(i, items, googleResultUrls);
   }
