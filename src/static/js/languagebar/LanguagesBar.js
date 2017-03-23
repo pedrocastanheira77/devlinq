@@ -208,13 +208,13 @@ LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
   var chosenTopic = doc.querySelector('#topicDropdownList').value;
-  if (this[chosenLanguage.toLowerCase()]) {
-    setTimeout(function(){
+  // setTimeout(function(){
+    if (this[chosenLanguage.toLowerCase()]) {
       var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
       var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
       new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-    }, 1500)
-  }
+    }
+  // }, 1500)
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
