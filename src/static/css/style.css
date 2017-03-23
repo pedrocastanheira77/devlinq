@@ -69,7 +69,6 @@ body {
   width: 180px;
   height: 30px;
   border: none;
-  -webkit-appearance: none;
   -webkit-box-box-shadow: 0.3em 0.3em 0.3em #ccc;
   box-shadow: 0.3em 0.3em 0.3em #ccc;
   border-bottom: 2px solid #EA4335;
