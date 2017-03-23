@@ -15,7 +15,7 @@ function devlinqExtention() {
     replaceLogo();
     createSpinner();
     var currentDiv = document.getElementById("appbar");
-    languagesDiv(currentDiv);
+    languagesDiv(currentDiv, document);
     stackOverflowDiv(currentDiv, savedNumberOfLinks);
   }, 3000);
 }
@@ -47,8 +47,8 @@ function createSpinner() {
 
 // Languages Div
 
-function languagesDiv(currentDiv) {
-  var languagesDiv = createLanguagesDiv(currentDiv);
+function languagesDiv(currentDiv, doc) {
+  var languagesDiv = createLanguagesDiv(currentDiv, doc);
   var languagesTitle = createLanguagesTitle(languagesDiv);
   insertDropdownIntoLanguages(languagesDiv);
   insertOfficialDocsIntoLanguages(languagesDiv);
@@ -71,7 +71,7 @@ function createLanguagesTitle(languagesDiv) {
 }
 
 function insertDropdownIntoLanguages(languagesDiv) {
-  var optionsDiv = lang.createDropdownDiv();
+  var optionsDiv = lang.createDropdownDiv(document);
   languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
 }
 

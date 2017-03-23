@@ -14,10 +14,10 @@ function LanguagesView(){
 
 ///////////// new
 
-LanguagesView.prototype.languagesDiv = function (currentDiv) {
-  var languagesDiv = this.createLanguagesDiv(currentDiv, document);
-  this.createLanguagesTitle(languagesDiv, document);
-  this.insertDropdownIntoLanguages(languagesDiv);
+LanguagesView.prototype.languagesDiv = function (currentDiv, doc) {
+  var languagesDiv = this.createLanguagesDiv(currentDiv, doc);
+  this.createLanguagesTitle(languagesDiv, doc);
+  this.insertDropdownIntoLanguages(languagesDiv, doc);
   this.insertOfficialDocsIntoLanguages(languagesDiv);
 }
 
@@ -43,9 +43,9 @@ LanguagesView.prototype.createLanguagesTitle = function (languagesDiv, doc) {
   }
 }
 
-LanguagesView.prototype.insertDropdownIntoLanguages = function (languagesDiv) {
+LanguagesView.prototype.insertDropdownIntoLanguages = function (languagesDiv, doc) {
   if (languagesDiv) {
-    var optionsDiv = this.createDropdownDiv(document);
+    var optionsDiv = this.createDropdownDiv(doc);
     languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
   }
 }
@@ -89,7 +89,7 @@ LanguagesView.prototype.getTopics = function() {
 LanguagesView.prototype.createDummyOption = function(string, list, doc) {
   var option_dummy = doc.createElement('option');
   option_dummy.selected = "selected";
-  if (string == 'language'){option_dummy.disabled = "disabled";}
+  if (string === 'language'){option_dummy.disabled = "disabled";}
   option_dummy.value = "Choose a " + string;
   option_dummy.innerHTML = "Choose a " + string;
   list.appendChild(option_dummy);
@@ -121,7 +121,7 @@ LanguagesView.prototype.createLanguageDropdown = function(doc){
   return languageDropdownList;
 };
 
-LanguagesView.prototype.createVersionDropdown = function(language, doc){
+LanguagesView.prototype.createVersionDropdown = function(doc){
   var versionDropdownList = doc.createElement("select");
   versionDropdownList.id = "versionDropdownList";
   versionDropdownList.className = "version_dropdown dropdown"
