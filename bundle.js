@@ -45644,7 +45644,7 @@ StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, 
 StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
   var stackOverflowDiv = theDocument.getElementById("stackoverflowbar");
   if (stackOverflowDiv) {
-    languages_div.parentNode.removeChild(languages_div)
+    stackOverflowDiv.parentNode.removeChild(stackOverflowDiv)
   }
   var stackOverflowDiv = theDocument.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";

@@ -1,39 +1,69 @@
 var expect = require('chai').expect;
+var assert = require('chai').assert;
 var changeClickButtonStatus = require('../BackgroundFunctions.js').changeClickButtonStatus;
-var ourChrome = require('sinon-chrome');
+var chrome = require('sinon-chrome');
+var api = require('then-chrome');
 var spies = require('chai-spies')
+require('assert-extended');
 var chai = require('chai')
+var chaiAsPromised = require('chai-as-promised');
 var stub = require('sinon').stub
 var pageRefresher = require('../BackgroundFunctions.js').pageRefresher;
+var runSpinner = require('../BackgroundFunctions.js').runSpinner;
+var runContentScripts = require('../BackgroundFunctions.js').runContentScripts;
+var pageCleaner = require('../BackgroundFunctions.js').pageCleaner;
 chai.use(spies);
 
 describe('BackgroundFunctions', function(){
+  beforeEach(function () {
+      global.chrome = chrome;
+  });
+
   describe('#changeClickButtonStatus', function(){
     it('if current status is "on" returns "off"', function(){
-      expect(changeClickButtonStatus("on", ourChrome)).to.equal("off");
-    })
+      expect(changeClickButtonStatus("on", chrome)).to.equal("off");
+    });
     it('if current status is "off" returns "on"', function(){
-      expect(changeClickButtonStatus("off", ourChrome)).to.equal("on");
-    })
-
-    it('calls setIcon with correct argument', function(){
-      // var spy = chai.spy.on(ourChrome.browserAction, 'setIcon')
-      // changeClickButtonStatus("on", ourChrome);
-      // expect(spy).to.have.been.called()
-    })
-  })
+      expect(changeClickButtonStatus("off", chrome)).to.equal("on");
+    });
+  });
 
   describe('pageRefresher', function(){
     it('executes script with correct arguments', function(done){
-      var spy = chai.spy.on(ourChrome, 'tabs');
-      console.log(spy.constructor.name);
-      stub(ourChrome, 'tabs');
-      // ourChrome.tabs.query.returns("hello");
-      pageRefresher(ourChrome);
-      setTimeout(function () {
-        // expect(spy).not.to.be.spy();
-        done();
-      }, 1000);
+      pageRefresher(chrome);
+      assert.ok(chrome.tabs.query.called, 'function was called');
+      chrome.tabs.query.yields([1,2]);
+      assert.ok(chrome.tabs.update.notCalled, 'function was not called');
+      done();
     });
   });
-})
+
+  describe('runSpinner', function(){
+    it('executes script with correct arguments', function(done){
+      runSpinner(chrome);
+      assert.ok(chrome.tabs.query.called, 'function was called');
+      assert.ok(chrome.tabs.executeScript.called, 'function was called');
+      assert.ok(chrome.tabs.executeScript.called, 'function was called');
+      done();
+    });
+  });
+
+  describe('runContentScripts', function(){
+    it('executes script with correct arguments', function(done){
+      runContentScripts(chrome);
+      assert.ok(chrome.tabs.query.called, 'function was called');
+      assert.ok(chrome.tabs.insertCSS.called, 'function was called');
+      assert.ok(chrome.tabs.executeScript.called, 'function was called');
+      done();
+    });
+  });
+
+  describe('pageCleaner', function(){
+    it('executes script with correct arguments', function(done){
+      pageCleaner(chrome);
+      assert.ok(chrome.tabs.query.called, 'function was called');
+      assert.ok(chrome.tabs.executeScript.called, 'function was not called');
+      done();
+    });
+  });
+});

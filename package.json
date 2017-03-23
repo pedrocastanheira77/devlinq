@@ -21,7 +21,9 @@
     "zombie": "^5.0.5"
   },
   "devDependencies": {
+    "assert-extended": "^1.0.1",
     "babel-plugin-istanbul": "^4.0.0",
+    "chai-as-promised": "^6.0.0",
     "chai-spies": "^0.7.1",
     "istanbul": "^0.4.5",
     "jasmine-react-helpers": "^0.2.2",
@@ -30,6 +32,7 @@
     "react-scripts": "0.9.5",
     "sinon": "^2.1.0",
     "sinon-chrome": "^2.1.3",
+    "then-chrome": "^1.0.6",
     "ts-jest": "^18.0.3",
     "typescript": "^2.2.1",
     "zombie": "^5.0.5"

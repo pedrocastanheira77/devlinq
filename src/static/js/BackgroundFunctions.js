@@ -23,19 +23,19 @@ function pageRefresher(theChrome){
   });
 }
 
-function runSpinner() {
-  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+function runSpinner(theChrome) {
+  theChrome.tabs.query({currentWindow:true, active:true}, function(tabs){
     var specTab = tabs[0];
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/Spinner.js"});
-    chrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/SpinnerView.js"});
+    theChrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/Spinner.js"});
+    theChrome.tabs.executeScript(specTab.id, {file:"src/static/js/spinner/SpinnerView.js"});
   });
 }
 
-function runContentScripts() {
-  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+function runContentScripts(theChrome) {
+  theChrome.tabs.query({currentWindow:true, active:true}, function(tabs){
     var specTab = tabs[0];
-    chrome.tabs.insertCSS(specTab.id, {file:"src/static/css/style.css"});
-    chrome.tabs.executeScript(specTab.id, {file:"bundle.js"});
+    theChrome.tabs.insertCSS(specTab.id, {file:"src/static/css/style.css"});
+    theChrome.tabs.executeScript(specTab.id, {file:"bundle.js"});
   });
 }
 
@@ -49,5 +49,8 @@ function pageCleaner() {
 module.exports = {
   triggerContentsScripts,
   changeClickButtonStatus,
-  pageRefresher
+  pageRefresher,
+  runSpinner,
+  runContentScripts,
+  pageCleaner
 }
