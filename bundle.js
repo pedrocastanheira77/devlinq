@@ -41335,18 +41335,18 @@ module.exports={
   "_args": [
     [
       {
-        "raw": "tough-cookie@~2.3.0",
+        "raw": "tough-cookie@^2.3.2",
         "scope": null,
         "escapedName": "tough-cookie",
         "name": "tough-cookie",
-        "rawSpec": "~2.3.0",
-        "spec": ">=2.3.0 <2.4.0",
+        "rawSpec": "^2.3.2",
+        "spec": ">=2.3.2 <3.0.0",
         "type": "range"
       },
-      "/Users/frankieshaw/Desktop/Coding/devlinq/node_modules/request"
+      "/Users/KateLoschinina/Workspace/MakersAcademy/devlinq/node_modules/jsdom"
     ]
   ],
-  "_from": "tough-cookie@>=2.3.0 <2.4.0",
+  "_from": "tough-cookie@>=2.3.2 <3.0.0",
   "_id": "tough-cookie@2.3.2",
   "_inCache": true,
   "_location": "/tough-cookie",
@@ -41362,26 +41362,25 @@ module.exports={
   "_npmVersion": "3.10.8",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "tough-cookie@~2.3.0",
+    "raw": "tough-cookie@^2.3.2",
     "scope": null,
     "escapedName": "tough-cookie",
     "name": "tough-cookie",
-    "rawSpec": "~2.3.0",
-    "spec": ">=2.3.0 <2.4.0",
+    "rawSpec": "^2.3.2",
+    "spec": ">=2.3.2 <3.0.0",
     "type": "range"
   },
   "_requiredBy": [
-    "/jest-environment-jsdom/jsdom",
     "/jsdom",
-    "/react-scripts/jsdom",
     "/request",
-    "/zombie"
+    "/zombie",
+    "/zombie/jsdom"
   ],
   "_resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.2.tgz",
   "_shasum": "f081f76e4c85720e6c37a5faced737150d84072a",
   "_shrinkwrap": null,
-  "_spec": "tough-cookie@~2.3.0",
-  "_where": "/Users/frankieshaw/Desktop/Coding/devlinq/node_modules/request",
+  "_spec": "tough-cookie@^2.3.2",
+  "_where": "/Users/KateLoschinina/Workspace/MakersAcademy/devlinq/node_modules/jsdom",
   "author": {
     "name": "Jeremy Stashewsky",
     "email": "jstashewsky@salesforce.com"
@@ -44851,8 +44850,8 @@ LanguagesView.prototype.createDropdownDiv = function(doc) {
 LanguagesView.prototype.fillInVersion = function(doc){
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
-  if (chosenVersion === 'Choose a version'){
-    doc.querySelector('#versionDropdownList').value = new LanguagesView()[chosenLanguage.toLowerCase()].versions[0];
+  if (chosenVersion === 'Choose a version' && this[chosenLanguage.toLowerCase()]){
+    doc.querySelector('#versionDropdownList').value = this[chosenLanguage.toLowerCase()].versions[0];
   };
 };
 
@@ -44861,11 +44860,13 @@ LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
   var chosenTopic = doc.querySelector('#topicDropdownList').value;
-  setTimeout(function(){
-    var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-    var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
-    new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-  }, 1500)
+  // setTimeout(function(){
+    if (this[chosenLanguage.toLowerCase()]) {
+      var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
+      var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+      new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
+    }
+  // }, 1500)
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
