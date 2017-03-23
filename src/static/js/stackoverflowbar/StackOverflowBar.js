@@ -48,7 +48,6 @@ function insertResponse(array, response, number){
 StackOverflowBar.prototype.stackAPIresult = function (theDocument) {
   var exampleSOresult = theDocument.createElement("p");
   exampleSOresult.id = "exampleSOresult";
-  // 'HERE!' IS WHERE GETSTACKAPI(STRING, NUMBER) SHOULD BE USED
   exampleSOresult.innerHTML = this.decideStringForAPI(theDocument)
   return exampleSOresult;
 }
@@ -61,9 +60,8 @@ StackOverflowBar.prototype.createStackOverflowDiv = function (theDocument) {
   return stackOverflowDiv
 };
 
-//TEST FROM HERE
-
 StackOverflowBar.prototype.getRequestedNumberOfLinks = function(theChrome) {
+  var savedNumberOfLinks;
   theChrome.storage.local.get(function(result){
     savedNumberOfLinks = result.stackOverflowResults;
   });
@@ -121,7 +119,7 @@ function fillLinks(i, items, googleResultUrls){
 }
 
 function removeGoogleResult(googleResultUrls, x){
-  var box = googleResultUrls[link].parentNode.parentNode.parentNode.parentNode;
+  var box = googleResultUrls[x].parentNode.parentNode.parentNode.parentNode;
   if (box) {box.parentNode.removeChild(box);};
 }
 
