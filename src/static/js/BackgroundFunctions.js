@@ -17,9 +17,9 @@ function changeClickButtonStatus(clickButtonStatus, chrome){
   }
 }
 
-function pageRefresher(){
-  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
-    chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+function pageRefresher(theChrome){
+  theChrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+    theChrome.tabs.update(tabs[0].id, {url: tabs[0].url});
   });
 }
 

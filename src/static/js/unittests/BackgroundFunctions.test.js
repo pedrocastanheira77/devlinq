@@ -4,6 +4,7 @@ var ourChrome = require('sinon-chrome');
 var spies = require('chai-spies')
 var chai = require('chai')
 var stub = require('sinon').stub
+var pageRefresher = require('../BackgroundFunctions.js').pageRefresher;
 chai.use(spies);
 
 describe('BackgroundFunctions', function(){
@@ -21,4 +22,18 @@ describe('BackgroundFunctions', function(){
       // expect(spy).to.have.been.called()
     })
   })
+
+  describe('pageRefresher', function(){
+    it('executes script with correct arguments', function(done){
+      var spy = chai.spy.on(ourChrome, 'tabs');
+      console.log(spy.constructor.name);
+      stub(ourChrome, 'tabs');
+      // ourChrome.tabs.query.returns("hello");
+      pageRefresher(ourChrome);
+      setTimeout(function () {
+        // expect(spy).not.to.be.spy();
+        done();
+      }, 1000);
+    });
+  });
 })

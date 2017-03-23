@@ -6,7 +6,7 @@ var pageRefresher = require("./BackgroundFunctions.js").pageRefresher;
 
 chrome.browserAction.onClicked.addListener(function(tab){
   clickButtonStatus = changeClickButtonStatus(clickButtonStatus, chrome);
-  pageRefresher();
+  pageRefresher(chrome);
 });
 
 chrome.tabs.onUpdated.addListener(triggerContentsScripts);

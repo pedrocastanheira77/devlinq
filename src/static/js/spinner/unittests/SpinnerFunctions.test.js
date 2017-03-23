@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 var spies = require('chai-spies');
 chai.use(spies);
 // var SpinnerDiv = require('../SpinnerView.js').SpinnerDiv;
-var startSpinner = require('../SpinnerView.js');
+var startSpinner = require('../SpinnerFunctions.js');
 // var jsdom = require('jsdom').jsdom;
 var Spinner = require("../Spinner.js");
 var spinnerDiv = document.createElement("div");
