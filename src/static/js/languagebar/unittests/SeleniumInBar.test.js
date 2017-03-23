@@ -1,23 +1,23 @@
 var expect = require('chai').expect;
-var JQuery = require('../lib/JqueryInBar.js');
+var Selenium = require('../lib/SeleniumInBar.js');
 var language;
 
-describe('JQuery', function(){
+describe('Selenium', function(){
   beforeEach(function(){
-    language = new JQuery;
+    language = new Selenium();
   });
 
   it("#generateOfficialDocsURL", function(){
-    var version = "V1";
+    var version = "Comming soon!";
     var topic = "add()";
     var resultURL = language.generateOfficialDocsURL(version, topic);
-    var expectedURL = "http://api.jquery.com/add";
+    var expectedURL = "http://www.seleniumhq.org/add()";
     expect(resultURL).to.equal(expectedURL);
   });
 
 
   it("#nameOfDoc", function(){
     var offDocs = language.nameOfDoc();
-    expect(offDocs).to.equal("API JQuery");
+    expect(offDocs).to.equal("Selenium");
   });
 });

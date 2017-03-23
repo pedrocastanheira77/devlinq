@@ -1,23 +1,23 @@
 var expect = require('chai').expect;
-var JQuery = require('../lib/JqueryInBar.js');
+var React = require('../lib/ReactInBar.js');
 var language;
 
-describe('JQuery', function(){
+describe('React', function(){
   beforeEach(function(){
-    language = new JQuery;
+    language = new React();
   });
 
   it("#generateOfficialDocsURL", function(){
-    var version = "V1";
+    var version = "Comming soon!";
     var topic = "add()";
     var resultURL = language.generateOfficialDocsURL(version, topic);
-    var expectedURL = "http://api.jquery.com/add";
+    var expectedURL = "https://facebook.github.io/reactadd()";
     expect(resultURL).to.equal(expectedURL);
   });
 
 
   it("#nameOfDoc", function(){
     var offDocs = language.nameOfDoc();
-    expect(offDocs).to.equal("API JQuery");
+    expect(offDocs).to.equal("React");
   });
 });
