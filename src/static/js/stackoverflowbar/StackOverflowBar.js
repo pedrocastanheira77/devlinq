@@ -87,6 +87,10 @@ StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, 
 
 
 StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
+  var stackOverflowDiv = theDocument.getElementById("stackoverflowbar");
+  if (stackOverflowDiv) {
+    languages_div.parentNode.removeChild(stackOverflowDiv)
+  }
   var stackOverflowDiv = theDocument.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
   stackOverflowDiv.className = "devlinq_div stackoverflow_div";

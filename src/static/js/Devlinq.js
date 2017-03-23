@@ -51,8 +51,6 @@ function createSpinner(theDocument) {
   }
 }
 
-
-
 module.exports = {
   devlinqExtention,
   createSpinner,
