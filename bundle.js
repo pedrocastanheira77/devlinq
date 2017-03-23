@@ -41335,18 +41335,18 @@ module.exports={
   "_args": [
     [
       {
-        "raw": "tough-cookie@^2.3.2",
+        "raw": "tough-cookie@~2.3.0",
         "scope": null,
         "escapedName": "tough-cookie",
         "name": "tough-cookie",
-        "rawSpec": "^2.3.2",
-        "spec": ">=2.3.2 <3.0.0",
+        "rawSpec": "~2.3.0",
+        "spec": ">=2.3.0 <2.4.0",
         "type": "range"
       },
-      "/Users/KateLoschinina/Workspace/MakersAcademy/devlinq/node_modules/jsdom"
+      "/Users/frankieshaw/Desktop/Coding/devlinq/node_modules/request"
     ]
   ],
-  "_from": "tough-cookie@>=2.3.2 <3.0.0",
+  "_from": "tough-cookie@>=2.3.0 <2.4.0",
   "_id": "tough-cookie@2.3.2",
   "_inCache": true,
   "_location": "/tough-cookie",
@@ -41362,25 +41362,26 @@ module.exports={
   "_npmVersion": "3.10.8",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "tough-cookie@^2.3.2",
+    "raw": "tough-cookie@~2.3.0",
     "scope": null,
     "escapedName": "tough-cookie",
     "name": "tough-cookie",
-    "rawSpec": "^2.3.2",
-    "spec": ">=2.3.2 <3.0.0",
+    "rawSpec": "~2.3.0",
+    "spec": ">=2.3.0 <2.4.0",
     "type": "range"
   },
   "_requiredBy": [
+    "/jest-environment-jsdom/jsdom",
     "/jsdom",
+    "/react-scripts/jsdom",
     "/request",
-    "/zombie",
-    "/zombie/jsdom"
+    "/zombie"
   ],
   "_resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.2.tgz",
   "_shasum": "f081f76e4c85720e6c37a5faced737150d84072a",
   "_shrinkwrap": null,
-  "_spec": "tough-cookie@^2.3.2",
-  "_where": "/Users/KateLoschinina/Workspace/MakersAcademy/devlinq/node_modules/jsdom",
+  "_spec": "tough-cookie@~2.3.0",
+  "_where": "/Users/frankieshaw/Desktop/Coding/devlinq/node_modules/request",
   "author": {
     "name": "Jeremy Stashewsky",
     "email": "jstashewsky@salesforce.com"
@@ -44666,27 +44667,15 @@ function LanguagesView(){
 
 ///////////// new
 
-<<<<<<< HEAD
-LanguagesView.prototype.languagesDiv = function (currentDiv, doc) {
+LanguagesView.prototype.languagesDiv = function(currentDiv, doc) {
   var languagesDiv = this.createLanguagesDiv(currentDiv, doc);
   this.createLanguagesTitle(languagesDiv, doc);
   this.insertDropdownIntoLanguages(languagesDiv, doc);
   this.insertOfficialDocsIntoLanguages(languagesDiv);
 }
 
-LanguagesView.prototype.createLanguagesDiv = function (currentDiv, doc) {
+LanguagesView.prototype.createLanguagesDiv = function(currentDiv, doc) {
   var languages_div = doc.getElementById("languages_div")
-=======
-LanguagesView.prototype.languagesDiv = function(currentDiv) {
-  var languagesDiv = this.createLanguagesDiv(currentDiv);
-  this.createLanguagesTitle(languagesDiv);
-  this.insertDropdownIntoLanguages(languagesDiv);
-  this.insertOfficialDocsIntoLanguages(languagesDiv);
-}
-
-LanguagesView.prototype.createLanguagesDiv = function(currentDiv) {
-  var languages_div = document.getElementById("languages_div")
->>>>>>> refs/remotes/origin/master
   if (languages_div){
     languages_div.parentNode.removeChild(languages_div)
   }
@@ -44697,11 +44686,7 @@ LanguagesView.prototype.createLanguagesDiv = function(currentDiv) {
   return languagesDiv;
 }
 
-<<<<<<< HEAD
-LanguagesView.prototype.createLanguagesTitle = function (languagesDiv, doc) {
-=======
-LanguagesView.prototype.createLanguagesTitle = function(languagesDiv) {
->>>>>>> refs/remotes/origin/master
+LanguagesView.prototype.createLanguagesTitle = function(languagesDiv, doc) {
   if (languagesDiv) {
     var languagesTitle = doc.createElement("h2");
     languagesTitle.className = "langauges_title";
@@ -44711,11 +44696,7 @@ LanguagesView.prototype.createLanguagesTitle = function(languagesDiv) {
   }
 }
 
-<<<<<<< HEAD
-LanguagesView.prototype.insertDropdownIntoLanguages = function (languagesDiv, doc) {
-=======
-LanguagesView.prototype.insertDropdownIntoLanguages = function(languagesDiv) {
->>>>>>> refs/remotes/origin/master
+LanguagesView.prototype.insertDropdownIntoLanguages = function(languagesDiv, doc) {
   if (languagesDiv) {
     var optionsDiv = this.createDropdownDiv(doc);
     languagesDiv.insertAdjacentElement('beforeend', optionsDiv);
@@ -44731,41 +44712,6 @@ LanguagesView.prototype.insertOfficialDocsIntoLanguages = function(languagesDiv)
 
 ///////////// new
 
-<<<<<<< HEAD
-=======
-LanguagesView.prototype.getInfoFromSearchBar = function() {
-  var searched = document.getElementById("lst-ib").value;
-  if (!searched) {
-    searched = document.getElementById("lst-ib").innerHTML;
-  }
-  return splitStringIntoArray(searched);
-}
-
-LanguagesView.prototype.compareSearchBarInfo = function() {
-  var array = this.getInfoFromSearchBar();
-  var language, version, topic;
-  for (var i = array.length - 1; i >= 0; i--){
-    var l = haveLanguage(array[i], this);
-    if (l > -1) {
-      language = this.getLanguagesView()[l];
-    }
-  }
-  if (language) {
-    for (var j = array.length - 1; j >= 0; j--){
-      var v = haveVersion(array[j], this[language.toLowerCase()]);
-      var t = haveTopic(array[j], this[language.toLowerCase()]);
-      if (v > -1) {
-        version = this[language.toLowerCase()].versions[v];
-      } else if (t > -1) {
-        topic = this[language.toLowerCase()].topics[t];
-      }
-    }
-  }
-  return [language, version, topic];
-}
-
-
->>>>>>> refs/remotes/origin/master
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
   for (var i=0;i<Object.keys(new LanguagesView()).length-1;i++) {
@@ -44796,11 +44742,7 @@ LanguagesView.prototype.getTopics = function() {
 LanguagesView.prototype.createDummyOption = function(string, list, doc) {
   var option_dummy = doc.createElement('option');
   option_dummy.selected = "selected";
-<<<<<<< HEAD
-  if (string === 'language'){option_dummy.disabled = "disabled";}
-=======
   if (string === 'language'){ option_dummy.disabled = "disabled"; }
->>>>>>> refs/remotes/origin/master
   option_dummy.value = "Choose a " + string;
   option_dummy.innerHTML = "Choose a " + string;
   list.appendChild(option_dummy);
@@ -44809,17 +44751,10 @@ LanguagesView.prototype.createDummyOption = function(string, list, doc) {
 LanguagesView.prototype.createLanguageDropdown = function(doc){
   var languageDropdownList = doc.createElement("select");
   languageDropdownList.id = "languageDropdownList";
-<<<<<<< HEAD
-  languageDropdownList.className = "language_dropdown dropdown"
-  languageDropdownList.onchange = function(){
-    new LanguagesView().versionDropdownChangeEvent(doc);
-    new LanguagesView().topicDropdownChangeEvent(doc);
-=======
   languageDropdownList.className = "language_dropdown dropdown";
   languageDropdownList.onchange = function() {
-    new LanguagesView().versionDropdownChangeEvent();
-    new LanguagesView().topicDropdownChangeEvent();
->>>>>>> refs/remotes/origin/master
+    new LanguagesView().versionDropdownChangeEvent(doc);
+    new LanguagesView().topicDropdownChangeEvent(doc);
   };
   this.createDummyOption("language", languageDropdownList, doc);
   for (var i=0;i<this.getLanguagesView().length;i++){
@@ -44853,11 +44788,7 @@ LanguagesView.prototype.createVersionDropdown = function(doc){
   return versionDropdownList;
 };
 
-<<<<<<< HEAD
-LanguagesView.prototype.generateVersionOptions = function (versionDropdownList, language, doc) {
-=======
-LanguagesView.prototype.generateVersionOptions = function(versionDropdownList, language) {
->>>>>>> refs/remotes/origin/master
+LanguagesView.prototype.generateVersionOptions = function(versionDropdownList, language, doc) {
   var languageIndex = this.getLanguagesView().indexOf(language);
   this.createDummyOption("version", versionDropdownList, doc);
   for (var i=0; i<this.getVersions()[languageIndex].length; i++){
@@ -44893,13 +44824,8 @@ LanguagesView.prototype.generateTopicOptions = function(topicDropdownList, langu
   }
 };
 
-<<<<<<< HEAD
-LanguagesView.prototype.createSubmitSearchButton = function (doc) {
+LanguagesView.prototype.createSubmitSearchButton = function(doc) {
   var submitSearchButton = doc.createElement("button");
-=======
-LanguagesView.prototype.createSubmitSearchButton = function() {
-  var submitSearchButton = document.createElement("button");
->>>>>>> refs/remotes/origin/master
   submitSearchButton.id = "submitSearchButton";
   submitSearchButton.onclick = function(){
     new LanguagesView().submitSearchButtonEvent(doc);
@@ -44908,7 +44834,7 @@ LanguagesView.prototype.createSubmitSearchButton = function() {
   return submitSearchButton;
 };
 
-LanguagesView.prototype.createDropdownDiv = function (doc) {
+LanguagesView.prototype.createDropdownDiv = function(doc) {
   var languageDiv = doc.createElement("div");
   languageDiv.id = "language";
   languageDiv.className = "languages_select";
@@ -44922,7 +44848,6 @@ LanguagesView.prototype.createDropdownDiv = function (doc) {
   return languageDiv;
 };
 
-<<<<<<< HEAD
 LanguagesView.prototype.fillInVersion = function(doc){
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
@@ -44931,7 +44856,7 @@ LanguagesView.prototype.fillInVersion = function(doc){
   };
 };
 
-LanguagesView.prototype.submitSearchButtonEvent = function (doc) {
+LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   this.fillInVersion(doc);
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
@@ -44940,31 +44865,7 @@ LanguagesView.prototype.submitSearchButtonEvent = function (doc) {
     var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
     var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
     new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-=======
-LanguagesView.prototype.fillInVersion = function(){
-  var chosenLanguage = document.querySelector('#languageDropdownList').value;
-  var chosenVersion = document.querySelector('#versionDropdownList').value;
-  if (chosenVersion === 'Choose a version') {
-    document.querySelector('#versionDropdownList').value = new LanguagesView()[chosenLanguage.toLowerCase()].versions[0];
-  };
-};
-
-LanguagesView.prototype.submitSearchButtonEvent = function(){
-  var chosenLanguage = document.querySelector('#languageDropdownList').value;
-  var chosenVersion = document.querySelector('#versionDropdownList').value;
-  var chosenTopic = document.querySelector('#topicDropdownList').value;
-  if (chosenVersion === 'Choose a version' && this[chosenLanguage.toLowerCase()]) {
-    document.querySelector('#versionDropdownList').value = this[chosenLanguage.toLowerCase()].versions[0];
-  };
-  setTimeout(function(){
-    if (this[chosenLanguage.toLowerCase()]) {
-      var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-      var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
-      new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs);
-    }
->>>>>>> refs/remotes/origin/master
   }, 1500)
-
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
@@ -44979,28 +44880,16 @@ LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage,
   link.innerHTML = '<p class="linq linq_la">'+chosenLanguage+' ('+chosenVersion+')' + topicReplace + ' (from '+ docs +')</p>';
 };
 
-<<<<<<< HEAD
-LanguagesView.prototype.versionDropdownChangeEvent = function (doc) {
+LanguagesView.prototype.versionDropdownChangeEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var versionDropdown = doc.getElementById("versionDropdownList");
-=======
-LanguagesView.prototype.versionDropdownChangeEvent = function() {
-  var chosenLanguage = document.querySelector('#languageDropdownList').value;
-  var versionDropdown = document.getElementById("versionDropdownList");
->>>>>>> refs/remotes/origin/master
   versionDropdown.innerHTML = "";
   new LanguagesView().generateVersionOptions(versionDropdown, chosenLanguage, doc);
 };
 
-<<<<<<< HEAD
-LanguagesView.prototype.topicDropdownChangeEvent = function (doc) {
+LanguagesView.prototype.topicDropdownChangeEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var topicDropdown = doc.getElementById("topicDropdownList");
-=======
-LanguagesView.prototype.topicDropdownChangeEvent = function() {
-  var chosenLanguage = document.querySelector('#languageDropdownList').value;
-  var topicDropdown = document.getElementById("topicDropdownList");
->>>>>>> refs/remotes/origin/master
   topicDropdown.innerHTML = "";
   new LanguagesView().generateTopicOptions(topicDropdown, chosenLanguage, doc);
 };

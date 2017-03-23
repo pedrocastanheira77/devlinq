@@ -224,7 +224,7 @@ describe('LanguagesView', function(){
     });
 
     it('returns a html button element with innerHTML search', function(){
-      expect(languagesView.createSubmitSearchButton(ourDocument).innerHTML).to.equal("Search!")
+      expect(languagesView.createSubmitSearchButton(ourDocument).innerHTML).to.equal("SEARCH")
     });
   });
 
