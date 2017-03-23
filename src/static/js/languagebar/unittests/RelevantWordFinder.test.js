@@ -28,13 +28,13 @@ describe('ReleventWordFinder', function(){
   describe('#haveLanguage', function(){
     var STRING = "jaVASCRIPT";
     it('checks if language is in our library', function(){
-      assert.equal(haveLanguage(STRING, lang), 1);
+      assert.equal(haveLanguage(STRING, lang), 6);
     });
     it('check is not case sensitive', function(){
-      assert.equal(haveLanguage(STRING, lang), true);
+      assert.equal(haveLanguage(STRING, lang), 6);
     });
     it('pluralize and unpluralize', function(){
-      assert.equal(haveLanguage(STRING, lang), true);
+      assert.equal(haveLanguage(STRING, lang), 6);
     });
   });
 
