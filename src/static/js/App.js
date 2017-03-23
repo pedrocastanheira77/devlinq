@@ -25,7 +25,7 @@ class App extends Component {
     })
 
     document.querySelector("#lst-ib").addEventListener('change', function(evt) {
-      lang.languagesDiv(currentDiv);
+      lang.languagesDiv(currentDiv, document);
       stackbar.getStackAPI(document.getElementById("lst-ib").value, 5).then(function(items) {
         that.setState({items: items});
       })
@@ -35,7 +35,7 @@ class App extends Component {
   render(data) {
     return (
       <div className="App">
-       <div id="language">{lang.languagesDiv(currentDiv)}</div>
+       <div id="language">{lang.languagesDiv(currentDiv, document)}</div>
        <div className="devlinq_div stackoverflow_div" id="stackoverflowbar">
         <h2 className="stackoverflow_title">STACK OVERFLOW</h2>
           {this.state.items.map((item, i) => {
