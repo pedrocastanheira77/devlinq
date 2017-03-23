@@ -198,8 +198,8 @@ LanguagesView.prototype.createDropdownDiv = function(doc) {
 LanguagesView.prototype.fillInVersion = function(doc){
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
-  if (chosenVersion === 'Choose a version'){
-    doc.querySelector('#versionDropdownList').value = new LanguagesView()[chosenLanguage.toLowerCase()].versions[0];
+  if (chosenVersion === 'Choose a version' && this[chosenLanguage.toLowerCase()]){
+    doc.querySelector('#versionDropdownList').value = this[chosenLanguage.toLowerCase()].versions[0];
   };
 };
 
@@ -208,11 +208,13 @@ LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
   var chosenTopic = doc.querySelector('#topicDropdownList').value;
-  setTimeout(function(){
-    var officialDocLink = new LanguagesView()[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-    var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
-    new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-  }, 1500)
+  if (this[chosenLanguage.toLowerCase()]) {
+    setTimeout(function(){
+      var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
+      var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+      new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
+    }, 1500)
+  }
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
