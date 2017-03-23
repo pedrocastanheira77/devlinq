@@ -7,7 +7,7 @@
   "description": "Tool to organise your coding-related search",
 
   "background": {
-    "scripts": ["src/static/js/background.js"
+    "scripts": [ "src/static/js/Background.js"
                ],
     "persistent": true
   },

@@ -1,13 +1,18 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var clickButtonStatus = "on";
-var c = chrome
+var triggerContentsScripts = require("./BackgroundFunctions.js").triggerContentsScripts;
+var changeClickButtonStatus = require("./BackgroundFunctions.js").changeClickButtonStatus;
+var pageRefresher = require("./BackgroundFunctions.js").pageRefresher;
+
 
 chrome.browserAction.onClicked.addListener(function(tab){
   changeClickButtonStatus();
-  pageRefresher(c);
+  pageRefresher();
 });
 
 chrome.tabs.onUpdated.addListener(triggerContentsScripts);
 
+},{"./BackgroundFunctions.js":2}],2:[function(require,module,exports){
 function triggerContentsScripts(tabId, changeInfo, tab) {
   if (changeInfo.status === "complete" && clickButtonStatus === "on") {
     pageCleaner();
@@ -27,10 +32,9 @@ function changeClickButtonStatus(){
   }
 }
 
-function pageRefresher(ourChrome){
-  console.log("HERE");
-  ourChrome.tabs.query({currentWindow:true, active:true}, function(tabs){
-    ourChrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+function pageRefresher(){
+  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+    chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
   });
 }
 
@@ -58,5 +62,9 @@ function pageCleaner() {
 }
 
 module.exports = {
+  triggerContentsScripts,
+  changeClickButtonStatus,
   pageRefresher
 }
+
+},{}]},{},[1]);

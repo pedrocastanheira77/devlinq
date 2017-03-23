@@ -1,15 +1,49 @@
 var Ruby = require('./lib/RubyInBar.js');
+var RubyonRails = require('./lib/RubyonRailsInBar.js');
 var Javascript = require('./lib/JavascriptInBar.js');
 var JQuery = require('./lib/JqueryInBar.js');
 var ChromeExtensions = require('./lib/ChromeExtensionsInBar.js');
 var compareSearchBarInfo = require('./RelevantWordFinder.js').compareSearchBarInfo;
+var Selenium = require('./lib/SeleniumInBar.js');
+var React = require('./lib/ReactInBar.js');
+var Chai = require('./lib/ChaiInBar.js');
+var Browserify = require('./lib/BrowserifyInBar.js');
+var Haskell = require('./lib/HaskellInBar.js');
+var Lisp = require('./lib/LispInBar.js');
+var Cplusplus = require('./lib/CplusplusInBar.js');
+var haveLanguage = require('./RelevantWordFinder.js').haveLanguage;
+var haveVersion = require('./RelevantWordFinder.js').haveVersion;
+var haveTopic = require('./RelevantWordFinder.js').haveTopic;
+var splitStringIntoArray = require('./RelevantWordFinder.js').splitStringIntoArray;
 var createOfficialDiv = require("./OfficialDocsResults.js").createOfficialDiv;
 
 function LanguagesView(){
-  this.ruby = new Ruby();
+  this.browserify = new Browserify();
+  this.chai = new Chai();
+  this.chromeextensions = new ChromeExtensions();
+  this.cplusplus = new Cplusplus();
+  this.haskell = new Haskell();
+  this.lisp = new Lisp();
   this.javascript = new Javascript();
   this.jquery = new JQuery();
-  this.chromeextensions = new ChromeExtensions();
+  this.react = new React();
+  this.ruby = new Ruby();
+  this.rubyonrails = new RubyonRails();
+  this.selenium = new Selenium();
+  this.listOfLanguages = [
+                            this.browserify.name,
+                            this.chai.name,
+                            this.chromeextensions.name,
+                            this.cplusplus.name,
+                            this.haskell.name,
+                            this.lisp.name,
+                            this.javascript.name,
+                            this.jquery.name,
+                            this.react.name,
+                            this.ruby.name,
+                            this.rubyonrails.name,
+                            this.selenium.name
+                          ];
 };
 
 ///////////// new
@@ -103,7 +137,7 @@ LanguagesView.prototype.createLanguageDropdown = function(doc){
     new LanguagesView().versionDropdownChangeEvent(doc);
     new LanguagesView().topicDropdownChangeEvent(doc);
   };
-  this.createDummyOption("language", languageDropdownList, doc);
+  this.createDummyOption("technology", languageDropdownList);
   for (var i=0;i<this.getLanguagesView().length;i++){
     var option = doc.createElement('option');
     option.value = this.getLanguagesView()[i];
