@@ -9,6 +9,7 @@ var LanguagesView = require('../LanguagesBar.js');
 var languagesView;
 
 describe('LanguagesView', function(){
+
   beforeEach(function(){
     languagesView = new LanguagesView;
   });
@@ -88,88 +89,93 @@ describe('LanguagesView', function(){
     });
   });
 // getInfoFromSearchBar() cant document.getElementById("lst-ib").value in test
-  // describe('#createLanguageDropdown', function(){
-  //
-  //   it('creates a html list with id languageDropdownList', function(){
-  //     console.log(languagesView.createLanguageDropdown().id);
-  //     expect(languagesView.createLanguageDropdown().id).to.equal("languageDropdownList")
-  //   });
-  //
-  //   it('creates a html list with onChange function', function(){
-  //     expect(typeof(languagesView.createLanguageDropdown().onchange)).to.equal("function")
-  //   });
-  //
-  //   it('creates a html list with 4 options as child nodes', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes.length).to.equal(4)
-  //   });
-  //
-  //   it('creates list with first option value Choose a Language', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[0].value).to.equal("Choose a language")
-  //   });
-  //
-  //   it('creates list with first option innerHTML Choose a Language', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[0].innerHTML).to.equal("Choose a language")
-  //   });
-  //
-  //   it('creates list with second option value Ruby', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[1].value).to.equal("Ruby")
-  //   });
-  //
-  //   it('creates list with third option value Javascript', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[2].value).to.equal("Javascript")
-  //   });
-  //
-  //   it('creates list with fourth option value Jquery', function(){
-  //     expect(languagesView.createLanguageDropdown().childNodes[3].value).to.equal("JQuery")
-  //   });
-  // });
+
+  describe('#createLanguageDropdown', function(){
+    var doc;
+
+    beforeEach(function(){
+       doc = jsdom('<div id="lst-ib"></div>')
+    })
+
+    it('creates a html list with id languageDropdownList', function(){
+      console.log(languagesView.createLanguageDropdown(doc).id);
+      expect(languagesView.createLanguageDropdown(doc).id).to.equal("languageDropdownList")
+    });
+
+    it('creates a html list with onChange function', function(){
+      expect(typeof(languagesView.createLanguageDropdown(doc).onchange)).to.equal("function")
+    });
+
+    it('creates a html list with 4 options as child nodes', function(){
+      expect(languagesView.createLanguageDropdown(doc).childNodes.length).to.equal(12)
+    });
+
+    it('creates list with first option value Choose a Language', function(){
+      expect(languagesView.createLanguageDropdown(doc).childNodes[0].value).to.equal("Choose a technology")
+    });
+
+    it('creates list with first option innerHTML Choose a Language', function(){
+      expect(languagesView.createLanguageDropdown(doc).childNodes[0].innerHTML).to.equal("Choose a technology")
+    });
+  });
 
   // describe('#createVersionDropdown', function(){
-  //
-  //   var ourDocument = jsdom ('<body>'+
-  //                                 'Google Search:'+
-  //                                   '<input type="text" id="lst-ib" value="ruby array">' +
-  //                               '</body>');
-  //
-  //   it('returns a html element with id versionDropdownList', function(){
-  //     expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
-  //   });
+  //   // var ourDocument;
+  //   // var element;
+  //   // beforeEach(function(){
+  //   //   ourDocument = jsdom('<div id="lst-ib"><div id="elem"></div></div>');
+  //   //   element = ourDocument.getElementById('elem')
+  //   // });
   //
   //   it('returns a html element with id versionDropdownList', function(){
+  //     var ourDocument = jsdom('<div id="lst-ib"><div id="elem"></div></div>');
+  //     var element = ourDocument.getElementById('elem');
+  //
+  //     stub(ourDocument, 'createElement');
+  //     ourDocument.createElement.withArgs('select').returns(element);
   //     expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
   //   });
-  //
-  //   it('calls create dummy object with correct parameters', function(){
-  //     var chai = require('chai');
-  //     var spies = require('chai-spies');
-  //
-  //     chai.use(spies);
-  //     var spy = chai.spy.on(languagesView, 'createDummyOption');
-  //     languagesView.createVersionDropdown("Ruby", ourDocument)
-  //     expect(spy).to.have.been.called();
-  //   });
-  //
+  //   //
+    // it('returns a html element with id versionDropdownList', function(){
+    //   expect(languagesView.createVersionDropdown("Ruby", ourDocument).id).to.equal("versionDropdownList")
+    // });
+    //
+    // it('calls create dummy object with correct parameters', function(){
+    //   var chai = require('chai');
+    //   var spies = require('chai-spies');
+    //
+    //   chai.use(spies);
+    //   var spy = chai.spy.on(languagesView, 'createDummyOption');
+    //   languagesView.createVersionDropdown("Ruby", ourDocument)
+    //   expect(spy).to.have.been.called();
+    // });
+
   // });
 
-  // describe('generateVersionOptions', function(){
-  //
-  //   var ourDocument = jsdom ('<body>'+
-  //                                 'Google Search:'+
-  //                                   '<input type="text" id="lst-ib" value="ruby array">' +
-  //                               '</body>');
-  //
-  //   it('adds list of version options to the version dropdown with 2 choose a version options', function(){
-  //     var dropdown = languagesView.createVersionDropdown("Ruby", ourDocument)
-  //     languagesView.generateVersionOptions(dropdown, "Ruby", ourDocument)
-  //     expect(dropdown.childNodes[0].value).to.equal("Choose a version")
-  //   });
-  // });
+  describe('generateVersionOptions', function(){
+    var ourDocument;
+    beforeEach(function(){
+      ourDocument = jsdom('<div id="lst-ib" ><a id="list"></a></div>');
+    })
+
+
+    it('adds list of version options to the version dropdown with 2 choose a version options', function(){
+      var dropdown = ourDocument.getElementById("list");
+      languagesView.generateVersionOptions(dropdown, "Ruby", ourDocument);
+      expect(dropdown.childNodes[0].value).to.equal("Choose a version");
+    });
+  });
 
   describe('#createTopicDropdown', function(){
-    var ourDocument = jsdom ('<body>'+
-                                  'Google Search:'+
-                                    '<input type="text" id="lst-ib" value="ruby array">' +
-                                '</body>');
+    var ourDocument;
+
+    beforeEach(function(){
+       ourDocument = jsdom ('<body>'+
+                                    'Google Search:'+
+                                      '<input type="text" id="lst-ib" value="ruby array">' +
+                                  '</body>');
+    })
+
     it('returns a select element', function(){
       expect(languagesView.createTopicDropdown(ourDocument).tagName).to.equal("SELECT")
     });
@@ -274,9 +280,9 @@ describe('LanguagesView', function(){
                                 '</body>');
     it('adds a href as matches the link fed', function(){
       var link = ourDocument.getElementById('link');
-      var officialDocLink = "http://www.google.co.uk"
+      var officialDocLink = "http://www.google.co.uk";
       languagesView.addLinktoTag(officialDocLink, "Ruby", "2.4.0", "array", "Ruby-doc", ourDocument);
-      expect(link.href).to.equal("http://www.google.co.uk")
+      expect(link.href).to.equal("http://www.google.co.uk");
     });
   });
 
@@ -389,5 +395,38 @@ describe('LanguagesView', function(){
   //   });
   // });
 
+  describe('fillInVersion', function(){
+    it('fills in the given version', function(){
+        var aDoc = jsdom('<div id="languageDropdownList"><div id="versionDropdownList"></div><></div>');
+        aDoc.getElementById('languageDropdownList').value = "Ruby"
+        aDoc.getElementById('versionDropdownList').value = "Choose a version"
+        languagesView.fillInVersion(aDoc);
+        expect(aDoc.getElementById('versionDropdownList').value).to.equal("2.4.0")
+    });
+  });
 
+  describe('languagesDiv', function(){
+    it('calls functions as expected', function(){
+      stub(LanguagesView.prototype, 'createLanguagesDiv');
+      stub(LanguagesView.prototype, 'createLanguagesTitle');
+      var divspy = chai.spy.on(LanguagesView.prototype, 'createLanguagesDiv');
+      var titlespy = chai.spy.on(LanguagesView.prototype, 'createLanguagesTitle');
+      var aDoc = jsdom('<div id="languageDropdownList"><div id="versionDropdownList"></div><></div>');
+      var div = aDoc.getElementById('languageDropdownList');
+      languagesView.languagesDiv(div, aDoc);
+      expect(divspy).to.have.been.called();
+      expect(titlespy).to.have.been.called();
+    });
+  });
+
+  describe('insertDropdownIntoLanguages', function(){
+    it('inserts a div into languages', function(){
+      var aDoc = jsdom('<div id="languageDropdownList"><div id="versionDropdownList"></div><></div>');
+      var langdiv = aDoc.getElementById('languageDropdownList')
+      stub(LanguagesView.prototype, 'createDropdownDiv');
+      var anotherdiv = aDoc.createElement('div')
+      stub(HTMLDivElement.prototype, 'insertAdjacentElement')
+      // languagesView.insertDropdownIntoLanguages(langdiv, aDoc);
+    });
+  });
 });
