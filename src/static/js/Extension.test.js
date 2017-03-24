@@ -1,4 +1,4 @@
-xit('Extention add text to the google search results', (done) => {
+it('Extention add text to the google search results', (done) => {
 
   var sw = require('selenium-webdriver');
   var assert = require('chai').assert;
