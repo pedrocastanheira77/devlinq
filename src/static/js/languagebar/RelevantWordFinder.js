@@ -58,7 +58,7 @@ function compareSearchBarInfo(getLanguagesView, that, doc) {
       }
     }
   }
-  return [language, version, topic]
+  return [language, version, topic];
 }
 
 module.exports = {

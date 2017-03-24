@@ -14,16 +14,16 @@ describe('StackOverflowBar', function(){
   describe('#createStackOverflowDiv', function(){
     it('returns a div element', function(){
       var stackbar = new StackOverflowBar;
-      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
-      aDocument.getElementById('lst-ib').value = "hey there"
-      expect(stackbar.createStackOverflowDiv(aDocument).tagName).to.equal('DIV')
+      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>');
+      aDocument.getElementById('lst-ib').value = "hey there";
+      expect(stackbar.createStackOverflowDiv(aDocument).tagName).to.equal('DIV');
     });
 
     it('returns a div element with id stackoverflowbar', function(){
       var stackbar = new StackOverflowBar;
-      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
-      aDocument.getElementById('lst-ib').value = "hey there"
-      expect(stackbar.createStackOverflowDiv(aDocument).id).to.equal('stackoverflowbar')
+      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>');
+      aDocument.getElementById('lst-ib').value = "hey there";
+      expect(stackbar.createStackOverflowDiv(aDocument).id).to.equal('stackoverflowbar');
     });
   });
 
@@ -57,31 +57,31 @@ describe('StackOverflowBar', function(){
   describe('getStackAPI', function(){
     it('returns a promise', function(){
       var stackbar = new StackOverflowBar;
-      var promise = stackbar.getStackAPI("ruby array", 3)
-      expect(promise.constructor.name).to.equal("Promise")
+      var promise = stackbar.getStackAPI("ruby array", 3);
+      expect(promise.constructor.name).to.equal("Promise");
     });
   });
 
   describe('#stackAPIresult', function(){
     it('returns a HTML paragraph element', function(){
-      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>')
+      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>');
       aDoc.getElementById('lst-ib').value = "hey there";
       var stackbar = new StackOverflowBar;
-      expect(stackbar.stackAPIresult(aDoc).tagName).to.equal('P')
+      expect(stackbar.stackAPIresult(aDoc).tagName).to.equal('P');
     });
 
     it('returns a HTML paragraph element with id exampleSOresult', function(){
-      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>')
-      aDoc.getElementById('lst-ib').value = "hey there"
+      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>');
+      aDoc.getElementById('lst-ib').value = "hey there";
       var stackbar = new StackOverflowBar;
-      expect(stackbar.stackAPIresult(aDoc).id).to.equal('exampleSOresult')
+      expect(stackbar.stackAPIresult(aDoc).id).to.equal('exampleSOresult');
     });
 
     it('returns a HTML paragraph element with innerHTML from decideStringForAPI', function(){
       var stackbar = new StackOverflowBar;
-      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>')
-      aDoc.getElementById('lst-ib').value = "hey there"
-      expect(stackbar.stackAPIresult(aDoc).innerHTML).to.equal('hey there')
+      var aDoc = jsdom.jsdom('<div id="lst-ib"></div>');
+      aDoc.getElementById('lst-ib').value = "hey there";
+      expect(stackbar.stackAPIresult(aDoc).innerHTML).to.equal('hey there');
     });
   });
 
@@ -101,23 +101,23 @@ describe('StackOverflowBar', function(){
 
   describe('decideStringForAPI', function(){
     it('returns the value of the correct element', function(){
-      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
-      aDocument.getElementById('lst-ib').value = "hey there"
+      var aDocument = jsdom.jsdom('<div id="lst-ib"></div>');
+      aDocument.getElementById('lst-ib').value = "hey there";
       var stackbar = new StackOverflowBar;
-      expect(stackbar.decideStringForAPI(aDocument)).to.equal("hey there")
+      expect(stackbar.decideStringForAPI(aDocument)).to.equal("hey there");
     })
   });
 
-  
+
     describe('#insertStackOverflowAPI', function(){
       it('inserts adjacent HTML for exactly the number of requested results', function(done){
-        var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
+        var aDocument = jsdom.jsdom('<div id="lst-ib"></div>');
         var stackbar = new StackOverflowBar;
         var stackdiv = stackbar.createStackOverflowDiv(aDocument);
-        stub(StackOverflowBar.prototype, 'decideStringForAPI')
-        StackOverflowBar.prototype.decideStringForAPI.returns("ruby array")
+        stub(StackOverflowBar.prototype, 'decideStringForAPI');
+        StackOverflowBar.prototype.decideStringForAPI.returns("ruby array");
         var spy = chai.spy.on(stackdiv, 'insertAdjacentHTML');
-        stackbar.insertStackOverflowAPI(5, stackdiv, aDocument)
+        stackbar.insertStackOverflowAPI(5, stackdiv, aDocument);
         setTimeout(function(){
           expect(spy).to.have.been.called.exactly(5);
           done();

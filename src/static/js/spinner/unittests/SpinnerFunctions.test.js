@@ -37,11 +37,11 @@ describe('StartSpinner', function() {
   it('calls spinner.spin()', function(done){
     var spinner = new Spinner(opts);
     var ourDocument = jsdom.jsdom('<html><body><div id="spinner"></div><div id="resultStats"></div></body></html>');
-    var ourSpy = chai.spy.on(spinner, 'spin')
+    var ourSpy = chai.spy.on(spinner, 'spin');
     startSpinner(spinner, spinnerDiv, ourDocument);
     setTimeout(function(){
       expect(ourSpy).to.have.been.called();
       done();
-    },3000)
+    }, 3000)
   });
 });

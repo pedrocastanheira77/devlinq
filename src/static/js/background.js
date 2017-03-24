@@ -1,5 +1,5 @@
 var clickButtonStatus = "on";
-var c = chrome
+var c = chrome;
 
 chrome.browserAction.onClicked.addListener(function(tab){
   changeClickButtonStatus();
@@ -19,10 +19,10 @@ function triggerContentsScripts(tabId, changeInfo, tab) {
 
 function changeClickButtonStatus(){
   if (clickButtonStatus === "off"){
-    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_color.png"})
+    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_color.png"});
     return clickButtonStatus = "on";
   } else {
-    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_black.png"})
+    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_black.png"});
     return clickButtonStatus = "off";
   }
 }

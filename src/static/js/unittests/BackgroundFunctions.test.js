@@ -74,8 +74,8 @@ describe('BackgroundFunctions', function(){
     it('calls relevant functions', function(){
       var tab =  "hello I'm a tab";
       var clickButtonStatus = "on";
-      var div = jsdom('<div id="change"></div>')
-      div.getElementById('change').status = "complete"
+      var div = jsdom('<div id="change"></div>');
+      div.getElementById('change').status = "complete";
       triggerContentsScripts(1,div, tab, chrome, "on");
     });
   });

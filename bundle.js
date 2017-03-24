@@ -44505,8 +44505,8 @@ var stackbar = new StackOverflowBar();
 
 function devlinqExtention(theDocument, theChrome, savedNumberOfLinks) {
   setTimeout(function() {
-    preload(theDocument, theChrome)
-    createLangAndStackDiv(theDocument, savedNumberOfLinks)
+    preload(theDocument, theChrome);
+    createLangAndStackDiv(theDocument, savedNumberOfLinks);
   }, 3000);
 }
 
@@ -44601,8 +44601,6 @@ function LanguagesView(){
   this.selenium = new Selenium();
 };
 
-///////////// new
-
 LanguagesView.prototype.languagesDiv = function(currentDiv, doc) {
   var languagesDiv = this.createLanguagesDiv(currentDiv, doc);
   this.createLanguagesTitle(languagesDiv, doc);
@@ -44611,9 +44609,9 @@ LanguagesView.prototype.languagesDiv = function(currentDiv, doc) {
 }
 
 LanguagesView.prototype.createLanguagesDiv = function(currentDiv, doc) {
-  var languages_div = doc.getElementById("languages_div")
+  var languages_div = doc.getElementById("languages_div");
   if (languages_div){
-    languages_div.parentNode.removeChild(languages_div)
+    languages_div.parentNode.removeChild(languages_div);
   }
   var languagesDiv = doc.createElement("div");
   languagesDiv.id = "languages_div";
@@ -44645,8 +44643,6 @@ LanguagesView.prototype.insertOfficialDocsIntoLanguages = function(languagesDiv)
     languagesDiv.insertAdjacentElement('beforeend', officialDiv);
   }
 }
-
-///////////// new
 
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
@@ -44797,13 +44793,11 @@ LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
   var chosenTopic = doc.querySelector('#topicDropdownList').value;
-  // setTimeout(function(){
-    if (this[chosenLanguage.toLowerCase()]) {
-      var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-      var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
-      new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-    }
-  // }, 1500)
+  if (this[chosenLanguage.toLowerCase()]) {
+    var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
+    var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+    new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
+  }
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
@@ -44915,7 +44909,7 @@ function compareSearchBarInfo(getLanguagesView, that, doc) {
       }
     }
   }
-  return [language, version, topic]
+  return [language, version, topic];
 }
 
 module.exports = {
@@ -45584,7 +45578,7 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
       gzip: true
     }).then(function(response) {
         var array = [];
-        insertResponse(array, response, number)
+        insertResponse(array, response, number);
       resolve(array);
     });
   });
@@ -45603,7 +45597,7 @@ function insertResponse(array, response, number){
 StackOverflowBar.prototype.stackAPIresult = function (theDocument) {
   var exampleSOresult = theDocument.createElement("p");
   exampleSOresult.id = "exampleSOresult";
-  exampleSOresult.innerHTML = this.decideStringForAPI(theDocument)
+  exampleSOresult.innerHTML = this.decideStringForAPI(theDocument);
   return exampleSOresult;
 }
 
@@ -45612,7 +45606,7 @@ StackOverflowBar.prototype.createStackOverflowDiv = function (theDocument) {
   var stackOverflowDiv = theDocument.createElement('div');
   stackOverflowDiv.id = "stackOverflow";
   stackOverflowDiv.appendChild(this.stackAPIresult(theDocument));
-  return stackOverflowDiv
+  return stackOverflowDiv;
 };
 
 StackOverflowBar.prototype.getRequestedNumberOfLinks = function(theChrome) {
@@ -45644,7 +45638,7 @@ StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, 
 StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
   var stackOverflowDiv = theDocument.getElementById("stackoverflowbar");
   if (stackOverflowDiv) {
-    stackOverflowDiv.parentNode.removeChild(stackOverflowDiv)
+    stackOverflowDiv.parentNode.removeChild(stackOverflowDiv);
   }
   var stackOverflowDiv = theDocument.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
@@ -45654,7 +45648,7 @@ StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
 
 StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLinks, stackOverflowDiv, theDocument){
   var stackoverflowsearch = this.decideStringForAPI(theDocument);
-  var doc = theDocument
+  var doc = theDocument;
   this.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     var googleResultUrls = doc.getElementsByClassName("_Rm");

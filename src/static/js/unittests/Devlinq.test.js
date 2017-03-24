@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
-var spies = require('chai-spies')
-var chai = require('chai')
+var spies = require('chai-spies');
+var chai = require('chai');
 chai.use(spies);
 var WebFont = require('webfontloader');
 var loadFont = require('../Devlinq.js').loadFont;

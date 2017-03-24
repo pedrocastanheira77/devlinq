@@ -29,7 +29,7 @@ StackOverflowBar.prototype.getStackAPI = function (string, number) {
       gzip: true
     }).then(function(response) {
         var array = [];
-        insertResponse(array, response, number)
+        insertResponse(array, response, number);
       resolve(array);
     });
   });
@@ -48,7 +48,7 @@ function insertResponse(array, response, number){
 StackOverflowBar.prototype.stackAPIresult = function (theDocument) {
   var exampleSOresult = theDocument.createElement("p");
   exampleSOresult.id = "exampleSOresult";
-  exampleSOresult.innerHTML = this.decideStringForAPI(theDocument)
+  exampleSOresult.innerHTML = this.decideStringForAPI(theDocument);
   return exampleSOresult;
 }
 
@@ -57,7 +57,7 @@ StackOverflowBar.prototype.createStackOverflowDiv = function (theDocument) {
   var stackOverflowDiv = theDocument.createElement('div');
   stackOverflowDiv.id = "stackOverflow";
   stackOverflowDiv.appendChild(this.stackAPIresult(theDocument));
-  return stackOverflowDiv
+  return stackOverflowDiv;
 };
 
 StackOverflowBar.prototype.getRequestedNumberOfLinks = function(theChrome) {
@@ -89,7 +89,7 @@ StackOverflowBar.prototype.createStackOverflowTitle= function(stackOverflowDiv, 
 StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
   var stackOverflowDiv = theDocument.getElementById("stackoverflowbar");
   if (stackOverflowDiv) {
-    stackOverflowDiv.parentNode.removeChild(stackOverflowDiv)
+    stackOverflowDiv.parentNode.removeChild(stackOverflowDiv);
   }
   var stackOverflowDiv = theDocument.createElement("div");
   stackOverflowDiv.id = "stackoverflowbar";
@@ -99,7 +99,7 @@ StackOverflowBar.prototype.createStackOverflowDiv = function(theDocument) {
 
 StackOverflowBar.prototype.insertStackOverflowAPI = function(requestedNumberOfLinks, stackOverflowDiv, theDocument){
   var stackoverflowsearch = this.decideStringForAPI(theDocument);
-  var doc = theDocument
+  var doc = theDocument;
   this.getStackAPI(stackoverflowsearch, requestedNumberOfLinks).then(function(items){
     var numberOfLinks = Math.min(requestedNumberOfLinks, items.length);
     var googleResultUrls = doc.getElementsByClassName("_Rm");
