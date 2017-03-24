@@ -2,24 +2,12 @@ var chai = require('chai');
 var expect = require('chai').expect;
 var spies = require('chai-spies');
 chai.use(spies);
-// var SpinnerDiv = require('../SpinnerView.js').SpinnerDiv;
 var startSpinner = require('../SpinnerFunctions.js');
-// var jsdom = require('jsdom').jsdom;
 var Spinner = require("../Spinner.js");
 var spinnerDiv = document.createElement("div");
 spinnerDiv.id = "spinner";
 var jsdom = require('jsdom')
-// describe('SpinnerDiv', function() {
-//   it('Creates a div element to best the spinner', function(done){
-//     var ourDocument = jsdom('<html><body><div id="resultStats"></div></body></html>');
-//     SpinnerDiv(ourDocument);
-//     setTimeout(function(){
-//       expect(ourDocument.getElementById("spinner")).to.exist;
-//       done();
-//     }, 1000);
-//
-//   });
-// });
+
 
 var opts = {
   lines: 13 // The number of lines to draw

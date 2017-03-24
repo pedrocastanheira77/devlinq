@@ -9,4 +9,4 @@ chrome.browserAction.onClicked.addListener(function(tab){
   pageRefresher(chrome);
 });
 
-chrome.tabs.onUpdated.addListener(triggerContentsScripts);
+chrome.tabs.onUpdated.addListener(triggerContentsScripts(chrome, clickButtonStatus));

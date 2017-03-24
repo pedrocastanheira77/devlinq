@@ -108,29 +108,7 @@ describe('StackOverflowBar', function(){
     })
   });
 
-  describe('createStackOverflowTitle', function(){
-    //REPACE insertAdjacentElement with something else?parent append child!?
-    it('returns a div element', function(){
-      // var stackbar = new StackOverflowBar;
-      // var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')
-      // aDocument.getElementById('lst-ib').value = "hey there";
-      // var stackOverflowDiv = stackbar.createStackOverflowDiv(aDocument);
-      // stub(document.element, 'insertAdjacentHTML')
-      // stackOverflowDiv.id = "stackoverflowbar";
-      // stackbar.createStackOverflowTitle(stackOverflowDiv, aDocument)
-    });
-  })
-
-  describe('stackOverflowDiv', function(){
-    it('does something', function(){
-      // var stackbar = new StackOverflowBar;
-      // var aDocument = jsdom.jsdom('<div id="lst-ib"><div id="appbar"></div></div>');
-      // var appbar = aDocument.getElementById("appbar")
-      // stackbar.stackOverflowDiv(appbar, 5, aDocument)
-
-    })
-  })
-
+  
     describe('#insertStackOverflowAPI', function(){
       it('inserts adjacent HTML for exactly the number of requested results', function(done){
         var aDocument = jsdom.jsdom('<div id="lst-ib"></div>')

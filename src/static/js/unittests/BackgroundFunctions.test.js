@@ -11,8 +11,11 @@ var stub = require('sinon').stub
 var pageRefresher = require('../BackgroundFunctions.js').pageRefresher;
 var runSpinner = require('../BackgroundFunctions.js').runSpinner;
 var runContentScripts = require('../BackgroundFunctions.js').runContentScripts;
+var triggerContentsScripts = require('../BackgroundFunctions.js').triggerContentsScripts;
 var pageCleaner = require('../BackgroundFunctions.js').pageCleaner;
+var jsdom = require('jsdom').jsdom;
 chai.use(spies);
+
 
 describe('BackgroundFunctions', function(){
   beforeEach(function () {
@@ -64,6 +67,16 @@ describe('BackgroundFunctions', function(){
       assert.ok(chrome.tabs.query.called, 'function was called');
       assert.ok(chrome.tabs.executeScript.called, 'function was not called');
       done();
+    });
+  });
+
+  describe('triggerContentsScripts', function(){
+    it('calls relevant functions', function(){
+      var tab =  "hello I'm a tab";
+      var clickButtonStatus = "on";
+      var div = jsdom('<div id="change"></div>')
+      div.getElementById('change').status = "complete"
+      triggerContentsScripts(1,div, tab, chrome, "on");
     });
   });
 });

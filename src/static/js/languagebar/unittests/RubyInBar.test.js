@@ -22,6 +22,14 @@ describe('Ruby', function(){
       var expectedURL = "https://ruby-doc.org/core-2.1.3/Array.html";
       expect(resultURL).to.equal(expectedURL);
     });
+
+    it('returns correct url for given topic', function(){
+      var version = "2.1.3";
+      var topic = "Choose a topic";
+      var resultURL = language.generateOfficialDocsURL(version, topic);
+      var expectedURL = "https://ruby-doc.org/core-2.1.3/";
+      expect(resultURL).to.equal(expectedURL);
+    });
   });
 
   describe("#nameOfDoc", function(){
