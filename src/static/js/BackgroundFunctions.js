@@ -1,18 +1,18 @@
-function triggerContentsScripts(tabId, changeInfo, tab) {
+function triggerContentsScripts(tabId, changeInfo, tab, theChrome, clickButtonStatus) {
   if (changeInfo.status === "complete" && clickButtonStatus === "on") {
-    pageCleaner();
-    runContentScripts();
+    pageCleaner(theChrome);
+    runContentScripts(theChrome);
   } else if (changeInfo.status === "loading" && clickButtonStatus === "on") {
-    runSpinner();
+    runSpinner(theChrome);
   }
 }
 
 function changeClickButtonStatus(clickButtonStatus, chrome){
   if (clickButtonStatus === "off"){
-    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_color.png"})
+    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_color.png"});
     return "on";
   } else {
-    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_black.png"})
+    chrome.browserAction.setIcon({path:"public/images/devlinq_icon_black.png"});
     return "off";
   }
 }

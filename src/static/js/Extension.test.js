@@ -1,11 +1,9 @@
-// jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
-
 xit('Extention add text to the google search results', (done) => {
 
   var sw = require('selenium-webdriver');
   var assert = require('chai').assert;
   var chromeOptions = sw.Capabilities.chrome();
-  chromeOptions.set("chromeOptions",  {"args": ['--load-extension='+"/Users/KateLoschinina/Workspace/MakersAcademy/devlinq", "--enable-extension-apps"]});
+  chromeOptions.set("chromeOptions",  {"args": ['--load-extension='+"/Users/Lauren/makers/devlinq", "--enable-extension-apps"]});
   var driver = new sw.Builder()
       .forBrowser('chrome')
       .withCapabilities(chromeOptions)

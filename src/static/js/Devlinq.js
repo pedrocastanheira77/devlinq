@@ -7,8 +7,8 @@ var stackbar = new StackOverflowBar();
 
 function devlinqExtention(theDocument, theChrome, savedNumberOfLinks) {
   setTimeout(function() {
-    preload(theDocument, theChrome)
-    createLangAndStackDiv(theDocument, savedNumberOfLinks)
+    preload(theDocument, theChrome);
+    createLangAndStackDiv(theDocument, savedNumberOfLinks);
   }, 3000);
 }
 
