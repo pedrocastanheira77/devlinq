@@ -28,8 +28,6 @@ function LanguagesView(){
   this.selenium = new Selenium();
 };
 
-///////////// new
-
 LanguagesView.prototype.languagesDiv = function(currentDiv, doc) {
   var languagesDiv = this.createLanguagesDiv(currentDiv, doc);
   this.createLanguagesTitle(languagesDiv, doc);
@@ -38,9 +36,9 @@ LanguagesView.prototype.languagesDiv = function(currentDiv, doc) {
 }
 
 LanguagesView.prototype.createLanguagesDiv = function(currentDiv, doc) {
-  var languages_div = doc.getElementById("languages_div")
+  var languages_div = doc.getElementById("languages_div");
   if (languages_div){
-    languages_div.parentNode.removeChild(languages_div)
+    languages_div.parentNode.removeChild(languages_div);
   }
   var languagesDiv = doc.createElement("div");
   languagesDiv.id = "languages_div";
@@ -72,8 +70,6 @@ LanguagesView.prototype.insertOfficialDocsIntoLanguages = function(languagesDiv)
     languagesDiv.insertAdjacentElement('beforeend', officialDiv);
   }
 }
-
-///////////// new
 
 LanguagesView.prototype.getLanguagesView = function() {
   this.languageList = [];
@@ -224,13 +220,11 @@ LanguagesView.prototype.submitSearchButtonEvent = function(doc) {
   var chosenLanguage = doc.querySelector('#languageDropdownList').value;
   var chosenVersion = doc.querySelector('#versionDropdownList').value;
   var chosenTopic = doc.querySelector('#topicDropdownList').value;
-  // setTimeout(function(){
-    if (this[chosenLanguage.toLowerCase()]) {
-      var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
-      var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
-      new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
-    }
-  // }, 1500)
+  if (this[chosenLanguage.toLowerCase()]) {
+    var officialDocLink = this[chosenLanguage.toLowerCase()].generateOfficialDocsURL(chosenVersion, chosenTopic);
+    var docs = new LanguagesView()[chosenLanguage.toLowerCase()].nameOfDoc();
+    new LanguagesView().addLinktoTag(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc);
+  }
 };
 
 LanguagesView.prototype.addLinktoTag = function(officialDocLink, chosenLanguage, chosenVersion, chosenTopic, docs, doc){
