@@ -50,28 +50,6 @@ describe('Devlinq', function(){
     });
   });
 
-  describe('#replaceLogo', function(){
-    it('changes the url to desired url if the logo if element present', function(done){
-      stub(ourChrome.extension, 'getURL')
-      ourChrome.extension.getURL.withArgs('/public/images/devlinq_logo_color.png').returns("oururl")
-      setTimeout(function(){
-        replaceLogo(ourDocument, ourChrome);
-        var logourl = ourDocument.getElementById("logo").children[0].src;
-        expect(logourl).to.equal("oururl");
-        done();
-      }, 1000)
-    });
-
-    it('changes the url to desired url if the logo if element present', function(done){
-      var theDocument = jsdom.jsdom ('<a id="logocont"><div><div></div></div></a>');
-      setTimeout(function(){
-        replaceLogo(theDocument, ourChrome)
-        var logourl = theDocument.getElementById("logocont").children[0].children[0].src;
-        expect(logourl).to.equal("oururl");
-        done();
-      }, 1000)
-    });
-  });
 
   describe('#createSpinner', function(){
     it('gets the spinner div and deletes it if already present', function(){
