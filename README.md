@@ -61,6 +61,7 @@ Testing:
 * Run in the command line
 ```
 $ npm install
+$ npm install -g browserify // if you don't have it installed yet 
 $ browserify src/static/js/DevlinqEvent.js -o bundle.js
 ```
 * Open Google Chrome
